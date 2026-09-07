@@ -5,7 +5,7 @@ import { TOTAL_STEPS } from "./model"
 
 export function StepBadge({ children }: { children: ReactNode }) {
   return (
-    <span className="inline-flex rounded-full bg-cyan/20 px-3 py-1 text-[11px] font-medium tracking-[0.16em] text-ink uppercase">
+    <span className="inline-flex rounded-full bg-slate/15 px-3 py-1 text-[11px] font-medium tracking-[0.16em] text-slate uppercase">
       {children}
     </span>
   )
@@ -46,7 +46,7 @@ export function FieldLabel({
   return (
     <span className="text-xs tracking-[0.14em] text-ink-soft uppercase">
       {children}
-      {required ? <span className="text-magenta"> *</span> : null}
+      {required ? <span className="text-slate"> *</span> : null}
     </span>
   )
 }
@@ -62,7 +62,7 @@ export function ProgressBar({ current }: { current: number }) {
             <span
               key={n}
               className={`h-1 rounded-full transition-all duration-500 ${
-                on ? "w-7 bg-[#8791AD] sm:w-8" : "w-5 bg-ink/10 sm:w-6"
+                on ? "w-7 bg-slate sm:w-8" : "w-5 bg-slate/20 sm:w-6"
               }`}
             />
           )
@@ -134,7 +134,7 @@ export function OnboardingFooter({
             className={`shine-hover inline-flex min-h-12 items-center justify-center rounded-full px-6 text-sm font-medium sm:px-8 ${
               continueDisabled
                 ? "cursor-not-allowed bg-ink/20 text-white"
-                : "bg-[#8791AD] text-ink"
+                : "bg-slate text-white"
             }`}
           >
             {continueLabel} →
@@ -162,7 +162,7 @@ export function Toggle({
       aria-label={label}
       onClick={onToggle}
       className={`relative h-7 w-12 shrink-0 rounded-full transition-colors ${
-        on ? "bg-ink" : "bg-ink/15"
+        on ? "bg-slate" : "bg-slate/25"
       }`}
     >
       <span

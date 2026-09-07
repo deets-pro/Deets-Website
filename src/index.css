@@ -53,27 +53,30 @@
   --font-sans: "Urbane", sans-serif;
 
   --color-ink: #0a0a0a;
-  --color-ink-soft: #3a3a3a;
+  --color-ink-soft: #8791ad;
+  --color-slate: #8791ad;
   --color-canvas: #ffffff;
-  --color-canvas-dim: #fafafa;
-  --color-line: rgb(10 10 10 / 0.1);
+  --color-canvas-dim: #f3f4f8;
+  --color-line: rgb(135 145 173 / 0.32);
 
   --color-cyan: #00d4ff;
   --color-magenta: #ff2d92;
   --color-tangerine: #ff6b1a;
 
-  --shadow-glow: 0 24px 80px rgb(255 45 146 / 0.22);
+  --shadow-glow: 0 24px 80px rgb(135 145 173 / 0.22);
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
-    overflow-x: hidden;
+    overflow-x: clip;
+    overscroll-behavior-y: auto;
   }
 
   body {
     @apply bg-canvas text-ink font-sans antialiased;
-    overflow-x: hidden;
+    overflow-x: clip;
+    overscroll-behavior-y: auto;
   }
 
   ::selection {

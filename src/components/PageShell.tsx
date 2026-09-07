@@ -1,11 +1,13 @@
 import { Outlet } from "react-router-dom"
 import { Footer } from "./Footer"
+import { OverscrollHints } from "./OverscrollNote"
 import { SiteNav } from "./SiteNav"
 
 export function PageShell() {
   return (
     <>
       <div className="grain" aria-hidden />
+      <OverscrollHints />
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:bg-white focus:px-3 focus:py-2"

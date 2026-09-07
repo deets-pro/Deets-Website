@@ -56,7 +56,7 @@ export function TestimonialsSection() {
           {testimonials.map((item) => (
             <article
               key={item.id}
-              className="flex w-[min(88vw,22rem)] shrink-0 flex-col rounded-[1.75rem] bg-[#f3f3f3] p-6 sm:w-[min(78vw,24rem)] md:p-7"
+              className="flex w-[min(88vw,22rem)] shrink-0 flex-col rounded-[1.75rem] bg-slate/10 p-6 sm:w-[min(78vw,24rem)] md:p-7"
             >
               <div className="flex items-start justify-between gap-4">
                 <div
@@ -66,13 +66,13 @@ export function TestimonialsSection() {
                   {item.initials}
                 </div>
                 <span className="inline-flex max-w-[58%] items-center gap-2 rounded-full border border-line bg-white px-3 py-1.5 text-[11px] font-medium tracking-wide text-ink uppercase">
-                  <span className="size-1.5 shrink-0 rounded-full bg-cyan" />
+                  <span className="size-1.5 shrink-0 rounded-full bg-slate" />
                   <span className="truncate">{item.company}</span>
                 </span>
               </div>
 
               <p
-                className="mt-8 font-display text-[3.25rem] font-thin leading-none text-cyan"
+                className="mt-8 font-display text-[3.25rem] font-thin leading-none text-slate"
                 aria-hidden
               >
                 “

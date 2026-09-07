@@ -25,7 +25,7 @@ export function CompaniesTeaser() {
           </div>
           <Link
             to="/companies"
-            className="inline-flex min-h-10 shrink-0 items-center border border-ink/40 px-5 text-[11px] tracking-[0.14em] text-ink uppercase transition-colors hover:bg-ink/5 md:mb-1"
+            className="inline-flex min-h-10 shrink-0 items-center border border-slate/50 px-5 text-[11px] tracking-[0.14em] text-slate uppercase transition-colors hover:bg-slate/10 md:mb-1"
           >
             Open portal
           </Link>

@@ -43,7 +43,7 @@ export function HowItWorks() {
                 className="absolute inset-0 size-full object-cover"
               />
             </div>
-            <p className="mt-5 font-display text-[2.5rem] leading-none tracking-tight text-ink/15">
+            <p className="mt-5 font-display text-[2.5rem] leading-none tracking-tight text-slate/40">
               {String(index + 1).padStart(2, "0")}
             </p>
             <h3 className="mt-4 font-sans text-[1.05rem] font-semibold tracking-tight text-ink">

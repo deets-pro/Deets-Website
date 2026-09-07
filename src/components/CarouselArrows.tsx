@@ -31,7 +31,7 @@ function ArrowButton({
       type="button"
       onClick={onClick}
       aria-label={label}
-      className="flex size-11 items-center justify-center rounded-full bg-ink text-white transition-opacity hover:opacity-85"
+      className="flex size-11 items-center justify-center rounded-full bg-slate text-white transition-opacity hover:opacity-85"
     >
       <svg
         viewBox="0 0 24 24"

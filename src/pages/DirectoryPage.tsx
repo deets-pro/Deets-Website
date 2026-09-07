@@ -38,7 +38,7 @@ export function DirectoryPage() {
       <ul className="mt-12 divide-y divide-line border-y border-line">
         {people.map((p) => (
           <li key={p.handle}>
-            <a href={p.href} className="block py-6 hover:text-magenta">
+            <a href={p.href} className="block py-6 hover:text-slate">
               <p className="font-display text-2xl tracking-tight">{p.name}</p>
               <p className="mt-1 text-sm text-ink-soft">{p.handle}</p>
               <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-soft">

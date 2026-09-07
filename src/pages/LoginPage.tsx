@@ -42,7 +42,7 @@ export function LoginPage() {
         {error ? <p className="text-sm text-ink-soft">{error}</p> : null}
         <button
           type="submit"
-          className="shine-hover mt-2 inline-flex min-h-12 items-center justify-center rounded-full bg-accent text-sm font-medium text-ink"
+          className="mt-2 inline-flex min-h-12 items-center justify-center rounded-full bg-slate text-sm font-medium text-white"
         >
           Log in
         </button>

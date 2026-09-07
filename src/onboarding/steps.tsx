@@ -139,7 +139,7 @@ export function StepHandle({ state, patch, onContinue }: StepProps) {
       <div
         className={`mt-10 flex items-center rounded-full border bg-white px-5 py-3.5 transition-[border-color,box-shadow] ${
           status === "ok"
-            ? "border-magenta shadow-[0_0_0_4px_rgb(255_45_146_/_0.08)]"
+            ? "border-slate shadow-[0_0_0_4px_rgb(135_145_173_/_0.16)]"
             : "border-line focus-within:border-ink"
         }`}
       >
@@ -155,12 +155,12 @@ export function StepHandle({ state, patch, onContinue }: StepProps) {
           className="min-w-0 flex-1 bg-transparent text-[15px] font-medium outline-none placeholder:font-normal placeholder:text-ink/30"
         />
         {status === "ok" ? (
-          <span className="ml-2 flex size-6 items-center justify-center rounded-full bg-magenta text-white">
+          <span className="ml-2 flex size-6 items-center justify-center rounded-full bg-slate text-white">
             <CheckIcon />
           </span>
         ) : null}
       </div>
-      <p className={`mt-3 text-sm ${status === "ok" ? "text-magenta" : "text-ink-soft"}`}>
+      <p className={`mt-3 text-sm ${status === "ok" ? "text-slate" : "text-ink-soft"}`}>
         {status === "ok"
           ? "Nice — that one's all yours."
           : status === "taken"
@@ -443,8 +443,8 @@ export function StepLinks({ state, patch, goTo }: StepProps) {
       </div>
 
       {locked ? (
-        <div className="mt-8 flex flex-col gap-4 rounded-[1.4rem] bg-magenta/8 px-4 py-4 sm:flex-row sm:items-center">
-          <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-magenta text-white">
+        <div className="mt-8 flex flex-col gap-4 rounded-[1.4rem] bg-slate/10 px-4 py-4 sm:flex-row sm:items-center">
+          <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-slate text-white">
             <LockIcon />
           </span>
           <div className="min-w-0 flex-1 text-left">
@@ -456,7 +456,7 @@ export function StepLinks({ state, patch, goTo }: StepProps) {
           <button
             type="button"
             onClick={() => goTo(1)}
-            className="shine-hover inline-flex min-h-10 shrink-0 items-center justify-center rounded-full bg-accent px-4 text-sm font-medium text-ink"
+            className="inline-flex min-h-10 shrink-0 items-center justify-center rounded-full bg-slate px-4 text-sm font-medium text-white"
           >
             Verify email
           </button>
@@ -551,7 +551,7 @@ export function StepCard({ state, patch }: StepProps) {
         <div className={`flex items-center gap-4 rounded-[1.4rem] border bg-white px-4 py-4 ${
           state.shareContact ? "border-ink" : "border-line"
         }`}>
-          <span className="flex size-12 shrink-0 items-center justify-center rounded-full bg-cyan/25">
+          <span className="flex size-12 shrink-0 items-center justify-center rounded-full bg-slate/20">
             <CardIcon />
           </span>
           <div className="min-w-0 flex-1 text-left">
@@ -644,20 +644,20 @@ export function StepDirectory({ state, patch }: StepProps) {
       </div>
 
       <div className="mt-6 rounded-[1.4rem] bg-canvas-dim px-5 py-5">
-        <p className="text-[11px] tracking-[0.16em] text-magenta uppercase">
+        <p className="text-[11px] tracking-[0.16em] text-slate uppercase">
           Why join the directory?
         </p>
         <ul className="mt-4 space-y-3 text-sm">
           <li className="flex gap-3">
-            <span className="text-magenta">⌕</span>
+            <span className="text-slate">⌕</span>
             Get found by people browsing deets.pro
           </li>
           <li className="flex gap-3">
-            <span className="text-magenta">↗</span>
+            <span className="text-slate">↗</span>
             Grow your audience beyond the people you already know
           </li>
           <li className="flex gap-3">
-            <span className="text-magenta">☺</span>
+            <span className="text-slate">☺</span>
             Show up next to other makers, founders, and teams
           </li>
         </ul>
@@ -709,7 +709,7 @@ export function ReadyScreen({
   return (
     <div className="mx-auto grid w-full max-w-5xl gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
       <div>
-        <span className="inline-flex items-center gap-2 rounded-full bg-ink px-3 py-1 text-[11px] font-medium tracking-[0.16em] text-white uppercase">
+        <span className="inline-flex items-center gap-2 rounded-full bg-slate px-3 py-1 text-[11px] font-medium tracking-[0.16em] text-white uppercase">
           You’re live
         </span>
         <h1 className="mt-5 font-display text-[clamp(2.2rem,5.5vw,3.8rem)] leading-[0.95] tracking-[-0.05em] lowercase">
@@ -736,7 +736,7 @@ export function ReadyScreen({
               key={s.label}
               className="inline-flex items-center gap-2 rounded-full border border-line px-3 py-1.5 text-xs text-ink-soft"
             >
-              <span className={`size-1.5 rounded-full ${s.on ? "bg-cyan" : "bg-magenta"}`} />
+              <span className={`size-1.5 rounded-full ${s.on ? "bg-slate" : "bg-slate/35"}`} />
               {s.label}
             </span>
           ))}
@@ -744,7 +744,7 @@ export function ReadyScreen({
 
         <Link
           to="/"
-          className="mt-8 inline-flex min-h-12 items-center justify-center rounded-full bg-ink px-8 text-sm font-medium text-white hover:opacity-90"
+          className="mt-8 inline-flex min-h-12 items-center justify-center rounded-full bg-slate px-8 text-sm font-medium text-white hover:opacity-90"
         >
           Take me to my home →
         </Link>

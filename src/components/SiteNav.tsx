@@ -59,7 +59,7 @@ export function SiteNav() {
 
   const boxCta = overHero
     ? "inline-flex min-h-8 items-center rounded-full border border-white/45 px-4 text-[11px] tracking-[0.14em] text-white uppercase transition-colors hover:bg-white/10"
-    : "inline-flex min-h-8 items-center rounded-full border border-ink/25 px-4 text-[11px] tracking-[0.14em] text-ink uppercase transition-colors hover:bg-ink/5"
+    : "inline-flex min-h-8 items-center rounded-full border border-slate/50 px-4 text-[11px] tracking-[0.14em] text-slate uppercase transition-colors hover:bg-slate/10"
 
   const pillClass = overHero
     ? "border border-white/15 bg-black/35 text-white shadow-[0_8px_32px_rgb(0_0_0_/_0.18)] backdrop-blur-xl"
@@ -148,7 +148,7 @@ export function SiteNav() {
                 className={`inline-flex min-h-9 items-center justify-center rounded-full border px-4 text-[11px] tracking-[0.14em] uppercase ${
                   overHero
                     ? "border-white/45 text-white"
-                    : "border-ink/25 text-ink"
+                    : "border-slate/50 text-slate"
                 }`}
               >
                 Log in
@@ -158,7 +158,7 @@ export function SiteNav() {
                 className={`inline-flex min-h-9 items-center justify-center rounded-full border px-4 text-[11px] tracking-[0.14em] uppercase ${
                   overHero
                     ? "border-white/45 text-white"
-                    : "border-ink/25 text-ink"
+                    : "border-slate/50 text-slate"
                 }`}
               >
                 Get started

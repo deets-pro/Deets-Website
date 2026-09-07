@@ -32,7 +32,7 @@ export function TemplateCarousel() {
   }
 
   return (
-    <section className="relative z-10 overflow-hidden bg-[#f3f3f3] px-5 py-20 sm:py-24 md:px-10 md:py-32">
+    <section className="relative z-10 overflow-hidden bg-canvas-dim px-5 py-20 sm:py-24 md:px-10 md:py-32">
       <div className="mx-auto max-w-[1440px]">
         <motion.div
           initial="hidden"
@@ -81,7 +81,7 @@ export function TemplateCarousel() {
                     onClick={() => setActiveCategory(cat.id)}
                     className={`shrink-0 rounded-full px-4 py-2.5 text-left text-sm transition-colors ${
                       active
-                        ? "bg-ink text-white"
+                        ? "bg-slate text-white"
                         : "border border-line bg-white text-ink hover:bg-white/80"
                     }`}
                   >
@@ -131,7 +131,7 @@ export function TemplateCarousel() {
         <div className="mt-10 text-center sm:mt-12">
           <Link
             to="/designs"
-            className="text-sm tracking-wide text-ink underline decoration-line underline-offset-4"
+            className="text-sm tracking-wide text-slate underline decoration-line underline-offset-4 hover:text-ink"
           >
             Browse all designs
           </Link>
