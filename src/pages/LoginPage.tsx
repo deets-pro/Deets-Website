@@ -48,6 +48,12 @@ export function LoginPage() {
         </button>
       </form>
       <p className="mt-8 text-sm text-ink-soft">
+        New here?{" "}
+        <Link to="/start" className="underline underline-offset-4">
+          Get started
+        </Link>
+      </p>
+      <p className="mt-3 text-sm text-ink-soft">
         Need help?{" "}
         <Link to="/help" className="underline underline-offset-4">
           Contact us

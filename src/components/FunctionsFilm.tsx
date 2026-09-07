@@ -1,4 +1,4 @@
-import { STORE_URL } from "../data/site"
+import { Link } from "react-router-dom"
 import { mediaSlots } from "../media/higgsfield"
 import { LoopingVideo } from "./LoopingVideo"
 
@@ -33,12 +33,12 @@ export function FunctionsFilm() {
           No app required. Tap, scan, and share your socials and contact info
           instantly.
         </p>
-        <a
-          href={STORE_URL}
+        <Link
+          to="/start"
           className="mt-7 inline-flex min-h-10 items-center border border-ink/40 px-5 text-[11px] tracking-[0.14em] text-ink uppercase transition-colors hover:bg-ink/5"
         >
-          Order Now
-        </a>
+          Get started
+        </Link>
       </div>
     </section>
   )

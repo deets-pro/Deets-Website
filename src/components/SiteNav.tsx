@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 import { Link, NavLink, useLocation } from "react-router-dom"
-import { navLinks, STORE_URL } from "../data/site"
+import { navLinks } from "../data/site"
 import { BrandLogo } from "./BrandLogo"
 
 export function SiteNav() {
@@ -97,9 +97,9 @@ export function SiteNav() {
               <Link to="/my/login" className={boxCta}>
                 Log in
               </Link>
-              <a href={STORE_URL} className={boxCta}>
-                Order Now
-              </a>
+              <Link to="/start" className={boxCta}>
+                Get started
+              </Link>
             </div>
 
             <button
@@ -153,16 +153,16 @@ export function SiteNav() {
               >
                 Log in
               </Link>
-              <a
-                href={STORE_URL}
+              <Link
+                to="/start"
                 className={`inline-flex min-h-9 items-center justify-center rounded-full border px-4 text-[11px] tracking-[0.14em] uppercase ${
                   overHero
                     ? "border-white/45 text-white"
                     : "border-ink/25 text-ink"
                 }`}
               >
-                Order Now
-              </a>
+                Get started
+              </Link>
             </div>
           </div>
         ) : null}

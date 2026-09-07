@@ -9,6 +9,7 @@ import { HelpPage } from "./pages/HelpPage"
 import { HomePage } from "./pages/HomePage"
 import { LoginPage } from "./pages/LoginPage"
 import { PrivacyPage } from "./pages/PrivacyPage"
+import { StartPage } from "./pages/StartPage"
 import { TermsPage } from "./pages/TermsPage"
 
 function HashScroll() {
@@ -34,6 +35,7 @@ export default function App() {
       <HashScroll />
       <LandingReveal>
         <Routes>
+          <Route path="/start" element={<StartPage />} />
           <Route element={<PageShell />}>
             <Route path="/" element={<HomePage />} />
             <Route path="/companies" element={<CompaniesPage />} />

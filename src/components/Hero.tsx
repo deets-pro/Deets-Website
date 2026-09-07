@@ -1,6 +1,5 @@
+import { Link } from "react-router-dom"
 import { mediaSlots } from "../media/higgsfield"
-import { STORE_URL } from "../data/site"
-import { GradientCta } from "./GradientCta"
 import { LoopingVideo } from "./LoopingVideo"
 
 export function Hero() {
@@ -33,20 +32,14 @@ export function Hero() {
         </p>
       </div>
 
-      <a
-        href={STORE_URL}
-        className="absolute bottom-6 right-5 z-20 hidden items-center gap-3 rounded-sm border border-white/50 bg-black/50 px-4 py-3 backdrop-blur-sm md:flex md:right-10"
+      <Link
+        to="/start"
+        className="absolute bottom-6 right-5 z-20 flex items-center gap-3 rounded-sm border border-white/50 bg-black/50 px-4 py-3 backdrop-blur-sm md:right-10"
       >
         <span className="text-[11px] tracking-[0.14em] text-white uppercase">
-          Order Now
+          Get started
         </span>
-      </a>
-
-      <div className="absolute bottom-6 left-5 z-20 md:hidden">
-        <GradientCta href={STORE_URL} className="min-h-11 px-6 text-[13px]">
-          Order Now
-        </GradientCta>
-      </div>
+      </Link>
     </section>
   )
 }
