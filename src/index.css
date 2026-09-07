@@ -69,14 +69,12 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    overflow-x: clip;
-    overscroll-behavior-y: auto;
+    overflow-x: hidden;
   }
 
   body {
     @apply bg-canvas text-ink font-sans antialiased;
-    overflow-x: clip;
-    overscroll-behavior-y: auto;
+    overflow-x: hidden;
   }
 
   ::selection {
