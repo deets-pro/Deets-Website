@@ -53,17 +53,18 @@
   --font-sans: "Urbane", sans-serif;
 
   --color-ink: #2a314f;
-  --color-ink-soft: #8791ad;
-  --color-slate: #8791ad;
-  --color-canvas: #ffffff;
+  --color-ink-soft: color-mix(in srgb, #2a314f 55%, #edf2fa);
+  --color-slate: #2a314f;
+  --color-mist: #d4e9f5;
+  --color-canvas: #edf2fa;
   --color-canvas-dim: #f3f4f8;
-  --color-line: rgb(135 145 173 / 0.32);
+  --color-line: rgb(42 49 79 / 0.16);
 
   --color-cyan: #00d4ff;
   --color-magenta: #ff2d92;
   --color-tangerine: #ff6b1a;
 
-  --shadow-glow: 0 24px 80px rgb(135 145 173 / 0.22);
+  --shadow-glow: 0 24px 80px rgb(42 49 79 / 0.12);
 }
 
 @layer base {
@@ -201,11 +202,11 @@
     linear-gradient(
       125deg,
       #00d4ff 0%,
-      #fafafa 16%,
+      #edf2fa 16%,
       #ff2d92 40%,
       #7cf0ff 58%,
       #ff6b1a 78%,
-      #ffffff 100%
+      #edf2fa 100%
     );
   background-size: 220% 220%;
   animation: foil-shift 9s ease-in-out infinite;

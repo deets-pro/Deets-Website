@@ -48,7 +48,7 @@ export function DirectoryPage() {
             value={q}
             onChange={(e) => setQ(e.target.value)}
             placeholder="Name, handle, or bio"
-            className="mt-2 w-full rounded-full border border-line bg-white px-5 py-3.5 text-[15px] text-ink outline-none transition-[border-color,box-shadow] placeholder:text-ink/30 focus:border-ink focus:shadow-[0_0_0_4px_rgb(42_49_79_/_0.08)]"
+            className="mt-2 w-full rounded-full border border-line bg-canvas px-5 py-3.5 text-[15px] text-ink outline-none transition-[border-color,box-shadow] placeholder:text-ink/30 focus:border-ink focus:shadow-[0_0_0_4px_rgb(42_49_79_/_0.08)]"
           />
         </label>
       </motion.div>
@@ -70,17 +70,17 @@ export function DirectoryPage() {
                   <img
                     src={p.avatarUrl}
                     alt=""
-                    className="size-11 shrink-0 rounded-full bg-white object-cover"
+                    className="size-11 shrink-0 rounded-full bg-canvas object-cover"
                   />
                 ) : (
                   <span
-                    className="flex size-11 shrink-0 items-center justify-center rounded-full bg-white text-xs font-semibold tracking-wide text-ink"
+                    className="flex size-11 shrink-0 items-center justify-center rounded-full bg-canvas text-xs font-semibold tracking-wide text-ink"
                     aria-hidden
                   >
                     {initials(p.name)}
                   </span>
                 )}
-                <span className="inline-flex max-w-[58%] items-center gap-2 rounded-full border border-line bg-white px-3 py-1.5 text-[11px] font-medium tracking-wide text-ink">
+                <span className="inline-flex max-w-[58%] items-center gap-2 rounded-full border border-line bg-canvas px-3 py-1.5 text-[11px] font-medium tracking-wide text-ink">
                   <span className="size-1.5 shrink-0 rounded-full bg-slate" />
                   <span className="truncate">{p.handle}</span>
                 </span>

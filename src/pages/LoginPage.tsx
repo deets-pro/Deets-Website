@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from "react"
 import { Link } from "react-router-dom"
+import { GetStartedButton } from "../components/GetStartedModal"
 
 export function LoginPage() {
   const [error, setError] = useState("")
@@ -49,9 +50,9 @@ export function LoginPage() {
       </form>
       <p className="mt-8 text-sm text-ink-soft">
         New here?{" "}
-        <Link to="/start" className="underline underline-offset-4">
+        <GetStartedButton className="underline underline-offset-4">
           Get started
-        </Link>
+        </GetStartedButton>
       </p>
       <p className="mt-3 text-sm text-ink-soft">
         Need help?{" "}

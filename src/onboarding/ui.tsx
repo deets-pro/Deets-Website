@@ -5,7 +5,7 @@ import { TOTAL_STEPS } from "./model"
 
 export function StepBadge({ children }: { children: ReactNode }) {
   return (
-    <span className="inline-flex rounded-full bg-slate/15 px-3 py-1 text-[11px] font-medium tracking-[0.16em] text-slate uppercase">
+    <span className="inline-flex rounded-full bg-slate px-3 py-1 text-[11px] font-medium tracking-[0.16em] text-white uppercase">
       {children}
     </span>
   )
@@ -31,10 +31,10 @@ export function StepHeading({
 }
 
 export const fieldClass =
-  "w-full rounded-full border border-line bg-white px-5 py-3.5 text-[15px] text-ink outline-none transition-[border-color,box-shadow] placeholder:text-ink/30 focus:border-ink focus:shadow-[0_0_0_4px_rgb(42_49_79_/_0.08)]"
+  "w-full rounded-full border border-line bg-canvas px-5 py-3.5 text-[15px] text-ink outline-none transition-[border-color,box-shadow] placeholder:text-ink/30 focus:border-ink focus:shadow-[0_0_0_4px_rgb(42_49_79_/_0.08)]"
 
 export const areaClass =
-  "w-full resize-none rounded-[1.4rem] border border-line bg-white px-5 py-3.5 text-[15px] text-ink outline-none transition-[border-color,box-shadow] placeholder:text-ink/30 focus:border-ink focus:shadow-[0_0_0_4px_rgb(42_49_79_/_0.08)]"
+  "w-full resize-none rounded-[1.4rem] border border-line bg-canvas px-5 py-3.5 text-[15px] text-ink outline-none transition-[border-color,box-shadow] placeholder:text-ink/30 focus:border-ink focus:shadow-[0_0_0_4px_rgb(42_49_79_/_0.08)]"
 
 export function FieldLabel({
   children,
@@ -46,7 +46,7 @@ export function FieldLabel({
   return (
     <span className="text-xs tracking-[0.14em] text-ink-soft uppercase">
       {children}
-      {required ? <span className="text-slate"> *</span> : null}
+      {required ? <span className="text-ink"> *</span> : null}
     </span>
   )
 }
@@ -62,7 +62,7 @@ export function ProgressBar({ current }: { current: number }) {
             <span
               key={n}
               className={`h-1 rounded-full transition-all duration-500 ${
-                on ? "w-7 bg-slate sm:w-8" : "w-5 bg-slate/20 sm:w-6"
+                on ? "w-7 bg-slate sm:w-8" : "w-5 bg-ink/15 sm:w-6"
               }`}
             />
           )
@@ -79,7 +79,7 @@ export function OnboardingHeader({ current }: { current: number }) {
   return (
     <header className="sticky top-0 z-20 px-4 pt-4 md:px-6 md:pt-5">
       <div className="mx-auto w-full max-w-5xl">
-        <div className="rounded-full border border-line bg-white/85 px-3 py-2 shadow-[0_8px_32px_rgb(0_0_0_/_0.06)] backdrop-blur-xl sm:px-4 sm:py-2.5 md:px-5 md:py-3">
+        <div className="rounded-full border border-line bg-canvas/85 px-3 py-2 shadow-[0_8px_32px_rgb(0_0_0_/_0.06)] backdrop-blur-xl sm:px-4 sm:py-2.5 md:px-5 md:py-3">
           <div className="flex items-center justify-between gap-4">
             <Link to="/" className="shrink-0">
               <BrandLogo className="h-6 w-auto sm:h-7" />
@@ -108,7 +108,7 @@ export function OnboardingFooter({
   skip?: boolean
 }) {
   return (
-    <footer className="sticky bottom-0 z-20 border-t border-line/70 bg-white/90 px-4 py-4 backdrop-blur-xl md:px-8">
+    <footer className="sticky bottom-0 z-20 border-t border-line/70 bg-canvas/90 px-4 py-4 backdrop-blur-xl md:px-8">
       <div className="mx-auto flex max-w-5xl items-center justify-between gap-3">
         <button
           type="button"
@@ -162,11 +162,11 @@ export function Toggle({
       aria-label={label}
       onClick={onToggle}
       className={`relative h-7 w-12 shrink-0 rounded-full transition-colors ${
-        on ? "bg-slate" : "bg-slate/25"
+        on ? "bg-slate" : "bg-ink/15"
       }`}
     >
       <span
-        className={`absolute top-0.5 left-0.5 size-6 rounded-full bg-white shadow-sm transition-transform ${
+        className={`absolute top-0.5 left-0.5 size-6 rounded-full bg-canvas shadow-sm transition-transform ${
           on ? "translate-x-5" : "translate-x-0"
         }`}
       />

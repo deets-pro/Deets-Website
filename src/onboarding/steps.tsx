@@ -137,9 +137,9 @@ export function StepHandle({ state, patch, onContinue }: StepProps) {
       </div>
 
       <div
-        className={`mt-10 flex items-center rounded-full border bg-white px-5 py-3.5 transition-[border-color,box-shadow] ${
+        className={`mt-10 flex items-center rounded-full border bg-canvas px-5 py-3.5 transition-[border-color,box-shadow] ${
           status === "ok"
-            ? "border-slate shadow-[0_0_0_4px_rgb(135_145_173_/_0.16)]"
+            ? "border-slate shadow-[0_0_0_4px_rgb(42_49_79_/_0.08)]"
             : "border-line focus-within:border-ink"
         }`}
       >
@@ -160,7 +160,7 @@ export function StepHandle({ state, patch, onContinue }: StepProps) {
           </span>
         ) : null}
       </div>
-      <p className={`mt-3 text-sm ${status === "ok" ? "text-slate" : "text-ink-soft"}`}>
+      <p className={`mt-3 text-sm ${status === "ok" ? "text-ink" : "text-ink-soft"}`}>
         {status === "ok"
           ? "Nice — that one's all yours."
           : status === "taken"
@@ -328,7 +328,7 @@ export function StepTheme({ state, patch }: StepProps) {
                 style={{ background: theme.main, color: theme.text }}
               >
                 {selected ? (
-                  <span className="absolute top-2 right-2 flex size-5 items-center justify-center rounded-full bg-white text-ink">
+                  <span className="absolute top-2 right-2 flex size-5 items-center justify-center rounded-full bg-canvas text-ink">
                     <CheckIcon />
                   </span>
                 ) : null}
@@ -407,7 +407,7 @@ function ColorField({
   return (
     <label className="block text-left">
       <FieldLabel>{label}</FieldLabel>
-      <span className="mt-2 flex items-center gap-3 rounded-full border border-line bg-white px-3 py-2">
+      <span className="mt-2 flex items-center gap-3 rounded-full border border-line bg-canvas px-3 py-2">
         <input
           type="color"
           value={value}
@@ -443,7 +443,7 @@ export function StepLinks({ state, patch, goTo }: StepProps) {
       </div>
 
       {locked ? (
-        <div className="mt-8 flex flex-col gap-4 rounded-[1.4rem] bg-slate/10 px-4 py-4 sm:flex-row sm:items-center">
+        <div className="mt-8 flex flex-col gap-4 rounded-[1.4rem] bg-canvas-dim px-4 py-4 sm:flex-row sm:items-center">
           <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-slate text-white">
             <LockIcon />
           </span>
@@ -456,7 +456,7 @@ export function StepLinks({ state, patch, goTo }: StepProps) {
           <button
             type="button"
             onClick={() => goTo(1)}
-            className="inline-flex min-h-10 shrink-0 items-center justify-center rounded-full bg-slate px-4 text-sm font-medium text-white"
+            className="inline-flex min-h-10 shrink-0 items-center justify-center rounded-full bg-ink px-4 text-sm font-medium text-white"
           >
             Verify email
           </button>
@@ -548,10 +548,10 @@ export function StepCard({ state, patch }: StepProps) {
         />
       </div>
       <div className="mt-10 space-y-3">
-        <div className={`flex items-center gap-4 rounded-[1.4rem] border bg-white px-4 py-4 ${
+        <div className={`flex items-center gap-4 rounded-[1.4rem] border bg-canvas px-4 py-4 ${
           state.shareContact ? "border-ink" : "border-line"
         }`}>
-          <span className="flex size-12 shrink-0 items-center justify-center rounded-full bg-slate/20">
+          <span className="flex size-12 shrink-0 items-center justify-center rounded-full bg-canvas-dim">
             <CardIcon />
           </span>
           <div className="min-w-0 flex-1 text-left">
@@ -566,7 +566,7 @@ export function StepCard({ state, patch }: StepProps) {
             label="Share contact"
           />
         </div>
-        <div className={`flex items-center gap-4 rounded-[1.4rem] border bg-white px-4 py-4 ${
+        <div className={`flex items-center gap-4 rounded-[1.4rem] border bg-canvas px-4 py-4 ${
           state.exchangeContact ? "border-ink" : "border-line"
         }`}>
           <span className="flex size-12 shrink-0 items-center justify-center rounded-full bg-ink/8">
@@ -605,7 +605,7 @@ export function StepDirectory({ state, patch }: StepProps) {
           type="button"
           onClick={() => patch({ listed: true })}
           className={`rounded-[1.4rem] border-2 p-5 text-left transition-colors ${
-            state.listed ? "border-ink bg-canvas-dim" : "border-line bg-white hover:border-ink/30"
+            state.listed ? "border-ink bg-canvas-dim" : "border-line bg-canvas hover:border-ink/30"
           }`}
         >
           <div className="flex items-start justify-between gap-3">
@@ -625,7 +625,7 @@ export function StepDirectory({ state, patch }: StepProps) {
           type="button"
           onClick={() => patch({ listed: false })}
           className={`rounded-[1.4rem] border-2 p-5 text-left transition-colors ${
-            !state.listed ? "border-ink bg-canvas-dim" : "border-line bg-white hover:border-ink/30"
+            !state.listed ? "border-ink bg-canvas-dim" : "border-line bg-canvas hover:border-ink/30"
           }`}
         >
           <div className="flex items-start justify-between gap-3">
@@ -644,20 +644,20 @@ export function StepDirectory({ state, patch }: StepProps) {
       </div>
 
       <div className="mt-6 rounded-[1.4rem] bg-canvas-dim px-5 py-5">
-        <p className="text-[11px] tracking-[0.16em] text-slate uppercase">
+        <p className="text-[11px] tracking-[0.16em] text-ink uppercase">
           Why join the directory?
         </p>
         <ul className="mt-4 space-y-3 text-sm">
           <li className="flex gap-3">
-            <span className="text-slate">⌕</span>
+            <span className="text-ink">⌕</span>
             Get found by people browsing deets.pro
           </li>
           <li className="flex gap-3">
-            <span className="text-slate">↗</span>
+            <span className="text-ink">↗</span>
             Grow your audience beyond the people you already know
           </li>
           <li className="flex gap-3">
-            <span className="text-slate">☺</span>
+            <span className="text-ink">☺</span>
             Show up next to other makers, founders, and teams
           </li>
         </ul>
@@ -719,7 +719,7 @@ export function ReadyScreen({
           Hand out your deets anywhere and start growing your audience.
         </p>
 
-        <div className="mt-8 flex overflow-hidden rounded-full border border-line bg-white">
+        <div className="mt-8 flex overflow-hidden rounded-full border border-line bg-canvas">
           <p className="min-w-0 flex-1 truncate px-5 py-3.5 text-sm">{url}</p>
           <button
             type="button"
@@ -762,7 +762,7 @@ export function ReadyScreen({
 
       <div className="space-y-4">
         <ProfilePreview state={state} className="min-h-[280px] p-8" />
-        <div className="rounded-[1.6rem] border border-line bg-white p-6">
+        <div className="rounded-[1.6rem] border border-line bg-canvas p-6">
           <QrMark seed={`https://${url}|${theme.main}|${theme.accent}`} />
           <p className="mt-4 font-medium">Your deets QR code</p>
           <p className="mt-1 text-sm text-ink-soft">

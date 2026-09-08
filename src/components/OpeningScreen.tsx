@@ -107,7 +107,7 @@ function OpeningGate({
 
   return (
     <motion.div
-      className="fixed inset-0 z-[100] flex cursor-pointer items-center justify-center bg-white"
+      className="fixed inset-0 z-[100] flex cursor-pointer items-center justify-center bg-canvas"
       initial={{ opacity: 1 }}
       animate={{ opacity: phase === "out" ? 0 : 1 }}
       transition={{ duration: REVEAL_MS / 1000, ease: liquidEase }}

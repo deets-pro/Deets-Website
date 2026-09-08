@@ -82,7 +82,7 @@ export function TemplateCarousel() {
                     className={`shrink-0 rounded-full px-4 py-2.5 text-left text-sm transition-colors ${
                       active
                         ? "bg-slate text-white"
-                        : "border border-line bg-white text-ink hover:bg-white/80"
+                        : "border border-line bg-canvas text-ink hover:bg-canvas/80"
                     }`}
                   >
                     {cat.label}
@@ -131,7 +131,7 @@ export function TemplateCarousel() {
         <div className="mt-10 text-center sm:mt-12">
           <Link
             to="/designs"
-            className="text-sm tracking-wide text-slate underline decoration-line underline-offset-4 hover:text-ink"
+            className="text-sm tracking-wide text-ink-soft underline decoration-line underline-offset-4 hover:text-ink"
           >
             Browse all designs
           </Link>

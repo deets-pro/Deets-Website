@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import { Link, NavLink, useLocation } from "react-router-dom"
 import { navLinks } from "../data/site"
+import { GetStartedButton } from "./GetStartedModal"
 import { BrandLogo } from "./BrandLogo"
 
 export function SiteNav() {
@@ -59,11 +60,11 @@ export function SiteNav() {
 
   const boxCta = overHero
     ? "inline-flex min-h-8 items-center rounded-full border border-white/45 px-4 text-[11px] tracking-[0.14em] text-white uppercase transition-colors hover:bg-white/10"
-    : "inline-flex min-h-8 items-center rounded-full border border-slate/50 px-4 text-[11px] tracking-[0.14em] text-slate uppercase transition-colors hover:bg-slate/10"
+    : "inline-flex min-h-8 items-center rounded-full border border-ink/25 px-4 text-[11px] tracking-[0.14em] text-ink uppercase transition-colors hover:bg-ink/5"
 
   const pillClass = overHero
     ? "border border-white/15 bg-black/35 text-white shadow-[0_8px_32px_rgb(0_0_0_/_0.18)] backdrop-blur-xl"
-    : "border border-line bg-white/85 text-ink shadow-[0_8px_32px_rgb(0_0_0_/_0.06)] backdrop-blur-xl"
+    : "border border-line bg-canvas/85 text-ink shadow-[0_8px_32px_rgb(0_0_0_/_0.06)] backdrop-blur-xl"
 
   return (
     <header
@@ -97,9 +98,9 @@ export function SiteNav() {
               <Link to="/my/login" className={boxCta}>
                 Log in
               </Link>
-              <Link to="/start" className={boxCta}>
+              <GetStartedButton className={boxCta}>
                 Get started
-              </Link>
+              </GetStartedButton>
             </div>
 
             <button
@@ -130,7 +131,7 @@ export function SiteNav() {
             className={`pointer-events-auto mt-3 rounded-[1.5rem] border px-5 py-6 lg:hidden ${
               overHero
                 ? "border-white/15 bg-black/80 text-white backdrop-blur-xl"
-                : "border-line bg-white/95 text-ink backdrop-blur-xl"
+                : "border-line bg-canvas/95 text-ink backdrop-blur-xl"
             }`}
           >
             <div className="flex flex-col gap-4">
@@ -148,21 +149,21 @@ export function SiteNav() {
                 className={`inline-flex min-h-9 items-center justify-center rounded-full border px-4 text-[11px] tracking-[0.14em] uppercase ${
                   overHero
                     ? "border-white/45 text-white"
-                    : "border-slate/50 text-slate"
+                    : "border-ink/25 text-ink"
                 }`}
               >
                 Log in
               </Link>
-              <Link
-                to="/start"
+              <GetStartedButton
+                onClick={() => setOpen(false)}
                 className={`inline-flex min-h-9 items-center justify-center rounded-full border px-4 text-[11px] tracking-[0.14em] uppercase ${
                   overHero
                     ? "border-white/45 text-white"
-                    : "border-slate/50 text-slate"
+                    : "border-ink/25 text-ink"
                 }`}
               >
                 Get started
-              </Link>
+              </GetStartedButton>
             </div>
           </div>
         ) : null}

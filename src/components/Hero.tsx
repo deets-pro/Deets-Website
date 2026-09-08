@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { GetStartedButton } from "./GetStartedModal"
 import { mediaSlots } from "../media/higgsfield"
 import { LoopingVideo } from "./LoopingVideo"
 
@@ -32,14 +32,13 @@ export function Hero() {
         </p>
       </div>
 
-      <Link
-        to="/start"
+      <GetStartedButton
         className="absolute bottom-6 right-5 z-20 flex items-center gap-3 rounded-sm border border-white/50 bg-black/50 px-4 py-3 backdrop-blur-sm md:right-10"
       >
         <span className="text-[11px] tracking-[0.14em] text-white uppercase">
           Get started
         </span>
-      </Link>
+      </GetStartedButton>
     </section>
   )
 }

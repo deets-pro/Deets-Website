@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { GetStartedButton } from "./GetStartedModal"
 import { mediaSlots } from "../media/higgsfield"
 import { LoopingVideo } from "./LoopingVideo"
 
@@ -33,12 +33,11 @@ export function FunctionsFilm() {
           No app required. Tap, scan, and share your socials and contact info
           instantly.
         </p>
-        <Link
-          to="/start"
-          className="mt-7 inline-flex min-h-10 items-center border border-slate/50 px-5 text-[11px] tracking-[0.14em] text-slate uppercase transition-colors hover:bg-slate/10"
+        <GetStartedButton
+          className="mt-7 inline-flex min-h-10 items-center border border-ink/25 px-5 text-[11px] tracking-[0.14em] text-ink uppercase transition-colors hover:bg-ink/5"
         >
           Get started
-        </Link>
+        </GetStartedButton>
       </div>
     </section>
   )

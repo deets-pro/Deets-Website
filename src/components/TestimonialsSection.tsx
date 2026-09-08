@@ -60,19 +60,19 @@ export function TestimonialsSection() {
             >
               <div className="flex items-start justify-between gap-4">
                 <div
-                  className="flex size-11 shrink-0 items-center justify-center rounded-full bg-white text-xs font-semibold tracking-wide text-ink"
+                  className="flex size-11 shrink-0 items-center justify-center rounded-full bg-canvas text-xs font-semibold tracking-wide text-ink"
                   aria-hidden
                 >
                   {item.initials}
                 </div>
-                <span className="inline-flex max-w-[58%] items-center gap-2 rounded-full border border-line bg-white px-3 py-1.5 text-[11px] font-medium tracking-wide text-ink uppercase">
+                <span className="inline-flex max-w-[58%] items-center gap-2 rounded-full border border-line bg-canvas px-3 py-1.5 text-[11px] font-medium tracking-wide text-ink uppercase">
                   <span className="size-1.5 shrink-0 rounded-full bg-slate" />
                   <span className="truncate">{item.company}</span>
                 </span>
               </div>
 
               <p
-                className="mt-8 font-display text-[3.25rem] font-thin leading-none text-slate"
+                className="mt-8 font-display text-[3.25rem] font-thin leading-none text-ink/25"
                 aria-hidden
               >
                 “

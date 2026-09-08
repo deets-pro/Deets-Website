@@ -15,7 +15,7 @@ export function CompaniesPage() {
       </p>
       <Link
         to="/#contact"
-        className="mt-10 inline-flex min-h-10 items-center border border-slate/50 px-5 text-[11px] tracking-[0.14em] text-slate uppercase transition-colors hover:bg-slate/10"
+        className="mt-10 inline-flex min-h-10 items-center border border-ink/25 px-5 text-[11px] tracking-[0.14em] text-ink uppercase transition-colors hover:bg-ink/5"
       >
         Talk to us
       </Link>

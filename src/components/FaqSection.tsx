@@ -52,7 +52,7 @@ export function FaqSection() {
                     {item.question}
                   </span>
                   <span
-                    className={`mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full border border-line text-slate transition-transform duration-300 ${
+                    className={`mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full border border-line text-ink transition-transform duration-300 ${
                       open ? "rotate-45" : ""
                     }`}
                     aria-hidden

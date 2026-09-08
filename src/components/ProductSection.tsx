@@ -1,4 +1,4 @@
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import { motion } from "framer-motion"
 import { products } from "../data/site"
 import { useLiquidScroll } from "../hooks/useLiquidScroll"
@@ -58,27 +58,58 @@ export function ProductSection() {
       >
         <div className="flex w-max gap-5 sm:gap-6">
           {products.map((item) => (
-            <article
-              key={item.id}
-              className="w-[min(82vw,18rem)] shrink-0 sm:w-[min(58vw,19rem)] md:w-[min(42vw,20rem)] lg:w-[min(32vw,22rem)] xl:w-[min(28vw,24rem)]"
-            >
-              <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
-                <img
-                  src={item.imageSrc}
-                  alt=""
-                  className="absolute inset-0 size-full object-cover"
-                />
-              </div>
-              <h3 className="mt-4 font-sans text-[1.05rem] font-semibold tracking-tight text-ink sm:mt-5">
-                {item.title}
-              </h3>
-              <p className="mt-2 text-[0.95rem] leading-relaxed text-ink-soft">
-                {item.copy}
-              </p>
-            </article>
+            <ProductCard key={item.id} item={item} />
           ))}
         </div>
       </div>
     </section>
+  )
+}
+
+function ProductCard({
+  item,
+}: {
+  item: (typeof products)[number]
+}) {
+  const [index, setIndex] = useState(0)
+  const images = item.images
+  const current = images[index] ?? images[0]
+
+  return (
+    <article className="w-[min(82vw,18rem)] shrink-0 sm:w-[min(58vw,19rem)] md:w-[min(42vw,20rem)] lg:w-[min(32vw,22rem)] xl:w-[min(28vw,24rem)]">
+      <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-canvas-dim">
+        <img
+          src={current}
+          alt=""
+          className="absolute inset-0 size-full object-cover"
+        />
+        {images.length > 1 ? (
+          <>
+            <button
+              type="button"
+              className="absolute inset-0 z-[1]"
+              aria-label="Next image"
+              onClick={() => setIndex((i) => (i + 1) % images.length)}
+            />
+            <div className="pointer-events-none absolute inset-x-0 bottom-3 z-10 flex justify-center gap-1.5">
+              {images.map((src, i) => (
+                <span
+                  key={src}
+                  className={`h-1.5 rounded-full transition-all ${
+                    i === index ? "w-5 bg-white" : "w-1.5 bg-white/50"
+                  }`}
+                />
+              ))}
+            </div>
+          </>
+        ) : null}
+      </div>
+      <h3 className="mt-4 font-sans text-[1.05rem] font-semibold tracking-tight text-ink sm:mt-5">
+        {item.title}
+      </h3>
+      <p className="mt-2 text-[0.95rem] leading-relaxed text-ink-soft">
+        {item.copy}
+      </p>
+    </article>
   )
 }

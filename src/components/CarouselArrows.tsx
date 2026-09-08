@@ -31,11 +31,11 @@ function ArrowButton({
       type="button"
       onClick={onClick}
       aria-label={label}
-      className="flex size-11 items-center justify-center rounded-full bg-slate text-white transition-opacity hover:opacity-85"
+      className="group flex size-11 items-center justify-center rounded-full bg-slate text-white transition-opacity hover:opacity-85"
     >
       <svg
         viewBox="0 0 24 24"
-        className="size-4"
+        className="size-4 transition-transform duration-300 ease-out group-hover:rotate-[360deg]"
         fill="none"
         stroke="currentColor"
         strokeWidth="2"

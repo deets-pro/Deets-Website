@@ -17,32 +17,32 @@ export function Footer() {
           <p className="text-xs tracking-[0.16em] text-ink-soft uppercase">Product</p>
           <ul className="mt-4 space-y-2 text-sm">
             <li>
-              <Link className="text-slate hover:text-ink" to="/#products">
+              <Link className="text-ink-soft hover:text-ink" to="/#products">
                 Products
               </Link>
             </li>
             <li>
-              <Link className="text-slate hover:text-ink" to="/companies">
+              <Link className="text-ink-soft hover:text-ink" to="/companies">
                 Companies
               </Link>
             </li>
             <li>
-              <Link className="text-slate hover:text-ink" to="/designs">
+              <Link className="text-ink-soft hover:text-ink" to="/designs">
                 Designs
               </Link>
             </li>
             <li>
-              <Link className="text-slate hover:text-ink" to="/#functions">
+              <Link className="text-ink-soft hover:text-ink" to="/#functions">
                 Functions
               </Link>
             </li>
             <li>
-              <Link className="text-slate hover:text-ink" to="/#pricing">
+              <Link className="text-ink-soft hover:text-ink" to="/#pricing">
                 Pricing
               </Link>
             </li>
             <li>
-              <a className="text-slate hover:text-ink" href={STORE_URL}>
+              <a className="text-ink-soft hover:text-ink" href={STORE_URL}>
                 Buy Now
               </a>
             </li>
@@ -52,27 +52,27 @@ export function Footer() {
           <p className="text-xs tracking-[0.16em] text-ink-soft uppercase">Account</p>
           <ul className="mt-4 space-y-2 text-sm">
             <li>
-              <Link className="text-slate hover:text-ink" to="/my/login">
+              <Link className="text-ink-soft hover:text-ink" to="/my/login">
                 Log in
               </Link>
             </li>
             <li>
-              <Link className="text-slate hover:text-ink" to="/directory">
+              <Link className="text-ink-soft hover:text-ink" to="/directory">
                 Directory
               </Link>
             </li>
             <li>
-              <Link className="text-slate hover:text-ink" to="/help">
+              <Link className="text-ink-soft hover:text-ink" to="/help">
                 Help
               </Link>
             </li>
             <li>
-              <Link className="text-slate hover:text-ink" to="/#faq">
+              <Link className="text-ink-soft hover:text-ink" to="/#faq">
                 FAQ
               </Link>
             </li>
             <li>
-              <Link className="text-slate hover:text-ink" to="/#contact">
+              <Link className="text-ink-soft hover:text-ink" to="/#contact">
                 Contact
               </Link>
             </li>
@@ -82,17 +82,17 @@ export function Footer() {
           <p className="text-xs tracking-[0.16em] text-ink-soft uppercase">Legal</p>
           <ul className="mt-4 space-y-2 text-sm">
             <li>
-              <Link className="text-slate hover:text-ink" to="/terms">
+              <Link className="text-ink-soft hover:text-ink" to="/terms">
                 Terms
               </Link>
             </li>
             <li>
-              <Link className="text-slate hover:text-ink" to="/privacy">
+              <Link className="text-ink-soft hover:text-ink" to="/privacy">
                 Privacy
               </Link>
             </li>
             <li>
-              <a className="text-slate hover:text-ink" href={`mailto:${CONTACT_EMAIL}`}>
+              <a className="text-ink-soft hover:text-ink" href={`mailto:${CONTACT_EMAIL}`}>
                 {CONTACT_EMAIL}
               </a>
             </li>

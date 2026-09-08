@@ -6,7 +6,7 @@ export function HowItWorks() {
   return (
     <section
       id="how-it-works"
-      className="scroll-mt-24 bg-canvas-dim px-5 py-24 md:px-10 md:py-32"
+      className="scroll-mt-24 bg-mist px-5 py-24 md:px-10 md:py-32"
     >
       <motion.div
         initial="hidden"
@@ -43,7 +43,7 @@ export function HowItWorks() {
                 className="absolute inset-0 size-full object-cover"
               />
             </div>
-            <p className="mt-5 font-display text-[2.5rem] leading-none tracking-tight text-slate/40">
+            <p className="mt-5 font-display text-[2.5rem] leading-none tracking-tight text-ink/20">
               {String(index + 1).padStart(2, "0")}
             </p>
             <h3 className="mt-4 font-sans text-[1.05rem] font-semibold tracking-tight text-ink">
