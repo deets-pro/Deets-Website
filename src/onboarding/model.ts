@@ -67,7 +67,7 @@ export const THEMES: ProfileTheme[] = [
   {
     id: "deets",
     name: "Deets",
-    main: "#0a0a0a",
+    main: "#2a314f",
     accent: "#00d4ff",
     text: "#ffffff",
     muted: "rgba(255,255,255,0.7)",
@@ -76,9 +76,9 @@ export const THEMES: ProfileTheme[] = [
     id: "classic",
     name: "Classic",
     main: "#f3f3f3",
-    accent: "#0a0a0a",
-    text: "#0a0a0a",
-    muted: "rgba(10,10,10,0.55)",
+    accent: "#2a314f",
+    text: "#2a314f",
+    muted: "rgba(42,49,79,0.55)",
   },
   {
     id: "sunset",
@@ -186,7 +186,7 @@ export const defaultState = (): OnboardingState => ({
   bio: "",
   photo: null,
   themeId: "deets",
-  customMain: "#0a0a0a",
+  customMain: "#2a314f",
   customAccent: "#00d4ff",
   customizing: false,
   socials: emptySocials(),
@@ -268,7 +268,7 @@ export function contrastText(hex: string) {
   const g = Number.parseInt(n.slice(2, 4), 16)
   const b = Number.parseInt(n.slice(4, 6), 16)
   const l = (0.299 * r + 0.587 * g + 0.114 * b) / 255
-  return l > 0.62 ? "#0a0a0a" : "#ffffff"
+  return l > 0.62 ? "#2a314f" : "#ffffff"
 }
 
 export function profileName(state: OnboardingState) {

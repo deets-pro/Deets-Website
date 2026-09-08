@@ -177,19 +177,70 @@ export const extraTemplates: Template[] = [
 
 export const directoryPeople = [
   {
+    name: "BuroojAir",
+    handle: "@BuroojAir",
+    blurb: "Burooj Air",
+    href: "https://www.deets.pro/my/u/BuroojAir",
+    avatarUrl:
+      "https://hel1.your-objectstorage.com/deets-prod/2841/conversions/D8BOUQGnn4T1atTK07KfQ2CXxUZW9T-metaYnVyb29qYWlyLWxvZ281LnBuZw==--md.png",
+  },
+  {
+    name: "Atheer Faihan Otaibi",
+    handle: "@ETFDwXgcyB",
+    blurb: "Solutions Director\n6 Degrees Technologies",
+    href: "https://www.deets.pro/my/u/ETFDwXgcyB",
+    avatarUrl: null,
+  },
+  {
+    name: "Bilal Aldoos",
+    handle: "@Bilal",
+    blurb: "Property management\nBurooj Address Co.",
+    href: "https://www.deets.pro/my/u/Bilal",
+    avatarUrl:
+      "https://hel1.your-objectstorage.com/deets-prod/2305/conversions/phpczaHlS-md.png",
+  },
+  {
+    name: "Me Mohannad",
+    handle: "@memohannad",
+    blurb: "That Guy there somewhere",
+    href: "https://www.deets.pro/my/u/memohannad",
+    avatarUrl:
+      "https://hel1.your-objectstorage.com/deets-prod/3185/conversions/858a8ee6-814a-48ed-a645-afbe5785cecd-md.png",
+  },
+  {
+    name: "Mohammed Bin Faihan",
+    handle: "@mohammedAlotaibi",
+    blurb: "Chief Executive Officer\nNaqsh Holding Company",
+    href: "https://www.deets.pro/my/u/mohammedAlotaibi",
+    avatarUrl:
+      "https://hel1.your-objectstorage.com/deets-prod/2969/conversions/fWrnjuTc6nUbsPBnZTCla3cCK0YqMH-metaTUZILnBuZw==--md.png",
+  },
+  {
+    name: "Mohammed S. Barayan",
+    handle: "@Mohammed_Barayan",
+    blurb: "Drone Operator\nBuroojAir",
+    href: "https://www.deets.pro/my/u/Mohammed_Barayan",
+    avatarUrl:
+      "https://hel1.your-objectstorage.com/deets-prod/2721/conversions/phpMpqv3U-md.png",
+  },
+  {
     name: "Mohannad Faihan Al Otaibi",
     handle: "@admin",
     blurb:
       "Techno-maniac; Founder of @6degrees_sa, CTO @promoefficiency, @zahmaola. Embracing change, coding, and innovation. #HODL",
-    href: "https://www.deets.pro/directory",
+    href: "https://www.deets.pro/my/u/admin",
+    avatarUrl:
+      "https://hel1.your-objectstorage.com/deets-prod/3099/conversions/a133691f-9eea-4eca-8e29-bab6e5c33be2-md.png",
   },
   {
     name: "Nabil Aljabery",
     handle: "@nabil",
     blurb: "خبير في التجارة الالكترونية والتسويق الالكتروني مستشار تسويق",
-    href: "https://www.deets.pro/directory",
+    href: "https://www.deets.pro/my/u/nabil",
+    avatarUrl:
+      "https://hel1.your-objectstorage.com/deets-prod/85/conversions/HdC7vpuO7tUWLsrtd7qpspQqYdH2_1629391674202_400x400-md.png",
   },
-]
+] as const
 
 export const testimonials = [
   {

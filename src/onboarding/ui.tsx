@@ -31,10 +31,10 @@ export function StepHeading({
 }
 
 export const fieldClass =
-  "w-full rounded-full border border-line bg-white px-5 py-3.5 text-[15px] text-ink outline-none transition-[border-color,box-shadow] placeholder:text-ink/30 focus:border-ink focus:shadow-[0_0_0_4px_rgb(10_10_10_/_0.04)]"
+  "w-full rounded-full border border-line bg-white px-5 py-3.5 text-[15px] text-ink outline-none transition-[border-color,box-shadow] placeholder:text-ink/30 focus:border-ink focus:shadow-[0_0_0_4px_rgb(42_49_79_/_0.08)]"
 
 export const areaClass =
-  "w-full resize-none rounded-[1.4rem] border border-line bg-white px-5 py-3.5 text-[15px] text-ink outline-none transition-[border-color,box-shadow] placeholder:text-ink/30 focus:border-ink focus:shadow-[0_0_0_4px_rgb(10_10_10_/_0.04)]"
+  "w-full resize-none rounded-[1.4rem] border border-line bg-white px-5 py-3.5 text-[15px] text-ink outline-none transition-[border-color,box-shadow] placeholder:text-ink/30 focus:border-ink focus:shadow-[0_0_0_4px_rgb(42_49_79_/_0.08)]"
 
 export function FieldLabel({
   children,

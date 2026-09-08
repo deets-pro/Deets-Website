@@ -59,12 +59,12 @@ export function ProfilePreview({
 
 function contrastOn(hex: string) {
   const n = hex.replace("#", "")
-  if (n.length !== 6) return "#0a0a0a"
+  if (n.length !== 6) return "#2a314f"
   const r = Number.parseInt(n.slice(0, 2), 16)
   const g = Number.parseInt(n.slice(2, 4), 16)
   const b = Number.parseInt(n.slice(4, 6), 16)
   const l = (0.299 * r + 0.587 * g + 0.114 * b) / 255
-  return l > 0.62 ? "#0a0a0a" : "#ffffff"
+  return l > 0.62 ? "#2a314f" : "#ffffff"
 }
 
 function hashedBits(seed: string, count: number) {
