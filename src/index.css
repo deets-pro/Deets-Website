@@ -51,13 +51,14 @@
 @theme {
   --font-display: "Urbane", sans-serif;
   --font-sans: "Urbane", sans-serif;
+  --font-hero: "Poppins", sans-serif;
 
   --color-ink: #2a314f;
-  --color-ink-soft: color-mix(in srgb, #2a314f 55%, #edf2fa);
+  --color-ink-soft: color-mix(in srgb, #2a314f 55%, #fbfbfa);
   --color-slate: #2a314f;
   --color-mist: #d4e9f5;
-  --color-canvas: #edf2fa;
-  --color-canvas-dim: #f3f4f8;
+  --color-canvas: #fbfbfa;
+  --color-canvas-dim: #fbfbfa;
   --color-line: rgb(42 49 79 / 0.16);
 
   --color-cyan: #00d4ff;
@@ -202,11 +203,11 @@
     linear-gradient(
       125deg,
       #00d4ff 0%,
-      #edf2fa 16%,
+      #fbfbfa 16%,
       #ff2d92 40%,
       #7cf0ff 58%,
       #ff6b1a 78%,
-      #edf2fa 100%
+      #fbfbfa 100%
     );
   background-size: 220% 220%;
   animation: foil-shift 9s ease-in-out infinite;

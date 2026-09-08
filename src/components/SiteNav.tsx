@@ -52,7 +52,7 @@ export function SiteNav() {
     }
   }, [location.pathname, open])
 
-  const overHero = location.pathname === "/" && !pastHero && !open
+  const overHero = false
 
   const linkClass = overHero
     ? "text-[13px] tracking-wide text-white/80 transition-colors hover:text-white"

@@ -53,19 +53,19 @@ export const howItWorksSteps = [
     id: "order",
     title: "Order your card",
     copy: "Pick a design, add your details, and we ship your Deets card ready to use.",
-    imageSrc: withBase("/media/how-it-works/order.jpg"),
+    imageSrc: withBase("/media/how-it-works/order.png"),
   },
   {
     id: "share",
     title: "Tap or scan",
     copy: "Anyone can tap with their phone or scan the QR — no app download needed.",
-    imageSrc: withBase("/media/how-it-works/tap.jpg"),
+    imageSrc: withBase("/media/how-it-works/tap.png"),
   },
   {
     id: "update",
     title: "Update anytime",
     copy: "Change your links, photo, or contact info from your account. The card stays current.",
-    imageSrc: withBase("/media/how-it-works/update.jpg"),
+    imageSrc: withBase("/media/how-it-works/update.png"),
   },
 ] as const
 

@@ -75,7 +75,7 @@ export const THEMES: ProfileTheme[] = [
   {
     id: "classic",
     name: "Classic",
-    main: "#edf2fa",
+    main: "#fbfbfa",
     accent: "#2a314f",
     text: "#2a314f",
     muted: "rgba(42,49,79,0.55)",

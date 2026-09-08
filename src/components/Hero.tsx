@@ -5,7 +5,7 @@ import { LoopingVideo } from "./LoopingVideo"
 
 export function Hero() {
   return (
-    <section className="relative h-dvh w-full overflow-hidden bg-ink">
+    <section className="relative h-svh min-h-[640px] w-full overflow-hidden bg-canvas">
       <LoopingVideo
         slot={mediaSlots.hero}
         fill
@@ -14,31 +14,26 @@ export function Hero() {
         fallback={null}
       />
       <img
-        src={withBase("/media/hero-jungle.jpg")}
+        src={withBase("/media/hero-leads.jpg")}
         alt=""
-        className="absolute inset-0 size-full object-cover"
+        className="absolute inset-0 size-full object-cover object-right"
       />
-      <div className="pointer-events-none absolute inset-0 z-[1] bg-[radial-gradient(ellipse_at_center,transparent_15%,rgb(0_0_0_/_0.35)_70%,rgb(0_0_0_/_0.55)_100%)]" />
-
-      <div className="pointer-events-none relative z-20 flex h-full flex-col items-center justify-center px-6 text-center">
-        <h1 className="font-display text-[1.85rem] font-semibold leading-[1.08] tracking-[-0.04em] text-white drop-shadow-[0_2px_24px_rgb(0_0_0_/_0.85)] sm:text-[2.35rem] md:text-[3rem] md:leading-[1.05]">
-          A Card That
-          <br />
-          Speaks For You
-        </h1>
-        <p className="mt-6 max-w-md text-sm leading-relaxed text-white drop-shadow-[0_2px_16px_rgb(0_0_0_/_0.9)] md:text-[15px]">
-          Get instant access to more information about your social media and
-          contact information directly from your Deets card.
-        </p>
+      <div className="relative z-10 mx-auto flex h-full max-w-[1440px] items-center px-5 pt-16 md:px-10">
+        <div className="max-w-xl">
+          <h1 className="font-display text-[clamp(2.1rem,4.6vw,4.4rem)] leading-[0.95] tracking-[-0.045em] text-ink lowercase">
+            a card that
+            <br />
+            speaks for you
+          </h1>
+          <p className="mt-5 text-[15px] leading-relaxed text-ink-soft">
+            Get instant access to more information about your social media and
+            contact information directly from your Deets card.
+          </p>
+          <GetStartedButton className="mt-8 inline-flex min-h-12 items-center rounded-full bg-slate px-7 text-sm font-medium text-white hover:opacity-90">
+            Get started
+          </GetStartedButton>
+        </div>
       </div>
-
-      <GetStartedButton
-        className="absolute bottom-6 right-5 z-20 flex items-center gap-3 rounded-sm border border-white/50 bg-black/50 px-4 py-3 backdrop-blur-sm md:right-10"
-      >
-        <span className="text-[11px] tracking-[0.14em] text-white uppercase">
-          Get started
-        </span>
-      </GetStartedButton>
     </section>
   )
 }
