@@ -32,7 +32,7 @@ export function CompaniesTeaser() {
         </div>
 
         <img
-          src={withBase("/media/companies-portal.jpg")}
+          src={withBase("/media/companies-portal.png")}
           alt=""
           className="mt-12 h-[min(52vh,420px)] w-full rounded-[2.75rem] object-cover md:mt-16 md:rounded-[3.5rem]"
         />

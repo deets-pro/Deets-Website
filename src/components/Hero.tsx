@@ -1,4 +1,5 @@
 import { GetStartedButton } from "./GetStartedModal"
+import { withBase } from "../lib/base"
 import { mediaSlots } from "../media/higgsfield"
 import { LoopingVideo } from "./LoopingVideo"
 
@@ -9,16 +10,15 @@ export function Hero() {
         slot={mediaSlots.hero}
         fill
         startOn="view"
-        className="size-full"
-        fallback={
-          <img
-            src={mediaSlots.hero.posterSrc}
-            alt=""
-            className="size-full object-cover"
-          />
-        }
+        className="hidden"
+        fallback={null}
       />
-      <div className="pointer-events-none absolute inset-0 z-[1] bg-[radial-gradient(ellipse_at_center,transparent_0%,rgb(0_0_0_/_0.45)_70%,rgb(0_0_0_/_0.65)_100%)]" />
+      <img
+        src={withBase("/media/hero-jungle.jpg")}
+        alt=""
+        className="absolute inset-0 size-full object-cover"
+      />
+      <div className="pointer-events-none absolute inset-0 z-[1] bg-[radial-gradient(ellipse_at_center,transparent_15%,rgb(0_0_0_/_0.35)_70%,rgb(0_0_0_/_0.55)_100%)]" />
 
       <div className="pointer-events-none relative z-20 flex h-full flex-col items-center justify-center px-6 text-center">
         <h1 className="font-display text-[1.85rem] font-semibold leading-[1.08] tracking-[-0.04em] text-white drop-shadow-[0_2px_24px_rgb(0_0_0_/_0.85)] sm:text-[2.35rem] md:text-[3rem] md:leading-[1.05]">
