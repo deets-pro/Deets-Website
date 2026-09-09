@@ -26,7 +26,7 @@ export const products = [
     id: "event-lead-capture",
     title: "Event lead capture",
     copy: "Collect names, contacts, and interest at events — no clipboards, no apps.",
-    images: [withBase("/media/products/dome.jpg")],
+    images: [withBase("/media/products/event-lead-capture.jpg")],
   },
   {
     id: "nfc-business-cards",
