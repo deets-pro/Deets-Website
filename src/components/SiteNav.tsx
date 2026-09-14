@@ -7,7 +7,6 @@ import { BrandLogo } from "./BrandLogo"
 export function SiteNav() {
   const location = useLocation()
   const [open, setOpen] = useState(false)
-  const [pastHero, setPastHero] = useState(location.pathname !== "/")
   const [shown, setShown] = useState(true)
   const lastY = useRef(0)
 
@@ -18,7 +17,6 @@ export function SiteNav() {
 
   useEffect(() => {
     if (location.pathname !== "/") {
-      setPastHero(true)
       lastY.current = window.scrollY
       return
     }
@@ -28,7 +26,6 @@ export function SiteNav() {
       const delta = y - lastY.current
       lastY.current = y
       const past = y > window.innerHeight - 48
-      setPastHero(past)
 
       if (open) {
         setShown(true)
