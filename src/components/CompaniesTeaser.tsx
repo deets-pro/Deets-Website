@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import { motion } from "framer-motion"
 import { fadeUp } from "../motion/variants"
 import { withBase } from "../lib/base"
+import { ACCENT_BG, ACCENT_FG, PointerGlyph } from "./CarouselArrows"
 
 export function CompaniesTeaser() {
   return (
@@ -26,16 +27,10 @@ export function CompaniesTeaser() {
           <Link
             to="/companies"
             aria-label="Open portal"
-            className="inline-flex size-14 shrink-0 items-center justify-center rounded-full bg-[#fdd015] text-ink transition-transform hover:scale-105 md:mb-1 md:size-16"
+            className="group inline-flex size-14 shrink-0 items-center justify-center rounded-full transition-transform hover:scale-105 md:mb-1 md:size-16"
+            style={{ background: ACCENT_BG, color: ACCENT_FG }}
           >
-            <svg
-              viewBox="0 0 24 24"
-              className="size-6 md:size-7"
-              fill="currentColor"
-              aria-hidden="true"
-            >
-              <path d="M5.2 3.1 20 11.4c.7.4.5 1.4-.3 1.5l-6.2.7 3.6 6.8c.3.6 0 1.3-.6 1.5l-1.8.6c-.6.2-1.2-.2-1.4-.8l-3.4-7.1-4.6 4.3c-.6.6-1.7.2-1.7-.7V4c0-.9 1-1.4 1.8-1z" />
-            </svg>
+            <PointerGlyph className="size-6 md:size-7" />
           </Link>
         </div>
 

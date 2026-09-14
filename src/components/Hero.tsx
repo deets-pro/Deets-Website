@@ -27,23 +27,25 @@ export function Hero() {
             </p>
           </div>
         </div>
-        <a
-          href={DOWNLOAD_URL}
-          target="_blank"
-          rel="noreferrer"
-          className="hidden inline-flex w-fit items-center gap-3 bg-[#0a3924] px-3 py-2.5 text-[#d6ef6a] transition-opacity hover:opacity-90"
-        >
-          <img
-            src={withBase("/media/hero-qr.png")}
-            alt=""
-            className="size-14"
-          />
-          <span className="text-[13px] leading-tight font-medium">
-            Download
-            <br />
-            Now!
-          </span>
-        </a>
+        <div className="hidden">
+          <a
+            href={DOWNLOAD_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex w-fit items-center gap-3 bg-[#0a3924] px-3 py-2.5 text-[#d6ef6a] transition-opacity hover:opacity-90"
+          >
+            <img
+              src={withBase("/media/hero-qr.png")}
+              alt=""
+              className="size-14"
+            />
+            <span className="text-[13px] leading-tight font-medium">
+              Download
+              <br />
+              Now!
+            </span>
+          </a>
+        </div>
       </div>
       <div className="relative min-h-[38vh] md:min-h-0">
         <img
