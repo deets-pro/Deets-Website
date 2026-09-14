@@ -31,7 +31,7 @@ export function Hero() {
           href={DOWNLOAD_URL}
           target="_blank"
           rel="noreferrer"
-          className="inline-flex w-fit items-center gap-3 bg-[#0a3924] px-3 py-2.5 text-[#d6ef6a] transition-opacity hover:opacity-90"
+          className="hidden inline-flex w-fit items-center gap-3 bg-[#0a3924] px-3 py-2.5 text-[#d6ef6a] transition-opacity hover:opacity-90"
         >
           <img
             src={withBase("/media/hero-qr.png")}

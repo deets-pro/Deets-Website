@@ -285,8 +285,8 @@ export const pricingPlans = [
     label: "Free",
     badge: "For individuals",
     billing: {
-      monthly: { price: "$0", unit: "", note: "Free forever" },
-      yearly: { price: "$0", unit: "", note: "Free forever" },
+      monthly: { price: "0", currency: "SAR", unit: "", note: "Free forever" },
+      yearly: { price: "0", currency: "SAR", unit: "", note: "Free forever" },
     },
     copy: "Share your card, build your network and turn good meetings into good business.",
     cta: "Get started",
@@ -318,8 +318,18 @@ export const pricingPlans = [
     label: "Premium",
     badge: "For individuals",
     billing: {
-      monthly: { price: "$9.99", unit: "/ month", note: "Billed monthly" },
-      yearly: { price: "$8.33", unit: "/ month", note: "Billed annually" },
+      monthly: {
+        price: "37.46",
+        currency: "SAR",
+        unit: "/ month",
+        note: "Billed monthly",
+      },
+      yearly: {
+        price: "31.24",
+        currency: "SAR",
+        unit: "/ month",
+        note: "Billed annually",
+      },
     },
     copy: "Stand out with a branded card, capture conversations with AI Notetaker, and enrich every contact automatically.",
     cta: "Upgrade to Premium",
@@ -352,12 +362,14 @@ export const pricingPlans = [
     badge: "For teams",
     billing: {
       monthly: {
-        price: "$6.99",
+        price: "26.21",
+        currency: "SAR",
         unit: "/ month",
         note: "Billed monthly, per user",
       },
       yearly: {
-        price: "$5.83",
+        price: "21.86",
+        currency: "SAR",
         unit: "/ month",
         note: "Billed annually, per user",
       },
@@ -413,11 +425,13 @@ export const pricingPlans = [
     billing: {
       monthly: {
         price: "Custom",
+        currency: "",
         unit: "",
         note: "Pricing & terms tailored to your org",
       },
       yearly: {
         price: "Custom",
+        currency: "",
         unit: "",
         note: "Pricing & terms tailored to your org",
       },

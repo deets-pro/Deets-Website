@@ -19,7 +19,9 @@ export function HomePage() {
       <TemplateCarousel />
       <CtaSection />
       <PricingSection />
-      <TestimonialsSection />
+      <div className="hidden">
+        <TestimonialsSection />
+      </div>
       <FaqSection />
       <ContactSection />
     </>
