@@ -3,16 +3,28 @@ export function CarouselArrows({
   onNext,
   prevLabel = "Previous",
   nextLabel = "Next",
+  tone = "ink",
 }: {
   onPrev: () => void
   onNext: () => void
   prevLabel?: string
   nextLabel?: string
+  tone?: "ink" | "accent"
 }) {
   return (
     <div className="flex gap-3">
-      <ArrowButton direction="prev" onClick={onPrev} label={prevLabel} />
-      <ArrowButton direction="next" onClick={onNext} label={nextLabel} />
+      <ArrowButton
+        direction="prev"
+        onClick={onPrev}
+        label={prevLabel}
+        tone={tone}
+      />
+      <ArrowButton
+        direction="next"
+        onClick={onNext}
+        label={nextLabel}
+        tone={tone}
+      />
     </div>
   )
 }
@@ -21,17 +33,24 @@ function ArrowButton({
   direction,
   onClick,
   label,
+  tone,
 }: {
   direction: "prev" | "next"
   onClick: () => void
   label: string
+  tone: "ink" | "accent"
 }) {
+  const surface =
+    tone === "accent"
+      ? "bg-[#fdd015] text-ink hover:opacity-90"
+      : "bg-slate text-white hover:opacity-85"
+
   return (
     <button
       type="button"
       onClick={onClick}
       aria-label={label}
-      className="group flex size-11 items-center justify-center rounded-full bg-slate text-white transition-opacity hover:opacity-85"
+      className={`group flex size-11 items-center justify-center rounded-full transition-opacity ${surface}`}
     >
       <svg
         viewBox="0 0 24 24"

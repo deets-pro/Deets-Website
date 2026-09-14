@@ -43,6 +43,7 @@ export function ProductSection() {
               contact information directly from your Deets card.
             </p>
             <CarouselArrows
+              tone="accent"
               onPrev={() => scrollByCard("prev")}
               onNext={() => scrollByCard("next")}
               prevLabel="Previous product"
@@ -77,7 +78,7 @@ function ProductCard({
 
   return (
     <article className="w-[min(82vw,18rem)] shrink-0 sm:w-[min(58vw,19rem)] md:w-[min(42vw,20rem)] lg:w-[min(32vw,22rem)] xl:w-[min(28vw,24rem)]">
-      <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-canvas-dim">
+      <div className="relative aspect-[4/5] overflow-hidden rounded-[1.75rem] bg-canvas-dim">
         <img
           src={current}
           alt=""

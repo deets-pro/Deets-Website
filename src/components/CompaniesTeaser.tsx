@@ -5,7 +5,7 @@ import { withBase } from "../lib/base"
 
 export function CompaniesTeaser() {
   return (
-    <section className="bg-canvas-dim px-5 py-20 md:px-10 md:py-24">
+    <section id="companies-portal" className="bg-canvas-dim px-5 py-20 md:px-10 md:py-24">
       <motion.div
         initial="hidden"
         whileInView="show"
@@ -25,16 +25,24 @@ export function CompaniesTeaser() {
           </div>
           <Link
             to="/companies"
-            className="inline-flex min-h-10 shrink-0 items-center border border-ink/25 px-5 text-[11px] tracking-[0.14em] text-ink uppercase transition-colors hover:bg-ink/5 md:mb-1"
+            aria-label="Open portal"
+            className="inline-flex size-14 shrink-0 items-center justify-center rounded-full bg-[#fdd015] text-ink transition-transform hover:scale-105 md:mb-1 md:size-16"
           >
-            Open portal
+            <svg
+              viewBox="0 0 24 24"
+              className="size-6 md:size-7"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path d="M5.2 3.1 20 11.4c.7.4.5 1.4-.3 1.5l-6.2.7 3.6 6.8c.3.6 0 1.3-.6 1.5l-1.8.6c-.6.2-1.2-.2-1.4-.8l-3.4-7.1-4.6 4.3c-.6.6-1.7.2-1.7-.7V4c0-.9 1-1.4 1.8-1z" />
+            </svg>
           </Link>
         </div>
 
         <img
           src={withBase("/media/companies-portal.jpg")}
           alt=""
-          className="mt-12 h-[min(52vh,420px)] w-full rounded-[2.75rem] object-cover md:mt-16 md:rounded-[3.5rem]"
+          className="mt-12 h-[min(52vh,420px)] w-full rounded-[2.75rem] object-cover object-center md:mt-16 md:rounded-[3.5rem]"
         />
       </motion.div>
     </section>

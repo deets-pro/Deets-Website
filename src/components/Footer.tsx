@@ -1,107 +1,95 @@
 import { Link } from "react-router-dom"
-import { CONTACT_EMAIL, STORE_URL } from "../data/site"
+import { CONTACT_EMAIL } from "../data/site"
 import { BrandLogo } from "./BrandLogo"
+import { withBase } from "../lib/base"
 
 export function Footer() {
   return (
-    <footer className="border-t border-line bg-canvas px-5 py-16 md:px-10">
-      <div className="mx-auto grid max-w-[1440px] gap-12 md:grid-cols-4">
-        <div>
-          <BrandLogo className="h-8 w-auto" />
-          <p className="mt-4 max-w-xs text-sm leading-relaxed text-ink-soft">
-            A smart NFC/QR card that shares your socials and contact info with a
-            tap. No app required.
-          </p>
-        </div>
-        <div>
-          <p className="text-xs tracking-[0.16em] text-ink-soft uppercase">Product</p>
-          <ul className="mt-4 space-y-2 text-sm">
-            <li>
-              <Link className="text-ink-soft hover:text-ink" to="/#products">
-                Products
+    <footer className="relative overflow-hidden text-ink">
+      <img
+        src={withBase("/media/footer/backdrop.jpg")}
+        alt=""
+        className="absolute inset-0 size-full object-cover"
+      />
+      <div className="relative z-10 mx-auto max-w-[1440px] px-5 pt-14 pb-8 md:px-10 md:pt-20">
+        <BrandLogo className="h-8 w-auto md:h-9" />
+
+        <div className="mt-16 grid gap-12 md:mt-24 md:grid-cols-3 md:gap-8 lg:grid-cols-[1fr_1.2fr_0.8fr]">
+          <div>
+            <p className="text-[11px] tracking-[0.16em] uppercase">Offices</p>
+            <div className="mt-5 flex flex-wrap items-baseline gap-x-3 text-[13px] tracking-[0.08em] uppercase">
+              <span>Saudi Arabia</span>
+            </div>
+            <a
+              href={`mailto:${CONTACT_EMAIL}`}
+              className="mt-8 block text-[13px] tracking-wide uppercase hover:underline"
+            >
+              {CONTACT_EMAIL}
+            </a>
+          </div>
+
+          <div>
+            <p className="text-[11px] tracking-[0.16em] uppercase">How we work</p>
+            <p className="mt-5 max-w-sm text-[13px] leading-relaxed tracking-wide uppercase">
+              A smart NFC/QR card that shares your socials and contact info with
+              a tap. No app required.
+            </p>
+            <nav className="mt-10 flex flex-wrap gap-x-8 gap-y-3 text-[12px] tracking-[0.14em] uppercase">
+              <Link className="hover:underline" to="/#how-it-works">
+                About us
               </Link>
-            </li>
-            <li>
-              <Link className="text-ink-soft hover:text-ink" to="/companies">
-                Companies
+              <Link className="hover:underline" to="/#products">
+                Our services
               </Link>
-            </li>
-            <li>
-              <Link className="text-ink-soft hover:text-ink" to="/designs">
-                Designs
+              <Link className="hover:underline" to="/designs">
+                Our projects
               </Link>
-            </li>
-            <li>
-              <Link className="text-ink-soft hover:text-ink" to="/#functions">
-                Functions
-              </Link>
-            </li>
-            <li>
-              <Link className="text-ink-soft hover:text-ink" to="/#pricing">
-                Pricing
-              </Link>
-            </li>
-            <li>
-              <a className="text-ink-soft hover:text-ink" href={STORE_URL}>
-                Buy Now
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <p className="text-xs tracking-[0.16em] text-ink-soft uppercase">Account</p>
-          <ul className="mt-4 space-y-2 text-sm">
-            <li>
-              <Link className="text-ink-soft hover:text-ink" to="/my/login">
-                Log in
-              </Link>
-            </li>
-            <li>
-              <Link className="text-ink-soft hover:text-ink" to="/directory">
-                Directory
-              </Link>
-            </li>
-            <li>
-              <Link className="text-ink-soft hover:text-ink" to="/help">
-                Help
-              </Link>
-            </li>
-            <li>
-              <Link className="text-ink-soft hover:text-ink" to="/#faq">
-                FAQ
-              </Link>
-            </li>
-            <li>
-              <Link className="text-ink-soft hover:text-ink" to="/#contact">
-                Contact
-              </Link>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <p className="text-xs tracking-[0.16em] text-ink-soft uppercase">Legal</p>
-          <ul className="mt-4 space-y-2 text-sm">
-            <li>
-              <Link className="text-ink-soft hover:text-ink" to="/terms">
+            </nav>
+          </div>
+
+          <div className="md:text-right">
+            <p className="text-[11px] tracking-[0.16em] uppercase">
+              Connect with us
+            </p>
+            <Link
+              to="/#contact"
+              className="mt-5 inline-flex items-center gap-2 text-[13px] tracking-[0.12em] uppercase underline underline-offset-4"
+            >
+              Get in touch
+              <span aria-hidden>↗</span>
+            </Link>
+            <div className="mt-10 flex flex-wrap gap-x-6 gap-y-2 text-[11px] tracking-[0.12em] uppercase md:justify-end">
+              <Link className="hover:underline" to="/terms">
                 Terms
               </Link>
-            </li>
-            <li>
-              <Link className="text-ink-soft hover:text-ink" to="/privacy">
+              <Link className="hover:underline" to="/privacy">
                 Privacy
               </Link>
-            </li>
-            <li>
-              <a className="text-ink-soft hover:text-ink" href={`mailto:${CONTACT_EMAIL}`}>
-                {CONTACT_EMAIL}
-              </a>
-            </li>
-          </ul>
+            </div>
+          </div>
         </div>
       </div>
-      <div className="mx-auto mt-16 flex max-w-[1440px] flex-col gap-2 border-t border-line pt-6 text-xs text-ink-soft md:flex-row md:justify-between">
-        <p>Built by 6 Degrees Technologies</p>
-        <p>© {new Date().getFullYear()} Deets</p>
+
+      <div className="pointer-events-none relative z-10 mt-10 flex w-full items-end gap-1 px-1 md:mt-14">
+        {(
+          [
+            "hourglass.png",
+            "bars.png",
+            "cursor.png",
+            "dots.png",
+          ] as const
+        ).map((file) => (
+          <div
+            key={file}
+            className="flex aspect-square min-w-0 flex-1 items-end overflow-hidden"
+          >
+            <img
+              src={withBase(`/media/footer/${file}`)}
+              alt=""
+              className="h-full w-full object-cover object-bottom"
+            />
+          </div>
+        ))}
       </div>
     </footer>
   )

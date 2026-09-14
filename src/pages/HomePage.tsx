@@ -1,7 +1,7 @@
 import { CompaniesTeaser } from "../components/CompaniesTeaser"
+import { CtaSection } from "../components/CtaSection"
 import { ContactSection } from "../components/ContactSection"
 import { FaqSection } from "../components/FaqSection"
-import { FunctionsFilm } from "../components/FunctionsFilm"
 import { Hero } from "../components/Hero"
 import { HowItWorks } from "../components/HowItWorks"
 import { PricingSection } from "../components/PricingSection"
@@ -17,7 +17,7 @@ export function HomePage() {
       <ProductSection />
       <HowItWorks />
       <TemplateCarousel />
-      <FunctionsFilm />
+      <CtaSection />
       <PricingSection />
       <TestimonialsSection />
       <FaqSection />
