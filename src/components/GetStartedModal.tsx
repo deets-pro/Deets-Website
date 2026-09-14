@@ -3,6 +3,7 @@ import {
   useContext,
   useEffect,
   useState,
+  type CSSProperties,
   type ReactNode,
 } from "react"
 import { useNavigate } from "react-router-dom"
@@ -26,16 +27,19 @@ export function GetStartedButton({
   className,
   children = "Get started",
   onClick,
+  style,
 }: {
   className?: string
   children?: ReactNode
   onClick?: () => void
+  style?: CSSProperties
 }) {
   const { open } = useGetStarted()
   return (
     <button
       type="button"
       className={className}
+      style={style}
       onClick={() => {
         onClick?.()
         open()
