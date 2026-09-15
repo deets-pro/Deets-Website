@@ -1,8 +1,10 @@
+import { useEffect, useRef } from "react"
 import { withBase } from "../lib/base"
 import { mediaSlots } from "../media/higgsfield"
 import { LoopingVideo } from "./LoopingVideo"
 
 const DOWNLOAD_URL = "https://www.deets.pro"
+const HERO_PHONE_VIDEO = withBase("/media/products/digital-business-card.mp4")
 
 export function Hero() {
   return (
@@ -48,12 +50,39 @@ export function Hero() {
         </div>
       </div>
       <div className="relative min-h-[38vh] md:min-h-0">
-        <img
-          src={withBase("/media/hero-phone.jpg")}
-          alt=""
-          className="absolute inset-0 size-full object-cover object-[center_20%]"
-        />
+        <HeroPhoneVideo />
       </div>
     </section>
+  )
+}
+
+function HeroPhoneVideo() {
+  const ref = useRef<HTMLVideoElement>(null)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) void el.play().catch(() => {})
+        else el.pause()
+      },
+      { threshold: 0.2 },
+    )
+    io.observe(el)
+    return () => io.disconnect()
+  }, [])
+
+  return (
+    <video
+      ref={ref}
+      className="absolute inset-0 size-full object-cover object-[center_20%]"
+      src={HERO_PHONE_VIDEO}
+      poster={withBase("/media/hero-phone.jpg")}
+      muted
+      loop
+      playsInline
+      preload="metadata"
+    />
   )
 }

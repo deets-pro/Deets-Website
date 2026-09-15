@@ -116,7 +116,7 @@ function OpeningGate({
     >
       <video
         ref={videoRef}
-        className="pointer-events-none w-20 mix-blend-multiply sm:w-24"
+        className="pointer-events-none w-32 mix-blend-multiply sm:w-40"
         muted
         playsInline
         preload="auto"

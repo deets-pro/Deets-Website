@@ -14,18 +14,21 @@ export const products = [
     title: "NFC Business cards",
     copy: "Premium NFC cards — tap a phone to share who you are. No app required.",
     images: [withBase("/media/products/nfc-cards.jpg")],
+    videoSrc: withBase("/media/products/nfc-cards.mp4"),
   },
   {
     id: "digital-business-card",
     title: "Digital Business Card",
     copy: "Your deets.pro page — share your photo, contact info, and links from one tap.",
     images: [withBase("/media/products/digital-business-card.jpg")],
+    videoSrc: withBase("/media/products/digital-business-card.mp4"),
   },
   {
     id: "wallet-card",
     title: "Wallet card",
     copy: "Add Deets to Apple Wallet or Google Wallet for one-tap sharing from your phone.",
     images: [withBase("/media/products/wallet.jpg")],
+    videoSrc: withBase("/media/products/wallet.mp4"),
   },
   {
     id: "qr-menu",
