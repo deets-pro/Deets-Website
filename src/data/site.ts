@@ -32,18 +32,21 @@ export const products = [
     title: "QR Menu",
     copy: "A scan-to-open menu for restaurants, cafés, and venues — update it anytime.",
     images: [withBase("/media/products/qr-menu.jpg")],
+    videoSrc: withBase("/media/products/qr-menu.mp4"),
   },
   {
     id: "link-in-bio",
     title: "Link in bio",
     copy: "One link for Instagram, TikTok, and everywhere else you show up.",
     images: [withBase("/media/products/link-in-bio.png")],
+    videoSrc: withBase("/media/products/link-in-bio.mp4"),
   },
   {
     id: "event-lead-capture",
     title: "Event lead capture",
     copy: "Collect names, contacts, and interest at events — no clipboards, no apps.",
     images: [withBase("/media/products/event-lead-capture.jpg")],
+    videoSrc: withBase("/media/products/event-lead-capture.mp4"),
   },
 ] as const
 
@@ -53,6 +56,7 @@ export const howItWorksSteps = [
     title: "Customize Your Digital Profile",
     copy: "Pick a design, add your details, and we ship your Deets card ready to use.",
     imageSrc: withBase("/media/how-it-works/customize.jpg"),
+    videoSrc: withBase("/media/how-it-works/customize.mp4"),
   },
   {
     id: "share",

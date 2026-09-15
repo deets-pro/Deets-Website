@@ -61,7 +61,7 @@ export function SiteNav() {
 
   const pillClass = overHero
     ? "border border-white/15 bg-black/35 text-white shadow-[0_8px_32px_rgb(0_0_0_/_0.18)] backdrop-blur-xl"
-    : "border border-white/55 bg-[#e3f4b0]/40 text-ink shadow-[inset_0_1px_0_rgb(255_255_255_/_0.7),0_8px_32px_rgb(30_87_49_/_0.08)] backdrop-blur-2xl backdrop-saturate-150"
+    : "border border-transparent bg-[#e3f4b0]/40 text-ink shadow-[0_8px_32px_rgb(30_87_49_/_0.08)] backdrop-blur-2xl backdrop-saturate-150"
 
   return (
     <header
@@ -128,7 +128,7 @@ export function SiteNav() {
             className={`pointer-events-auto mt-3 rounded-[1.5rem] border px-5 py-6 lg:hidden ${
               overHero
                 ? "border-white/15 bg-black/80 text-white backdrop-blur-xl"
-                : "border-white/55 bg-[#e3f4b0]/45 text-ink shadow-[inset_0_1px_0_rgb(255_255_255_/_0.65)] backdrop-blur-2xl backdrop-saturate-150"
+                : "border-transparent bg-[#e3f4b0]/45 text-ink backdrop-blur-2xl backdrop-saturate-150"
             }`}
           >
             <div className="flex flex-col gap-4">

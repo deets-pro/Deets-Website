@@ -37,7 +37,7 @@ export function CompaniesTeaser() {
         <img
           src={withBase("/media/companies-portal.jpg")}
           alt=""
-          className="mt-12 h-[min(52vh,420px)] w-full rounded-[2.75rem] object-cover object-center md:mt-16 md:rounded-[3.5rem]"
+          className="mt-12 w-full rounded-[2.75rem] md:mt-16 md:rounded-[3.5rem]"
         />
       </motion.div>
     </section>

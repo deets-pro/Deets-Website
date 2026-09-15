@@ -1,4 +1,4 @@
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { motion } from "framer-motion"
 import { products } from "../data/site"
 import { useLiquidScroll } from "../hooks/useLiquidScroll"
@@ -79,11 +79,19 @@ function ProductCard({
   return (
     <article className="w-[min(82vw,18rem)] shrink-0 sm:w-[min(58vw,19rem)] md:w-[min(42vw,20rem)] lg:w-[min(32vw,22rem)] xl:w-[min(28vw,24rem)]">
       <div className="relative aspect-[4/5] overflow-hidden rounded-[1.75rem] bg-canvas-dim">
-        <img
-          src={current}
-          alt=""
-          className="absolute inset-0 size-full object-cover"
-        />
+        {"videoSrc" in item && item.videoSrc ? (
+          <ProductVideo
+            src={item.videoSrc}
+            poster={current}
+            className={item.id === "link-in-bio" ? "object-[78%_center]" : ""}
+          />
+        ) : (
+          <img
+            src={current}
+            alt=""
+            className="absolute inset-0 size-full object-cover"
+          />
+        )}
         {images.length > 1 ? (
           <>
             <button
@@ -112,5 +120,44 @@ function ProductCard({
         {item.copy}
       </p>
     </article>
+  )
+}
+
+function ProductVideo({
+  src,
+  poster,
+  className = "",
+}: {
+  src: string
+  poster: string
+  className?: string
+}) {
+  const ref = useRef<HTMLVideoElement>(null)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) void el.play().catch(() => {})
+        else el.pause()
+      },
+      { threshold: 0.2 },
+    )
+    io.observe(el)
+    return () => io.disconnect()
+  }, [])
+
+  return (
+    <video
+      ref={ref}
+      className={`absolute inset-0 size-full object-cover ${className}`}
+      src={src}
+      poster={poster}
+      muted
+      loop
+      playsInline
+      preload="metadata"
+    />
   )
 }
