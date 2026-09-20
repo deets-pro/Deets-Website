@@ -1,7 +1,8 @@
-import { useEffect, useRef, useState } from "react"
+import { useRef, useState } from "react"
 import { motion } from "framer-motion"
 import { products } from "../data/site"
 import { useLiquidScroll } from "../hooks/useLiquidScroll"
+import { useVideoInView } from "../hooks/useVideoInView"
 import { fadeUp } from "../motion/variants"
 import { CarouselArrows } from "./CarouselArrows"
 
@@ -34,13 +35,13 @@ export function ProductSection() {
       >
         <div className="flex flex-col gap-6 sm:gap-8 lg:grid lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
           <h2 className="font-display text-[clamp(1.85rem,5vw,4.4rem)] leading-[0.95] tracking-[-0.045em] text-ink lowercase">
-            Deets card is made for those looking for modernity, convenience, and
-            elegance.
+            Your Deets profile is made for those looking for modernity,
+            convenience, and elegance.
           </h2>
           <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between lg:flex-col lg:items-end lg:gap-8">
             <p className="max-w-md text-[15px] leading-relaxed text-ink-soft lg:text-right">
-              Get instant access to more information about your social media and
-              contact information directly from your Deets card.
+              Everything you share, from contact details to socials to links,
+              behind one address you own.
             </p>
             <CarouselArrows
               tone="accent"
@@ -88,6 +89,8 @@ function ProductCard({
         ) : (
           <img
             src={current}
+            loading="lazy"
+            decoding="async"
             alt=""
             className="absolute inset-0 size-full object-cover"
           />
@@ -133,20 +136,7 @@ function ProductVideo({
   className?: string
 }) {
   const ref = useRef<HTMLVideoElement>(null)
-
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) void el.play().catch(() => {})
-        else el.pause()
-      },
-      { threshold: 0.2 },
-    )
-    io.observe(el)
-    return () => io.disconnect()
-  }, [])
+  useVideoInView(ref)
 
   return (
     <video

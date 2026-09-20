@@ -10,10 +10,15 @@ export function SiteNav() {
   const [shown, setShown] = useState(true)
   const lastY = useRef(0)
 
-  useEffect(() => {
+  // Reset on navigation during render rather than in an effect, so the nav
+  // never paints one frame in its stale state.
+  const locationKey = `${location.pathname}${location.hash}`
+  const [lastLocationKey, setLastLocationKey] = useState(locationKey)
+  if (lastLocationKey !== locationKey) {
+    setLastLocationKey(locationKey)
     setOpen(false)
     setShown(true)
-  }, [location.pathname, location.hash])
+  }
 
   useEffect(() => {
     if (location.pathname !== "/") {
@@ -55,9 +60,15 @@ export function SiteNav() {
     ? "text-[13px] tracking-wide text-white/80 transition-colors hover:text-white"
     : "text-[13px] tracking-wide text-ink-soft transition-colors hover:text-ink"
 
-  const boxCta = overHero
-    ? "inline-flex min-h-8 items-center rounded-full border border-white/45 px-4 text-[11px] tracking-[0.14em] text-white uppercase transition-colors hover:bg-white/10"
-    : "inline-flex min-h-8 items-center rounded-full border border-ink/25 px-4 text-[11px] tracking-[0.14em] text-ink uppercase transition-colors hover:bg-ink/5"
+  // Both CTAs are filled rather than outlined. The nav bar is pale lime, so a
+  // light fill needs its own border to hold an edge; the primary carries the
+  // deep green and needs none.
+  const ctaBase =
+    "inline-flex items-center justify-center rounded-full px-4 text-[11px] tracking-[0.14em] uppercase"
+  const secondaryCta = overHero
+    ? `${ctaBase} bg-white/90 text-ink transition-colors hover:bg-white`
+    : `${ctaBase} border border-ink/10 bg-white text-ink transition-colors hover:bg-white/80`
+  const primaryCta = `${ctaBase} bg-[#13563c] text-[#e3f4b0] transition-opacity hover:opacity-90`
 
   const pillClass = overHero
     ? "border border-white/15 bg-black/35 text-white shadow-[0_8px_32px_rgb(0_0_0_/_0.18)] backdrop-blur-xl"
@@ -65,6 +76,9 @@ export function SiteNav() {
 
   return (
     <header
+      // While translated off-screen the pill is still rendered, so without
+      // this its six controls stay in the tab order but invisible.
+      inert={!shown}
       className={`pointer-events-none fixed inset-x-0 top-0 z-40 px-4 pt-4 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] md:px-6 md:pt-5 ${
         shown ? "translate-y-0" : "-translate-y-[calc(100%+1rem)]"
       }`}
@@ -84,18 +98,26 @@ export function SiteNav() {
               className="hidden items-center gap-6 xl:gap-8 lg:flex"
               aria-label="Primary"
             >
-              {navLinks.map((link) => (
-                <NavLink key={link.to} to={link.to} className={linkClass}>
-                  {link.label}
-                </NavLink>
-              ))}
+              {navLinks.map((link) =>
+                // NavLink matches on pathname only, so on "/" every hash link
+                // would claim aria-current="page" at once.
+                link.to.includes("#") ? (
+                  <Link key={link.to} to={link.to} className={linkClass}>
+                    {link.label}
+                  </Link>
+                ) : (
+                  <NavLink key={link.to} to={link.to} className={linkClass}>
+                    {link.label}
+                  </NavLink>
+                ),
+              )}
             </nav>
 
             <div className="hidden items-center gap-2 lg:flex">
-              <Link to="/my/login" className={boxCta}>
+              <Link to="/my/login" className={`${secondaryCta} min-h-8`}>
                 Log in
               </Link>
-              <GetStartedButton className={boxCta}>
+              <GetStartedButton className={`${primaryCta} min-h-8`}>
                 Get started
               </GetStartedButton>
             </div>
@@ -109,7 +131,7 @@ export function SiteNav() {
               aria-controls="mobile-nav"
               onClick={() => setOpen((v) => !v)}
             >
-              <span className="sr-only">Menu</span>
+              <span className="sr-only">{open ? "Close menu" : "Menu"}</span>
               <span className="flex h-4 w-5 flex-col justify-center gap-1">
                 <span
                   className={`block h-px w-full ${overHero ? "bg-white" : "bg-ink"}`}
@@ -132,32 +154,31 @@ export function SiteNav() {
             }`}
           >
             <div className="flex flex-col gap-4">
-              {navLinks.map((link) => (
-                <NavLink
-                  key={link.to}
-                  to={link.to}
-                  className={`text-lg ${overHero ? "text-white" : "text-ink"}`}
-                >
-                  {link.label}
-                </NavLink>
-              ))}
+              {navLinks.map((link) => {
+                const cls = `text-lg ${overHero ? "text-white" : "text-ink"}`
+                // Close from the click, not from a location effect: tapping the
+                // link for the page you're already on changes no location.
+                const close = () => setOpen(false)
+                return link.to.includes("#") ? (
+                  <Link key={link.to} to={link.to} className={cls} onClick={close}>
+                    {link.label}
+                  </Link>
+                ) : (
+                  <NavLink key={link.to} to={link.to} className={cls} onClick={close}>
+                    {link.label}
+                  </NavLink>
+                )
+              })}
               <Link
                 to="/my/login"
-                className={`inline-flex min-h-9 items-center justify-center rounded-full border px-4 text-[11px] tracking-[0.14em] uppercase ${
-                  overHero
-                    ? "border-white/45 text-white"
-                    : "border-ink/25 text-ink"
-                }`}
+                onClick={() => setOpen(false)}
+                className={`${secondaryCta} min-h-9`}
               >
                 Log in
               </Link>
               <GetStartedButton
                 onClick={() => setOpen(false)}
-                className={`inline-flex min-h-9 items-center justify-center rounded-full border px-4 text-[11px] tracking-[0.14em] uppercase ${
-                  overHero
-                    ? "border-white/45 text-white"
-                    : "border-ink/25 text-ink"
-                }`}
+                className={`${primaryCta} min-h-9`}
               >
                 Get started
               </GetStartedButton>

@@ -51,10 +51,11 @@
 @theme {
   --font-display: "Urbane", sans-serif;
   --font-sans: "Urbane", sans-serif;
-  --font-hero: "Poppins", sans-serif;
 
   --color-ink: #2a314f;
-  --color-ink-soft: color-mix(in srgb, #2a314f 55%, #fbfbfa);
+  /* 72% keeps the soft grey while clearing WCAG AA 4.5:1 on both --color-canvas
+     (5.2:1) and the #f4f1ea panels (4.8:1). At 55% it was 3.2:1. */
+  --color-ink-soft: color-mix(in srgb, #2a314f 72%, #fbfbfa);
   --color-slate: #2a314f;
   --color-mist: #d4e9f5;
   --color-canvas: #fbfbfa;
@@ -82,6 +83,14 @@
   ::selection {
     background: rgb(0 212 255 / 0.28);
     color: var(--color-ink);
+  }
+
+  /* The UA default outline is close to invisible on the dark FAQ panel and the
+     slate buttons, so give every focusable a ring that works on any surface. */
+  :focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+    border-radius: 2px;
   }
 }
 
@@ -245,5 +254,17 @@
   .foil,
   .card-float {
     animation: none;
+  }
+
+  /* Covers the hover transforms (.shine-hover, the rotating carousel arrows,
+     the card tilt) that the two rules above missed. framer-motion is handled
+     separately by <MotionConfig reducedMotion="user"> in App.tsx. */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

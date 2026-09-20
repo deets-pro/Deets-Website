@@ -28,9 +28,9 @@ export function ContactSection({ heading = "Let's talk" }: ContactSectionProps) 
             {heading}
           </h2>
           <p className="mt-6 max-w-md text-[15px] leading-relaxed text-ink-soft">
-            Whether you're ordering your first card, planning a bulk rollout for
-            your team, or need help with your account — we'd love to hear from
-            you.
+            Whether you're claiming your first profile, planning a bulk rollout
+            for your team, or need help with your account, we'd love to hear
+            from you.
           </p>
           <ul className="mt-8 space-y-2 text-sm text-ink-soft">
             <li>Personal and business inquiries welcome</li>
@@ -41,7 +41,7 @@ export function ContactSection({ heading = "Let's talk" }: ContactSectionProps) 
 
         {sent ? (
           <p className="self-center font-display text-3xl tracking-tight lowercase">
-            message sent — we'll be in touch.
+            message sent. we'll be in touch.
           </p>
         ) : (
           <form className="flex flex-col gap-6" onSubmit={onSubmit}>

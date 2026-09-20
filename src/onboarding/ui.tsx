@@ -39,15 +39,28 @@ export const areaClass =
 export function FieldLabel({
   children,
   required,
+  htmlFor,
 }: {
   children: ReactNode
   required?: boolean
+  htmlFor?: string
 }) {
-  return (
-    <span className="text-xs tracking-[0.14em] text-ink-soft uppercase">
+  const className = "text-xs tracking-[0.14em] text-ink-soft uppercase"
+  const content = (
+    <>
       {children}
       {required ? <span className="text-ink"> *</span> : null}
-    </span>
+    </>
+  )
+
+  // Without htmlFor this is only a styled caption, so the field it sits above
+  // has no accessible name. Pass htmlFor wherever it labels a real input.
+  return htmlFor ? (
+    <label htmlFor={htmlFor} className={`block ${className}`}>
+      {content}
+    </label>
+  ) : (
+    <span className={className}>{content}</span>
   )
 }
 

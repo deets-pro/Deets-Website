@@ -8,6 +8,8 @@ export function Footer() {
     <footer className="relative overflow-hidden text-ink">
       <img
         src={withBase("/media/footer/backdrop.jpg")}
+        loading="lazy"
+        decoding="async"
         alt=""
         className="absolute inset-0 size-full object-cover"
       />
@@ -31,18 +33,30 @@ export function Footer() {
           <div>
             <p className="text-[11px] tracking-[0.16em] uppercase">How we work</p>
             <p className="mt-5 max-w-sm text-[13px] leading-relaxed tracking-wide uppercase">
-              A smart NFC/QR card that shares your socials and contact info with
-              a tap. No app required.
+              One link that shares your contact details and socials, on the
+              web or with a tap of your Deets card.
             </p>
-            <nav className="mt-10 flex flex-wrap gap-x-8 gap-y-3 text-[12px] tracking-[0.14em] uppercase">
+            <nav
+              aria-label="Footer"
+              className="mt-10 flex flex-wrap gap-x-8 gap-y-3 text-[12px] tracking-[0.14em] uppercase"
+            >
               <Link className="hover:underline" to="/#how-it-works">
-                About us
+                How it works
               </Link>
               <Link className="hover:underline" to="/#products">
-                Our services
+                Products
               </Link>
               <Link className="hover:underline" to="/designs">
-                Our projects
+                Designs
+              </Link>
+              <Link className="hover:underline" to="/directory">
+                Directory
+              </Link>
+              <Link className="hover:underline" to="/companies">
+                For companies
+              </Link>
+              <Link className="hover:underline" to="/help">
+                Help
               </Link>
             </nav>
           </div>
@@ -85,6 +99,8 @@ export function Footer() {
           >
             <img
               src={withBase(`/media/footer/${file}`)}
+              loading="lazy"
+              decoding="async"
               alt=""
               className="h-full w-full object-cover object-bottom"
             />

@@ -28,13 +28,20 @@ export function PricingSection() {
           and built to scale
         </h2>
 
-        <div className="mx-auto mt-8 flex max-w-3xl flex-wrap items-center justify-center gap-x-5 gap-y-2 rounded-2xl bg-[#f4f1ea] px-5 py-3 text-[11px] tracking-wide text-ink/35">
-          <span>Trusted by teams at</span>
-          {trustedTeams.map((name) => (
-            <span key={name} className="font-semibold text-ink/40">
-              {name}
-            </span>
-          ))}
+        {/* Was text-ink/35 and /40 — around 2:1 on this panel, effectively
+            invisible and a wasted trust signal. */}
+        <div className="mx-auto mt-8 flex max-w-3xl flex-wrap items-center justify-center gap-x-5 gap-y-2 rounded-2xl bg-[#f4f1ea] px-5 py-3 text-[11px] tracking-wide text-ink/70">
+          <span id="trusted-by-label">Trusted by teams at</span>
+          <ul
+            aria-labelledby="trusted-by-label"
+            className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2"
+          >
+            {trustedTeams.map((name) => (
+              <li key={name} className="font-semibold text-ink/80">
+                {name}
+              </li>
+            ))}
+          </ul>
         </div>
 
         <div className="mt-8 inline-flex rounded-full bg-[#eeeae3] p-1">

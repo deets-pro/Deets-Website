@@ -12,6 +12,8 @@ export function TemplateScreenPreview({
   return (
     <img
       src={src}
+      loading="lazy"
+      decoding="async"
       alt={alt}
       className={`block h-auto max-w-full rounded-[1.25rem] ${className}`}
     />

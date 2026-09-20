@@ -10,22 +10,36 @@ export const navLinks = [
 
 export const products = [
   {
-    id: "nfc-business-cards",
-    title: "NFC Business cards",
-    copy: "Premium NFC cards — tap a phone to share who you are. No app required.",
-    images: [withBase("/media/products/nfc-cards.jpg")],
-    videoSrc: withBase("/media/products/nfc-cards.mp4"),
-  },
-  {
     id: "digital-business-card",
     title: "Digital Business Card",
-    copy: "Your deets.pro page — share your photo, contact info, and links from one tap.",
+    copy: "Your page at deets.pro with your photo, title, contact details, and links, at one address you own.",
     images: [withBase("/media/products/digital-business-card.jpg")],
     videoSrc: withBase("/media/products/digital-business-card.mp4"),
   },
   {
+    id: "link-in-bio",
+    title: "Link in Bio",
+    copy: "The same profile, pointed at your audience. One link for Instagram, TikTok, and everywhere else you show up.",
+    images: [withBase("/media/products/link-in-bio.png")],
+    videoSrc: withBase("/media/products/link-in-bio.mp4"),
+  },
+  {
+    id: "event-lead-capture",
+    title: "Event Lead Capture",
+    copy: "Collect names, contacts, and interest at events. No clipboards, no apps.",
+    images: [withBase("/media/products/event-lead-capture.jpg")],
+    videoSrc: withBase("/media/products/event-lead-capture.mp4"),
+  },
+  {
+    id: "nfc-business-cards",
+    title: "NFC Business Card",
+    copy: "Premium card that opens your profile with a tap. No app required.",
+    images: [withBase("/media/products/nfc-cards.jpg")],
+    videoSrc: withBase("/media/products/nfc-cards.mp4"),
+  },
+  {
     id: "wallet-card",
-    title: "Wallet card",
+    title: "Wallet Card",
     copy: "Add Deets to Apple Wallet or Google Wallet for one-tap sharing from your phone.",
     images: [withBase("/media/products/wallet.jpg")],
     videoSrc: withBase("/media/products/wallet.mp4"),
@@ -33,45 +47,31 @@ export const products = [
   {
     id: "qr-menu",
     title: "QR Menu",
-    copy: "A scan-to-open menu for restaurants, cafés, and venues — update it anytime.",
+    copy: "A scan-to-open menu for restaurants, cafés, and venues that you can update anytime.",
     images: [withBase("/media/products/qr-menu.jpg")],
     videoSrc: withBase("/media/products/qr-menu.mp4"),
-  },
-  {
-    id: "link-in-bio",
-    title: "Link in bio",
-    copy: "One link for Instagram, TikTok, and everywhere else you show up.",
-    images: [withBase("/media/products/link-in-bio.png")],
-    videoSrc: withBase("/media/products/link-in-bio.mp4"),
-  },
-  {
-    id: "event-lead-capture",
-    title: "Event lead capture",
-    copy: "Collect names, contacts, and interest at events — no clipboards, no apps.",
-    images: [withBase("/media/products/event-lead-capture.jpg")],
-    videoSrc: withBase("/media/products/event-lead-capture.mp4"),
   },
 ] as const
 
 export const howItWorksSteps = [
   {
     id: "customize",
-    title: "Customize Your Digital Profile",
-    copy: "Pick a design, add your details, and we ship your Deets card ready to use.",
+    title: "Claim your link",
+    copy: "Pick your handle, choose a design, and add everything you want to share.",
     imageSrc: withBase("/media/how-it-works/customize.jpg"),
     videoSrc: withBase("/media/how-it-works/customize.mp4"),
   },
   {
     id: "share",
-    title: "Tap or scan",
-    copy: "Anyone can tap with their phone or scan the QR — no app download needed.",
+    title: "Share it anywhere",
+    copy: "Send the link, put it in your bio, or let people tap your card. No app to download.",
     imageSrc: withBase("/media/how-it-works/tap.jpg"),
     videoSrc: withBase("/media/how-it-works/tap.mp4"),
   },
   {
     id: "update",
     title: "Update anytime",
-    copy: "Change your links, photo, or contact info from your account. The card stays current.",
+    copy: "Change your links, photo, or contact details from your account. Everyone holding your link sees the new version.",
     imageSrc: withBase("/media/how-it-works/update.jpg"),
   },
 ] as const
@@ -257,7 +257,7 @@ export const testimonials = [
   {
     id: "nabil",
     quote:
-      "Clients actually save my details now. No more lost cards at events — they tap and go.",
+      "Clients actually save my details now. No more lost cards at events. They tap and go.",
     name: "Nabil Aljabery",
     title: "Marketing consultant",
     company: "Independent",
@@ -318,7 +318,8 @@ export const pricingPlans = [
     body: "#f3f8e4",
     ink: "#cfe86a",
     button: "#aed141",
-    buttonInk: "#156143",
+    // #156143 on the lime button was 4.25:1; this keeps the hue and clears AA.
+    buttonInk: "#13563c",
   },
   {
     id: "premium",
@@ -348,10 +349,10 @@ export const pricingPlans = [
         items: [
           "Create up to five cards",
           "Universal contact scanner",
-          "AI notetaker",
+          "AI Notetaker",
           "AI contact enrichment",
           "Branded QR code",
-          "Custom card colours & design",
+          "Custom card colors & design",
           "Export contacts",
         ],
         note: "",
@@ -359,8 +360,9 @@ export const pricingPlans = [
     ],
     header: "#aed141",
     body: "#dbe7e5",
-    ink: "#156143",
-    button: "#156143",
+    // Darkened from #156143 (4.25:1 on the lime header) to clear AA at 4.95:1.
+    ink: "#13563c",
+    button: "#13563c",
     buttonInk: "#aed141",
   },
   {
@@ -421,7 +423,8 @@ export const pricingPlans = [
     ],
     header: "#f6943d",
     body: "#f4dde3",
-    ink: "#b61c34",
+    // #b61c34 on the orange header was only 2.88:1 — the worst on the page.
+    ink: "#6b0f1f",
     button: "#b61c34",
     buttonInk: "#fde7d4",
   },
@@ -450,7 +453,7 @@ export const pricingPlans = [
     groups: [
       {
         heading: "Platform",
-        items: ["Fully customisable share flow", "Subteam admin access"],
+        items: ["Fully customizable share flow", "Subteam admin access"],
         note: "",
       },
       {
@@ -495,40 +498,46 @@ export const trustedTeams = [
 
 export const faqItems = [
   {
+    id: "profile",
+    question: "What is a Deets profile?",
+    answer:
+      "One page at your own deets.pro address holding your photo, title, contact details, and every link you want to share. You send the link, or let people reach it from a card or QR code, and it opens straight in their browser.",
+  },
+  {
     id: "app",
     question: "Does the person I share with need an app?",
     answer:
-      "No. Anyone can tap your card with their phone or scan the QR code — your profile opens instantly in their browser. No download required.",
+      "No. Your profile opens in any browser. Whether they follow your link, scan your QR code, or tap your card, there is nothing for them to download.",
   },
   {
     id: "update",
-    question: "Can I update my details after my card is printed?",
+    question: "Can I update my details after I've shared my link?",
     answer:
-      "Yes. Log in to your account anytime to change your links, photo, contact info, or design. Your physical card stays the same — the profile behind it updates instantly.",
+      "Yes. Log in anytime to change your links, photo, contact info, or design. Your link never changes, so everyone who already has it sees the update immediately.",
   },
   {
-    id: "phones",
-    question: "Which phones work with NFC?",
+    id: "card",
+    question: "What does the Deets card do?",
     answer:
-      "Most modern iPhones (iPhone 7 and later) and Android phones with NFC support can tap a Deets card. Every card also includes a QR code as a backup.",
+      "It opens your profile with a tap, so you can share in person without typing anything or sending a link. Most modern iPhones (iPhone 7 and later) and NFC-capable Android phones can tap one, and every card carries a QR code as a backup.",
   },
   {
     id: "shipping",
-    question: "How long does shipping take?",
+    question: "If I order a card, how long does shipping take?",
     answer:
-      "Orders are typically processed within a few business days. Delivery times depend on your location in Saudi Arabia — you'll receive tracking once your card ships.",
+      "Orders are typically processed within a few business days. Delivery times depend on your location in Saudi Arabia, and you'll receive tracking once your card ships. Your profile is live straight away, so you can start sharing before the card arrives.",
   },
   {
     id: "company",
-    question: "Can my company order cards for the whole team?",
+    question: "Can my company use Deets for the whole team?",
     answer:
-      "Yes. Use the Companies portal to issue branded cards, manage employee profiles, and update details across your organization from one place.",
+      "Yes. Use the Companies portal to issue branded profiles, manage employee details, and update them across your organization from one place. Cards can be added for anyone who wants one.",
   },
   {
     id: "privacy",
     question: "Who can see my information?",
     answer:
-      "Only people you share your card with can view your profile. Your details are stored securely in your private account — not publicly listed.",
+      "Anyone holding your link can open your profile, which is what makes it easy to share. You decide what goes on it, and listing yourself in our public directory is opt-in. Your account details, like your email and password, are never shown on your profile.",
   },
 ] as const
 

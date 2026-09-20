@@ -1,6 +1,12 @@
 import { Link } from "react-router-dom"
+import { usePageMeta } from "../hooks/usePageMeta"
 
 export function CompaniesPage() {
+  usePageMeta(
+    "For companies — Deets Pro",
+    "Give your team branded Deets profiles, keep every one of them current, and let people share who they are with one link.",
+  )
+
   return (
     <section className="px-5 pb-24 pt-32 md:px-10 md:pb-32 md:pt-40">
       <p className="text-[13px] tracking-[0.18em] text-ink-soft uppercase">
@@ -10,8 +16,8 @@ export function CompaniesPage() {
         companies portal
       </h1>
       <p className="mt-5 max-w-lg text-[15px] leading-relaxed text-ink-soft">
-        Issue branded Deets cards, keep every profile current, and give your
-        people one tap to share who they are.
+        Give your people branded Deets profiles, keep every one of them
+        current, and let them share who they are with one link.
       </p>
       <Link
         to="/#contact"

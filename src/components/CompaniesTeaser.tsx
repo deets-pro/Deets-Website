@@ -20,8 +20,9 @@ export function CompaniesTeaser() {
               companies portal.
             </h2>
             <p className="mt-5 text-[15px] leading-relaxed text-ink-soft">
-              Issue branded cards, keep team profiles current, and send people to
-              your company — not a stack of paper.
+              Give every employee a branded profile, keep them current from one
+              place, and send people to your company instead of a stack of
+              paper.
             </p>
           </div>
           <Link
@@ -36,6 +37,8 @@ export function CompaniesTeaser() {
 
         <img
           src={withBase("/media/companies-portal.jpg")}
+          loading="lazy"
+          decoding="async"
           alt=""
           className="mt-12 w-full rounded-[2.75rem] md:mt-16 md:rounded-[3.5rem]"
         />

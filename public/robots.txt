@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Account surfaces — no crawl value
+Disallow: /my/
+Disallow: /start
+
+Sitemap: https://www.deets.pro/sitemap.xml

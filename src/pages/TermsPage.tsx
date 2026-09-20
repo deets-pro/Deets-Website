@@ -1,4 +1,11 @@
+import { usePageMeta } from "../hooks/usePageMeta"
+
 export function TermsPage() {
+  usePageMeta(
+    "Terms of Service — Deets Pro",
+    "The terms that govern your use of Deets Pro.",
+  )
+
   return (
     <article className="mx-auto max-w-2xl px-5 py-32 md:px-10">
       <p className="text-[13px] tracking-[0.18em] text-ink-soft uppercase">Legal</p>
@@ -51,7 +58,7 @@ export function TermsPage() {
           </p>
           <p className="mt-3">
             An account may be considered for dormancy if, for example, it has
-            not been used in more than twelve (12) months — including no
+            not been used in more than twelve (12) months, including no
             sign-in, no updates to profile content, and no engagement with the
             profile through the Service. Dormancy is applied at the account
             level. When an account is marked dormant, associated profiles are

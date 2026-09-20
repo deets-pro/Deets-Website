@@ -1,4 +1,11 @@
+import { usePageMeta } from "../hooks/usePageMeta"
+
 export function PrivacyPage() {
+  usePageMeta(
+    "Privacy Policy — Deets Pro",
+    "How Deets Pro collects, uses, and protects your personal information.",
+  )
+
   return (
     <article className="mx-auto max-w-2xl px-5 py-32 md:px-10">
       <p className="text-[13px] tracking-[0.18em] text-ink-soft uppercase">Legal</p>
@@ -22,7 +29,7 @@ export function PrivacyPage() {
             <li>Account data: email address, username, password (encrypted).</li>
             <li>
               Profile data: name, job title, company, phone numbers, website,
-              social links, and profile photo — as provided by you.
+              social links, and profile photo, as provided by you.
             </li>
             <li>
               Usage data: page views, vCard downloads, and profile visit counts

@@ -2,6 +2,7 @@ import { useMemo, useState } from "react"
 import { motion } from "framer-motion"
 import { directoryPeople } from "../data/site"
 import { fadeUp, stagger } from "../motion/variants"
+import { usePageMeta } from "../hooks/usePageMeta"
 
 function initials(name: string) {
   const parts = name.trim().split(/\s+/).slice(0, 2)
@@ -9,6 +10,10 @@ function initials(name: string) {
 }
 
 export function DirectoryPage() {
+  usePageMeta(
+    "Directory — Deets Pro",
+    "Browse public Deets profiles and find the people and teams already sharing their details.",
+  )
   const [q, setQ] = useState("")
   const people = useMemo(() => {
     const n = q.trim().toLowerCase()
@@ -69,6 +74,8 @@ export function DirectoryPage() {
                 {p.avatarUrl ? (
                   <img
                     src={p.avatarUrl}
+                    loading="lazy"
+                    decoding="async"
                     alt=""
                     className="size-11 shrink-0 rounded-full bg-canvas object-cover"
                   />

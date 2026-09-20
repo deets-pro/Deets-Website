@@ -13,7 +13,8 @@ export function PageShell() {
         Skip to content
       </a>
       <SiteNav />
-      <main id="main">
+      {/* tabIndex lets the skip link actually move focus, not just scroll. */}
+      <main id="main" tabIndex={-1} className="outline-none">
         <Outlet />
       </main>
       <Footer />

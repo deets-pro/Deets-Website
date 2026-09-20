@@ -22,6 +22,7 @@ import {
   StepTheme,
 } from "../onboarding/steps"
 import { OnboardingFooter, OnboardingHeader } from "../onboarding/ui"
+import { usePageMeta } from "../hooks/usePageMeta"
 
 const fade = {
   initial: { opacity: 0, y: 18 },
@@ -34,6 +35,10 @@ const fade = {
 }
 
 export function StartPage() {
+  usePageMeta(
+    "Get started — Deets Pro",
+    "Set up your Deets profile in a few steps.",
+  )
   const navigate = useNavigate()
   const [state, setState] = useState<OnboardingState>(loadState)
 

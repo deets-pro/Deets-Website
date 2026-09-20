@@ -1,8 +1,10 @@
 import { useState, type FormEvent } from "react"
 import { Link } from "react-router-dom"
 import { GetStartedButton } from "../components/GetStartedModal"
+import { usePageMeta } from "../hooks/usePageMeta"
 
 export function LoginPage() {
+  usePageMeta("Log in — Deets Pro", "Sign in to your Deets account.")
   const [error, setError] = useState("")
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {

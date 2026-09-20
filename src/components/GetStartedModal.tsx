@@ -1,7 +1,10 @@
 import {
   createContext,
+  useCallback,
   useContext,
   useEffect,
+  useMemo,
+  useRef,
   useState,
   type CSSProperties,
   type ReactNode,
@@ -52,33 +55,66 @@ export function GetStartedButton({
 
 export function GetStartedProvider({ children }: { children: ReactNode }) {
   const [shown, setShown] = useState(false)
-  const open = () => setShown(true)
-  const close = () => setShown(false)
+  const open = useCallback(() => setShown(true), [])
+  const close = useCallback(() => setShown(false), [])
+  const value = useMemo(() => ({ open }), [open])
 
   return (
-    <GetStartedContext.Provider value={{ open }}>
+    <GetStartedContext.Provider value={value}>
       {children}
       {shown ? <GetStartedDialog onClose={close} /> : null}
     </GetStartedContext.Provider>
   )
 }
 
+const FOCUSABLE =
+  'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+
 function GetStartedDialog({ onClose }: { onClose: () => void }) {
   const navigate = useNavigate()
+  const dialogRef = useRef<HTMLDivElement>(null)
   const [audience, setAudience] = useState<Audience>("personal")
   const [themeId, setThemeId] = useState(THEMES[2]?.id ?? THEMES[0].id)
   const theme = THEMES.find((t) => t.id === themeId) ?? THEMES[0]
 
   useEffect(() => {
     const prev = document.body.style.overflow
+    const restoreTo = document.activeElement as HTMLElement | null
     document.body.style.overflow = "hidden"
+
+    // Move focus into the dialog, otherwise it stays on the trigger behind the
+    // overlay and the first Tab lands on the page underneath.
+    dialogRef.current?.focus()
+
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose()
+      if (e.key === "Escape") {
+        onClose()
+        return
+      }
+      if (e.key !== "Tab") return
+
+      const node = dialogRef.current
+      if (!node) return
+      const items = Array.from(
+        node.querySelectorAll<HTMLElement>(FOCUSABLE),
+      ).filter((el) => el.offsetParent !== null)
+      if (items.length === 0) return
+
+      const index = items.indexOf(document.activeElement as HTMLElement)
+      if (e.shiftKey && index <= 0) {
+        e.preventDefault()
+        items[items.length - 1].focus()
+      } else if (!e.shiftKey && index === items.length - 1) {
+        e.preventDefault()
+        items[0].focus()
+      }
     }
+
     window.addEventListener("keydown", onKey)
     return () => {
       document.body.style.overflow = prev
       window.removeEventListener("keydown", onKey)
+      restoreTo?.focus?.()
     }
   }, [onClose])
 
@@ -89,17 +125,21 @@ function GetStartedDialog({ onClose }: { onClose: () => void }) {
 
   return (
     <div className="fixed inset-0 z-[90] flex items-end justify-center p-0 sm:items-center sm:p-6">
-      <button
-        type="button"
+      {/* Not a <button>: a full-screen one is announced as a giant "Close"
+          control and duplicates the real close button. Escape and the X cover
+          keyboard users. */}
+      <div
         className="absolute inset-0 bg-ink/45 backdrop-blur-md"
-        aria-label="Close"
         onClick={onClose}
+        aria-hidden="true"
       />
       <div
+        ref={dialogRef}
         role="dialog"
         aria-modal="true"
         aria-labelledby="get-started-title"
-        className="relative z-10 grid max-h-[min(92vh,880px)] w-full max-w-[920px] overflow-hidden rounded-t-[1.75rem] bg-canvas shadow-[0_24px_80px_rgb(42_49_79_/_0.22)] sm:rounded-[1.75rem] md:grid-cols-2"
+        tabIndex={-1}
+        className="relative z-10 grid max-h-[min(92vh,880px)] w-full max-w-[920px] overflow-hidden rounded-t-[1.75rem] bg-canvas shadow-[0_24px_80px_rgb(42_49_79_/_0.22)] outline-none sm:rounded-[1.75rem] md:grid-cols-2"
       >
         <button
           type="button"
@@ -152,6 +192,7 @@ function GetStartedDialog({ onClose }: { onClose: () => void }) {
                 key={t.id}
                 type="button"
                 aria-label={t.name}
+                aria-pressed={theme.id === t.id}
                 onClick={() => setThemeId(t.id)}
                 className={`size-6 rounded-full transition-transform ${
                   theme.id === t.id ? "scale-110 ring-2 ring-ink ring-offset-2 ring-offset-canvas-dim" : ""

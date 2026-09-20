@@ -32,8 +32,8 @@ export function FaqSection() {
             Asked <span className="text-[#d6ef6a]">Questions</span>
           </h2>
           <p className="mt-5 max-w-md text-[15px] leading-relaxed text-[#e3f4b0]/75">
-            Everything you need to know about ordering, sharing, and updating
-            your Deets card.
+            Everything you need to know about claiming, sharing, and updating
+            your Deets profile.
           </p>
         </div>
 
@@ -49,9 +49,12 @@ export function FaqSection() {
             return (
               <motion.li key={item.id} variants={fadeUp}>
                 <article className="rounded-[1.25rem] border border-[#d6ef6a]/25 bg-[#0f4a32]/55">
+                  <h3>
                   <button
                     type="button"
+                    id={`faq-q-${item.id}`}
                     aria-expanded={open}
+                    aria-controls={`faq-a-${item.id}`}
                     onClick={() => setOpenId(open ? null : item.id)}
                     className="flex w-full items-start justify-between gap-4 px-5 py-4 text-left sm:px-6 sm:py-5"
                   >
@@ -73,7 +76,15 @@ export function FaqSection() {
                       </svg>
                     </span>
                   </button>
+                  </h3>
                   <motion.div
+                    id={`faq-a-${item.id}`}
+                    role="region"
+                    aria-labelledby={`faq-q-${item.id}`}
+                    // height:0 clips the answer visually but leaves it in the
+                    // accessibility tree, so screen readers read every answer
+                    // regardless of aria-expanded. inert takes it back out.
+                    inert={!open}
                     initial={false}
                     animate={{
                       height: open ? "auto" : 0,
@@ -101,8 +112,8 @@ export function FaqSection() {
             or a company rollout, we&apos;re here to help.
           </p>
           <p className="mt-3 max-w-md text-[14px] leading-relaxed text-[#e3f4b0]/70">
-            Reach out — we&apos;ll walk you through the details so you get the
-            most out of Deets.
+            Reach out and we&apos;ll walk you through the details so you get
+            the most out of Deets.
           </p>
           <Link
             to="/#contact"

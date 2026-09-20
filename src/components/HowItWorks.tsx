@@ -1,6 +1,7 @@
-import { useEffect, useRef } from "react"
+import { useRef } from "react"
 import { motion } from "framer-motion"
 import { howItWorksSteps } from "../data/site"
+import { useVideoInView } from "../hooks/useVideoInView"
 import { fadeUp, stagger } from "../motion/variants"
 
 export function HowItWorks() {
@@ -17,11 +18,11 @@ export function HowItWorks() {
         className="mx-auto max-w-[1440px] text-center"
       >
         <h2 className="mx-auto max-w-2xl font-display text-[clamp(2.1rem,4.6vw,4.4rem)] leading-[0.95] tracking-[-0.045em] lowercase">
-          tap, scan, share — in seconds.
+          claim it, share it, update it.
         </h2>
         <p className="mx-auto mt-5 max-w-lg text-[15px] leading-relaxed text-ink-soft">
-          No app required. Your Deets card opens your profile the moment someone
-          taps or scans it.
+          No app required, for you or for them. Your profile opens the moment
+          someone follows your link.
         </p>
       </motion.div>
 
@@ -40,6 +41,8 @@ export function HowItWorks() {
               ) : (
                 <img
                   src={step.imageSrc}
+                  loading="lazy"
+                  decoding="async"
                   alt=""
                   className="absolute inset-0 size-full object-cover"
                 />
@@ -63,20 +66,7 @@ export function HowItWorks() {
 
 function StepVideo({ src, poster }: { src: string; poster: string }) {
   const ref = useRef<HTMLVideoElement>(null)
-
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) void el.play().catch(() => {})
-        else el.pause()
-      },
-      { threshold: 0.2 },
-    )
-    io.observe(el)
-    return () => io.disconnect()
-  }, [])
+  useVideoInView(ref)
 
   return (
     <video

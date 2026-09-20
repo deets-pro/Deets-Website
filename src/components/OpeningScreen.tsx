@@ -95,10 +95,20 @@ function OpeningGate({
     el?.addEventListener("playing", speedUp)
     void el?.play().catch(beginReveal)
 
+    // The overlay locks scrolling and covers the page, so a keyboard user
+    // needs a way past it that isn't a click.
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape" || e.key === "Enter" || e.key === " ") {
+        beginReveal()
+      }
+    }
+    window.addEventListener("keydown", onKey)
+
     const fallback = window.setTimeout(beginReveal, 3600)
     return () => {
       el?.removeEventListener("loadedmetadata", speedUp)
       el?.removeEventListener("playing", speedUp)
+      window.removeEventListener("keydown", onKey)
       window.clearTimeout(fallback)
     }
   }, [phase, beginReveal])
@@ -112,7 +122,6 @@ function OpeningGate({
       animate={{ opacity: phase === "out" ? 0 : 1 }}
       transition={{ duration: REVEAL_MS / 1000, ease: liquidEase }}
       onClick={beginReveal}
-      role="presentation"
     >
       <video
         ref={videoRef}
@@ -123,6 +132,7 @@ function OpeningGate({
         poster={mediaSlots.opening.posterSrc}
         autoPlay
         onEnded={beginReveal}
+        aria-hidden
       >
         <source src={mediaSlots.opening.desktopSrc} type="video/mp4" />
       </video>

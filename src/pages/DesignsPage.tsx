@@ -1,6 +1,12 @@
 import { DesignsGallery } from "../components/DesignsGallery"
+import { usePageMeta } from "../hooks/usePageMeta"
 
 export function DesignsPage() {
+  usePageMeta(
+    "Designs — Deets Pro",
+    "Browse professionally crafted Deets profile templates. Each design is fully customizable to match your brand.",
+  )
+
   return (
     <section className="px-5 pb-24 pt-32 md:px-10 md:pb-32 md:pt-40">
       <p className="text-[13px] tracking-[0.18em] text-ink-soft uppercase">
@@ -15,7 +21,7 @@ export function DesignsPage() {
       </p>
       <p className="mt-4 max-w-lg text-sm leading-relaxed text-ink-soft">
         Coming soon · Layouts will add pre-designed page structures and default
-        schemas for profiles — different orders and sub-layouts for profile
+        schemas for profiles, with different orders and sub-layouts for profile
         components so you can start from a composition, not just colors and
         typography.
       </p>

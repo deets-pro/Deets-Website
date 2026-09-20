@@ -30,12 +30,27 @@ export function useLiquidScroll(ref: RefObject<HTMLDivElement | null>) {
     }
 
     const onWheel = (e: WheelEvent) => {
-      if (maxScroll() <= 0) return
+      const max = maxScroll()
+      if (max <= 0) return
       const delta =
         Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY
       if (delta === 0) return
+
+      const next = Math.max(0, Math.min(max, target + delta * 0.42))
+      // Already at the end we're being pushed toward: let the event through so
+      // the page keeps scrolling instead of stalling under the cursor.
+      if (next === target) return
+
       e.preventDefault()
-      go(target + delta * 0.42)
+      go(next)
+    }
+
+    // The arrow buttons use el.scrollBy() and touch scrolling is passed
+    // through, so re-sync whenever the element moves without us driving it.
+    const onScroll = () => {
+      if (raf) return
+      target = el.scrollLeft
+      current = el.scrollLeft
     }
 
     const onPointerDown = (e: PointerEvent) => {
@@ -56,6 +71,7 @@ export function useLiquidScroll(ref: RefObject<HTMLDivElement | null>) {
     }
 
     el.addEventListener("wheel", onWheel, { passive: false })
+    el.addEventListener("scroll", onScroll, { passive: true })
     el.addEventListener("pointerdown", onPointerDown)
     el.addEventListener("pointermove", onPointerMove)
     el.addEventListener("pointerup", onPointerUp)
@@ -64,6 +80,7 @@ export function useLiquidScroll(ref: RefObject<HTMLDivElement | null>) {
     return () => {
       cancelAnimationFrame(raf)
       el.removeEventListener("wheel", onWheel)
+      el.removeEventListener("scroll", onScroll)
       el.removeEventListener("pointerdown", onPointerDown)
       el.removeEventListener("pointermove", onPointerMove)
       el.removeEventListener("pointerup", onPointerUp)

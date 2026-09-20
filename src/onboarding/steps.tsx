@@ -48,7 +48,7 @@ export function StepEmail({ state, patch, onContinue }: StepProps) {
         <StepBadge>Step 1 · Verify</StepBadge>
         <StepHeading
           title="what's your email?"
-          copy="Verify now so you can edit links and recover your account later. This step is optional — you can skip it and do it anytime."
+          copy="Verify now so you can edit links and recover your account later. This step is optional. You can skip it and do it anytime."
         />
       </div>
 
@@ -77,7 +77,7 @@ export function StepEmail({ state, patch, onContinue }: StepProps) {
       </label>
 
       {state.emailVerified ? (
-        <p className="mt-4 text-sm text-ink-soft">Verified — you can edit links on this profile.</p>
+        <p className="mt-4 text-sm text-ink-soft">Verified. You can edit links on this profile.</p>
       ) : (
         <>
           <button
@@ -92,8 +92,9 @@ export function StepEmail({ state, patch, onContinue }: StepProps) {
           </button>
           {state.codeSent ? (
             <div className="mt-6 text-left">
-              <FieldLabel>Six-digit code</FieldLabel>
+              <FieldLabel htmlFor="deets-otp">Six-digit code</FieldLabel>
               <input
+                id="deets-otp"
                 inputMode="numeric"
                 autoComplete="one-time-code"
                 maxLength={6}
@@ -106,7 +107,7 @@ export function StepEmail({ state, patch, onContinue }: StepProps) {
                 className={`${fieldClass} mt-2 tracking-[0.4em]`}
               />
               <p className="mt-2 text-xs text-ink-soft">
-                Preview only — any 6 digits will verify.
+                Preview only. Any 6 digits will verify.
               </p>
             </div>
           ) : null}
@@ -132,7 +133,7 @@ export function StepHandle({ state, patch, onContinue }: StepProps) {
         <StepBadge>Step 2 · Claim it</StepBadge>
         <StepHeading
           title="pick your deets link"
-          copy="This is the link you'll hand out everywhere. Choose something short and memorable — you can't change it as easily later."
+          copy="This is the link you'll hand out everywhere. Choose something short and memorable. You can't change it as easily later."
         />
       </div>
 
@@ -143,8 +144,13 @@ export function StepHandle({ state, patch, onContinue }: StepProps) {
             : "border-line focus-within:border-ink"
         }`}
       >
-        <span className="shrink-0 text-[15px] text-ink-soft">deets.pro/</span>
+        <span className="shrink-0 text-[15px] text-ink-soft" aria-hidden>
+          deets.pro/
+        </span>
         <input
+          id="deets-handle"
+          aria-label="Your deets.pro link"
+          aria-describedby="deets-handle-status"
           value={state.handle}
           maxLength={HANDLE_MAX}
           autoCapitalize="none"
@@ -152,7 +158,7 @@ export function StepHandle({ state, patch, onContinue }: StepProps) {
           spellCheck={false}
           onChange={(e) => patch({ handle: e.target.value.toLowerCase() })}
           placeholder="yourname"
-          className="min-w-0 flex-1 bg-transparent text-[15px] font-medium outline-none placeholder:font-normal placeholder:text-ink/30"
+          className="min-w-0 flex-1 bg-transparent text-[15px] font-medium outline-none placeholder:font-normal placeholder:text-ink/30 focus-visible:outline-none"
         />
         {status === "ok" ? (
           <span className="ml-2 flex size-6 items-center justify-center rounded-full bg-slate text-white">
@@ -160,9 +166,14 @@ export function StepHandle({ state, patch, onContinue }: StepProps) {
           </span>
         ) : null}
       </div>
-      <p className={`mt-3 text-sm ${status === "ok" ? "text-ink" : "text-ink-soft"}`}>
+      <p
+        id="deets-handle-status"
+        role="status"
+        aria-live="polite"
+        className={`mt-3 text-sm ${status === "ok" ? "text-ink" : "text-ink-soft"}`}
+      >
         {status === "ok"
-          ? "Nice — that one's all yours."
+          ? "Nice, that one's all yours."
           : status === "taken"
             ? "That link is taken. Try another."
             : status === "invalid"
@@ -196,12 +207,16 @@ export function StepProfile({ state, patch, onContinue }: StepProps) {
   const initial = profileInitial(state)
 
   const onFile = (e: ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
+    const input = e.target
+    const file = input.files?.[0]
+    // Always clear the input: keeping the value means re-picking the same file
+    // after a Remove fires no change event at all.
+    input.value = ""
     if (!file) return
-    if (!file.type.startsWith("image/") || file.size > 4 * 1024 * 1024) {
-      e.target.value = ""
-      return
-    }
+    // Base64 inflates by ~33% and the whole state goes into sessionStorage,
+    // whose quota is around 5MB — beyond this the save silently starts failing.
+    if (!file.type.startsWith("image/") || file.size > 3 * 1024 * 1024) return
+
     const reader = new FileReader()
     reader.onload = () => {
       if (typeof reader.result === "string") patch({ photo: reader.result })
@@ -221,7 +236,7 @@ export function StepProfile({ state, patch, onContinue }: StepProps) {
         <StepBadge>Step 3 · Introduce yourself</StepBadge>
         <StepHeading
           title="add your name and a face"
-          copy="Your title is how visitors know who they've landed on. Upload a photo — it's optional, but profiles with one get noticed more."
+          copy="Your title is how visitors know who they've landed on. Upload a photo. It's optional, but profiles with one get noticed more."
         />
       </div>
 
@@ -678,6 +693,9 @@ export function ReadyScreen({
   const url = `deets.pro/${handle}`
   const links = filledLinkCount(state)
   const theme = activeTheme(state)
+  // Both the rendered mark and the PNG hash this, so they must share one seed
+  // or the downloaded file shows a different pattern than the preview.
+  const qrSeed = `https://${url}|${theme.main}|${theme.accent}`
 
   const copyUrl = async () => {
     try {
@@ -763,14 +781,15 @@ export function ReadyScreen({
       <div className="space-y-4">
         <ProfilePreview state={state} className="min-h-[280px] p-8" />
         <div className="rounded-[1.6rem] border border-line bg-canvas p-6">
-          <QrMark seed={`https://${url}|${theme.main}|${theme.accent}`} />
+          <QrMark seed={qrSeed} />
           <p className="mt-4 font-medium">Your deets QR code</p>
           <p className="mt-1 text-sm text-ink-soft">
-            Print it, save it, or drop it on a sticker. Scanning opens your link.
+            A preview of the code style for your card. Your scannable code is
+            generated when you order.
           </p>
           <button
             type="button"
-            onClick={() => void downloadQrPng(url, `deets-${handle}.png`)}
+            onClick={() => void downloadQrPng(qrSeed, `deets-${handle}.png`)}
             className="mt-5 inline-flex min-h-11 w-full items-center justify-center rounded-full bg-ink text-sm text-white hover:opacity-90"
           >
             Download PNG

@@ -196,11 +196,26 @@ export const defaultState = (): OnboardingState => ({
   listed: false,
 })
 
+const VALID_SCREENS = new Set<ScreenId>([1, 2, 3, 4, 5, 6, 7, "ready"])
+
 export function loadState(): OnboardingState {
   try {
     const raw = sessionStorage.getItem(STORAGE_KEY)
     if (!raw) return defaultState()
-    return { ...defaultState(), ...JSON.parse(raw) } as OnboardingState
+
+    const base = defaultState()
+    const parsed = JSON.parse(raw) as Partial<OnboardingState>
+    const merged = { ...base, ...parsed } as OnboardingState
+
+    // StartPage renders nothing — not even the Back/Continue footer — for a
+    // step outside this set, which strands the tab. A stale session from an
+    // older build is enough to hit it.
+    if (!VALID_SCREENS.has(merged.step)) return base
+    // A partial socials object turns those inputs uncontrolled mid-session.
+    merged.socials = { ...base.socials, ...(parsed.socials ?? {}) }
+    if (!Array.isArray(merged.customLinks)) merged.customLinks = []
+
+    return merged
   } catch {
     return defaultState()
   }
