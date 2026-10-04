@@ -1,3 +1,4 @@
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion"
 import { useEffect, useRef, useState } from "react"
 import { Link, NavLink, useLocation } from "react-router-dom"
 import { navLinks } from "../data/site"
@@ -14,6 +15,20 @@ export function SiteNav() {
     setOpen(false)
     setShown(true)
   }, [location.pathname, location.hash])
+
+  useEffect(() => {
+    if (!open) return
+    const prev = document.body.style.overflow
+    document.body.style.overflow = "hidden"
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false)
+    }
+    window.addEventListener("keydown", onKey)
+    return () => {
+      document.body.style.overflow = prev
+      window.removeEventListener("keydown", onKey)
+    }
+  }, [open])
 
   useEffect(() => {
     if (location.pathname !== "/") {
@@ -63,7 +78,11 @@ export function SiteNav() {
     ? "border border-white/15 bg-black/35 text-white shadow-[0_8px_32px_rgb(0_0_0_/_0.18)] backdrop-blur-xl"
     : "border border-transparent bg-[#e3f4b0]/40 text-ink shadow-[0_8px_32px_rgb(30_87_49_/_0.08)] backdrop-blur-2xl backdrop-saturate-150"
 
+  const reduceMotion = useReducedMotion()
+  const ease = [0.22, 1, 0.36, 1] as const
+
   return (
+    <>
     <header
       className={`pointer-events-none fixed inset-x-0 top-0 z-40 px-4 pt-4 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] md:px-6 md:pt-5 ${
         shown ? "translate-y-0" : "-translate-y-[calc(100%+1rem)]"
@@ -102,69 +121,107 @@ export function SiteNav() {
 
             <button
               type="button"
-              className={`rounded-full p-2 lg:hidden ${
-                overHero ? "text-white hover:bg-white/10" : "text-ink hover:bg-ink/5"
-              }`}
+              className="rounded-full p-2 text-black lg:hidden"
               aria-expanded={open}
               aria-controls="mobile-nav"
-              onClick={() => setOpen((v) => !v)}
+              onClick={() => setOpen(true)}
             >
               <span className="sr-only">Menu</span>
-              <span className="flex h-4 w-5 flex-col justify-center gap-1">
-                <span
-                  className={`block h-px w-full ${overHero ? "bg-white" : "bg-ink"}`}
-                />
-                <span
-                  className={`block h-px w-full ${overHero ? "bg-white" : "bg-ink"}`}
-                />
+              <span className="flex h-3.5 w-[22px] flex-col justify-between">
+                <span className="block h-[2px] w-full rounded-full bg-black" />
+                <span className="block h-[2px] w-full rounded-full bg-black" />
+                <span className="block h-[2px] w-full rounded-full bg-black" />
               </span>
             </button>
           </div>
         </div>
-
-        {open ? (
-          <div
-            id="mobile-nav"
-            className={`pointer-events-auto mt-3 rounded-[1.5rem] border px-5 py-6 lg:hidden ${
-              overHero
-                ? "border-white/15 bg-black/80 text-white backdrop-blur-xl"
-                : "border-transparent bg-[#e3f4b0]/45 text-ink backdrop-blur-2xl backdrop-saturate-150"
-            }`}
-          >
-            <div className="flex flex-col gap-4">
-              {navLinks.map((link) => (
-                <NavLink
-                  key={link.to}
-                  to={link.to}
-                  className={`text-lg ${overHero ? "text-white" : "text-ink"}`}
-                >
-                  {link.label}
-                </NavLink>
-              ))}
-              <Link
-                to="/my/login"
-                className={`inline-flex min-h-9 items-center justify-center rounded-full border px-4 text-[11px] tracking-[0.14em] uppercase ${
-                  overHero
-                    ? "border-white/45 text-white"
-                    : "border-ink/25 text-ink"
-                }`}
-              >
-                Log in
-              </Link>
-              <GetStartedButton
-                onClick={() => setOpen(false)}
-                className={`inline-flex min-h-9 items-center justify-center rounded-full border px-4 text-[11px] tracking-[0.14em] uppercase ${
-                  overHero
-                    ? "border-white/45 text-white"
-                    : "border-ink/25 text-ink"
-                }`}
-              >
-                Get started
-              </GetStartedButton>
-            </div>
-          </div>
-        ) : null}
       </div>
     </header>
+
+    <AnimatePresence>
+    {open ? (
+      <motion.div
+        key="mobile-menu"
+        className="fixed inset-0 z-50 lg:hidden"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: reduceMotion ? 0 : 0.4, ease }}
+      >
+        <button
+          type="button"
+          className="absolute inset-0 bg-black/45"
+          aria-label="Close menu"
+          onClick={() => setOpen(false)}
+        />
+        <motion.div
+          id="mobile-nav"
+          className="absolute inset-3 flex flex-col overflow-hidden rounded-[1.75rem] bg-[#f6f3ee] text-black shadow-[0_24px_80px_rgb(0_0_0_/_0.18)] sm:inset-4"
+          style={{ transformOrigin: "top center" }}
+          initial={reduceMotion ? false : { opacity: 0, y: 28, scale: 0.97 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 16, scale: 0.98 }}
+          transition={{ duration: reduceMotion ? 0 : 0.46, ease }}
+        >
+          <div className="flex items-center justify-between px-5 pt-5 pb-4">
+            <Link to="/" onClick={() => setOpen(false)} className="shrink-0">
+              <BrandLogo className="h-6 w-auto" />
+            </Link>
+            <button
+              type="button"
+              onClick={() => setOpen(false)}
+              className="flex size-10 items-center justify-center"
+              aria-label="Close"
+            >
+              <svg viewBox="0 0 24 24" className="size-6" fill="none" stroke="currentColor" strokeWidth="2.2">
+                <path d="M5 5l14 14M19 5L5 19" />
+              </svg>
+            </button>
+          </div>
+
+          <nav className="overflow-y-auto px-2" aria-label="Mobile">
+            {navLinks.map((link, i) => (
+              <motion.div
+                key={link.to}
+                initial={reduceMotion ? false : { opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: reduceMotion ? 0 : 0.38, delay: reduceMotion ? 0 : 0.06 + i * 0.045, ease }}
+              >
+                <NavLink
+                  to={link.to}
+                  className="flex items-center justify-between border-t border-black/10 px-3 py-4 text-[17px]"
+                >
+                  {link.label}
+                  <svg viewBox="0 0 24 24" className="size-4 text-black/70" fill="none" stroke="currentColor" strokeWidth="1.6">
+                    <path d="M9 6l6 6-6 6" />
+                  </svg>
+                </NavLink>
+              </motion.div>
+            ))}
+            <div className="border-t border-black/10" />
+          </nav>
+
+          <div className="grid grid-cols-2 gap-x-8 gap-y-4 px-5 pt-8 pb-7 text-[15px]">
+            <Link to="/my/login" onClick={() => setOpen(false)}>
+              Log in
+            </Link>
+            <GetStartedButton onClick={() => setOpen(false)} className="text-left">
+              Get started
+            </GetStartedButton>
+            <Link to="/#how-it-works" onClick={() => setOpen(false)}>
+              About
+            </Link>
+            <Link to="/terms" onClick={() => setOpen(false)}>
+              Terms
+            </Link>
+            <Link to="/privacy" onClick={() => setOpen(false)}>
+              Privacy
+            </Link>
+          </div>
+        </motion.div>
+      </motion.div>
+    ) : null}
+    </AnimatePresence>
+    </>
   )
 }

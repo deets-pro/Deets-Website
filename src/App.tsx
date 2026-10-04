@@ -1,3 +1,4 @@
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion"
 import { useEffect } from "react"
 import { Route, Routes, useLocation } from "react-router-dom"
 import { GetStartedProvider } from "./components/GetStartedModal"
@@ -30,25 +31,48 @@ function HashScroll() {
   return null
 }
 
+const softPaths = new Set(["/my/login", "/start"])
+const softEase = [0.22, 1, 0.36, 1] as const
+
+function AnimatedRoutes() {
+  const location = useLocation()
+  const reduceMotion = useReducedMotion()
+  const soft = softPaths.has(location.pathname)
+
+  return (
+    <AnimatePresence mode="wait" initial={false}>
+      <motion.div
+        key={soft ? location.pathname : "site"}
+        initial={reduceMotion ? false : { opacity: 0, y: soft ? 18 : 0 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: reduceMotion ? 1 : 0, y: reduceMotion ? 0 : soft ? -12 : 0 }}
+        transition={{ duration: reduceMotion ? 0 : 0.42, ease: softEase }}
+      >
+        <Routes location={location}>
+          <Route path="/start" element={<StartPage />} />
+          <Route path="/my/login" element={<LoginPage />} />
+          <Route element={<PageShell />}>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/companies" element={<CompaniesPage />} />
+            <Route path="/designs" element={<DesignsPage />} />
+            <Route path="/directory" element={<DirectoryPage />} />
+            <Route path="/help" element={<HelpPage />} />
+            <Route path="/terms" element={<TermsPage />} />
+            <Route path="/privacy" element={<PrivacyPage />} />
+          </Route>
+        </Routes>
+      </motion.div>
+    </AnimatePresence>
+  )
+}
+
 export default function App() {
   return (
     <OpeningProvider>
       <GetStartedProvider>
         <HashScroll />
         <LandingReveal>
-          <Routes>
-            <Route path="/start" element={<StartPage />} />
-            <Route element={<PageShell />}>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/companies" element={<CompaniesPage />} />
-              <Route path="/designs" element={<DesignsPage />} />
-              <Route path="/directory" element={<DirectoryPage />} />
-              <Route path="/help" element={<HelpPage />} />
-              <Route path="/my/login" element={<LoginPage />} />
-              <Route path="/terms" element={<TermsPage />} />
-              <Route path="/privacy" element={<PrivacyPage />} />
-            </Route>
-          </Routes>
+          <AnimatedRoutes />
         </LandingReveal>
       </GetStartedProvider>
     </OpeningProvider>

@@ -61,6 +61,15 @@
   --color-canvas-dim: #fbfbfa;
   --color-line: rgb(42 49 79 / 0.16);
 
+  --color-farm: #165f47;
+  --color-lettuce: #2da049;
+  --color-lemon-green: #aed140;
+  --color-light-green: #e3ea98;
+  --color-lemon: #f6c017;
+  --color-pumpkin: #f2923b;
+  --color-chilli: #b91f3f;
+  --color-beetroot: #8c4074;
+
   --color-cyan: #00d4ff;
   --color-magenta: #ff2d92;
   --color-tangerine: #ff6b1a;

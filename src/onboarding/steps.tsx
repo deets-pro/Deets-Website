@@ -85,7 +85,7 @@ export function StepEmail({ state, patch, onContinue }: StepProps) {
             onClick={sendCode}
             disabled={!valid}
             className={`mt-4 inline-flex min-h-12 w-full items-center justify-center rounded-full text-sm font-medium ${
-              valid ? "bg-ink text-white hover:opacity-90" : "cursor-not-allowed bg-ink/20 text-white"
+              valid ? "bg-chilli text-lemon hover:brightness-110" : "cursor-not-allowed bg-chilli/35 text-lemon/70"
             }`}
           >
             Send verification code
@@ -140,7 +140,7 @@ export function StepHandle({ state, patch, onContinue }: StepProps) {
         className={`mt-10 flex items-center rounded-full border bg-canvas px-5 py-3.5 transition-[border-color,box-shadow] ${
           status === "ok"
             ? "border-slate shadow-[0_0_0_4px_rgb(42_49_79_/_0.08)]"
-            : "border-line focus-within:border-ink"
+            : "border-line focus-within:border-chilli"
         }`}
       >
         <span className="shrink-0 text-[15px] text-ink-soft">deets.pro/</span>
@@ -155,7 +155,7 @@ export function StepHandle({ state, patch, onContinue }: StepProps) {
           className="min-w-0 flex-1 bg-transparent text-[15px] font-medium outline-none placeholder:font-normal placeholder:text-ink/30"
         />
         {status === "ok" ? (
-          <span className="ml-2 flex size-6 items-center justify-center rounded-full bg-slate text-white">
+          <span className="ml-2 flex size-6 items-center justify-center rounded-full bg-chilli text-lemon">
             <CheckIcon />
           </span>
         ) : null}
@@ -180,7 +180,7 @@ export function StepHandle({ state, patch, onContinue }: StepProps) {
             type="button"
             onClick={() => patch({ handle: idea })}
             className={`rounded-full border px-4 py-2 text-sm transition-colors ${
-              handle === idea ? "border-ink bg-ink text-white" : "border-line hover:border-ink/40"
+              handle === idea ? "border-chilli bg-chilli text-lemon" : "border-line hover:border-chilli/50"
             }`}
           >
             {idea}
@@ -229,7 +229,7 @@ export function StepProfile({ state, patch, onContinue }: StepProps) {
         {state.photo ? (
           <img src={state.photo} alt="" className="size-16 rounded-full object-cover" />
         ) : (
-          <span className="flex size-16 items-center justify-center rounded-full bg-ink font-display text-2xl text-white lowercase">
+          <span className="flex size-16 items-center justify-center rounded-full bg-black font-display text-2xl text-lemon lowercase">
             {initial}
           </span>
         )}
@@ -237,7 +237,7 @@ export function StepProfile({ state, patch, onContinue }: StepProps) {
           <button
             type="button"
             onClick={() => fileRef.current?.click()}
-            className="rounded-full border border-ink/25 px-4 py-2 text-sm hover:bg-ink/5"
+            className="rounded-full bg-chilli px-4 py-2 text-sm text-lemon hover:brightness-110"
           >
             Upload photo
           </button>
@@ -323,7 +323,7 @@ export function StepTheme({ state, patch }: StepProps) {
             >
               <div
                 className={`relative overflow-hidden rounded-2xl border-2 p-3 transition-all ${
-                  selected ? "border-ink" : "border-transparent hover:border-ink/20"
+                  selected ? "border-chilli" : "border-transparent hover:border-chilli/25"
                 }`}
                 style={{ background: theme.main, color: theme.text }}
               >
@@ -364,7 +364,7 @@ export function StepTheme({ state, patch }: StepProps) {
       <button
         type="button"
         onClick={() => patch({ customizing: !state.customizing })}
-        className="mt-8 flex min-h-12 w-full items-center justify-center gap-2 rounded-full border border-dashed border-ink/25 text-sm hover:border-ink/50"
+        className="mt-8 flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-chilli text-sm text-lemon hover:brightness-110"
       >
         ✦ Customize my own colors
       </button>
@@ -444,7 +444,7 @@ export function StepLinks({ state, patch, goTo }: StepProps) {
 
       {locked ? (
         <div className="mt-8 flex flex-col gap-4 rounded-[1.4rem] bg-canvas-dim px-4 py-4 sm:flex-row sm:items-center">
-          <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-slate text-white">
+          <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-chilli text-lemon">
             <LockIcon />
           </span>
           <div className="min-w-0 flex-1 text-left">
@@ -456,7 +456,7 @@ export function StepLinks({ state, patch, goTo }: StepProps) {
           <button
             type="button"
             onClick={() => goTo(1)}
-            className="inline-flex min-h-10 shrink-0 items-center justify-center rounded-full bg-ink px-4 text-sm font-medium text-white"
+            className="inline-flex min-h-10 shrink-0 items-center justify-center rounded-full bg-chilli px-4 text-sm font-medium text-lemon hover:brightness-110"
           >
             Verify email
           </button>
@@ -528,7 +528,7 @@ export function StepLinks({ state, patch, goTo }: StepProps) {
               customLinks: [...state.customLinks, { id: newLinkId(), title: "", url: "" }],
             })
           }
-          className="mt-4 flex min-h-12 w-full items-center justify-center rounded-full border border-dashed border-ink/25 text-sm hover:border-ink/50"
+          className="mt-4 flex min-h-12 w-full items-center justify-center rounded-full bg-chilli text-sm text-lemon hover:brightness-110"
         >
           + Add a link
         </button>
@@ -549,7 +549,7 @@ export function StepCard({ state, patch }: StepProps) {
       </div>
       <div className="mt-10 space-y-3">
         <div className={`flex items-center gap-4 rounded-[1.4rem] border bg-canvas px-4 py-4 ${
-          state.shareContact ? "border-ink" : "border-line"
+          state.shareContact ? "border-chilli" : "border-line"
         }`}>
           <span className="flex size-12 shrink-0 items-center justify-center rounded-full bg-canvas-dim">
             <CardIcon />
@@ -567,7 +567,7 @@ export function StepCard({ state, patch }: StepProps) {
           />
         </div>
         <div className={`flex items-center gap-4 rounded-[1.4rem] border bg-canvas px-4 py-4 ${
-          state.exchangeContact ? "border-ink" : "border-line"
+          state.exchangeContact ? "border-chilli" : "border-line"
         }`}>
           <span className="flex size-12 shrink-0 items-center justify-center rounded-full bg-ink/8">
             <PeopleIcon />
@@ -605,13 +605,13 @@ export function StepDirectory({ state, patch }: StepProps) {
           type="button"
           onClick={() => patch({ listed: true })}
           className={`rounded-[1.4rem] border-2 p-5 text-left transition-colors ${
-            state.listed ? "border-ink bg-canvas-dim" : "border-line bg-canvas hover:border-ink/30"
+            state.listed ? "border-chilli bg-canvas-dim" : "border-line bg-canvas hover:border-chilli/30"
           }`}
         >
           <div className="flex items-start justify-between gap-3">
             <GlobeIcon />
             {state.listed ? (
-              <span className="flex size-5 items-center justify-center rounded-full bg-ink text-white">
+              <span className="flex size-5 items-center justify-center rounded-full bg-chilli text-lemon">
                 <CheckIcon />
               </span>
             ) : null}
@@ -625,13 +625,13 @@ export function StepDirectory({ state, patch }: StepProps) {
           type="button"
           onClick={() => patch({ listed: false })}
           className={`rounded-[1.4rem] border-2 p-5 text-left transition-colors ${
-            !state.listed ? "border-ink bg-canvas-dim" : "border-line bg-canvas hover:border-ink/30"
+            !state.listed ? "border-chilli bg-canvas-dim" : "border-line bg-canvas hover:border-chilli/30"
           }`}
         >
           <div className="flex items-start justify-between gap-3">
             <EyeOffIcon />
             {!state.listed ? (
-              <span className="flex size-5 items-center justify-center rounded-full bg-ink text-white">
+              <span className="flex size-5 items-center justify-center rounded-full bg-chilli text-lemon">
                 <CheckIcon />
               </span>
             ) : null}
@@ -709,10 +709,10 @@ export function ReadyScreen({
   return (
     <div className="mx-auto grid w-full max-w-5xl gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
       <div>
-        <span className="inline-flex items-center gap-2 rounded-full bg-slate px-3 py-1 text-[11px] font-medium tracking-[0.16em] text-white uppercase">
+        <span className="inline-flex items-center gap-2 rounded-full bg-chilli px-3 py-1 text-[11px] font-medium tracking-[0.16em] text-lemon uppercase">
           You’re live
         </span>
-        <h1 className="mt-5 font-display text-[clamp(2.2rem,5.5vw,3.8rem)] leading-[0.95] tracking-[-0.05em] lowercase">
+        <h1 className="mt-5 font-display text-[clamp(2.2rem,5.5vw,3.8rem)] leading-[0.95] tracking-[-0.05em] text-black lowercase">
           your profile is ready, {name}.
         </h1>
         <p className="mt-4 max-w-md text-[15px] leading-relaxed text-ink-soft">
@@ -724,7 +724,7 @@ export function ReadyScreen({
           <button
             type="button"
             onClick={() => void copyUrl()}
-            className="shrink-0 bg-ink px-5 text-sm text-white hover:opacity-90"
+            className="shrink-0 bg-chilli px-5 text-sm text-lemon transition-[filter] hover:brightness-110"
           >
             Copy
           </button>
@@ -736,7 +736,7 @@ export function ReadyScreen({
               key={s.label}
               className="inline-flex items-center gap-2 rounded-full border border-line px-3 py-1.5 text-xs text-ink-soft"
             >
-              <span className={`size-1.5 rounded-full ${s.on ? "bg-slate" : "bg-slate/35"}`} />
+              <span className={`size-1.5 rounded-full ${s.on ? "bg-chilli" : "bg-black/20"}`} />
               {s.label}
             </span>
           ))}
@@ -744,7 +744,7 @@ export function ReadyScreen({
 
         <Link
           to="/"
-          className="mt-8 inline-flex min-h-12 items-center justify-center rounded-full bg-slate px-8 text-sm font-medium text-white hover:opacity-90"
+          className="mt-8 inline-flex min-h-12 items-center justify-center rounded-full bg-chilli px-8 text-sm font-medium text-lemon transition-[filter] hover:brightness-110"
         >
           Take me to my home →
         </Link>
@@ -771,7 +771,7 @@ export function ReadyScreen({
           <button
             type="button"
             onClick={() => void downloadQrPng(url, `deets-${handle}.png`)}
-            className="mt-5 inline-flex min-h-11 w-full items-center justify-center rounded-full bg-ink text-sm text-white hover:opacity-90"
+            className="mt-5 inline-flex min-h-11 w-full items-center justify-center rounded-full bg-chilli text-sm text-lemon transition-[filter] hover:brightness-110"
           >
             Download PNG
           </button>

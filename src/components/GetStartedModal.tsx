@@ -1,3 +1,4 @@
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion"
 import {
   createContext,
   useContext,
@@ -7,7 +8,7 @@ import {
   type ReactNode,
 } from "react"
 import { useNavigate } from "react-router-dom"
-import { THEMES } from "../onboarding/model"
+import { THEMES, loadState, saveState } from "../onboarding/model"
 
 type Audience = "personal" | "team"
 
@@ -58,7 +59,9 @@ export function GetStartedProvider({ children }: { children: ReactNode }) {
   return (
     <GetStartedContext.Provider value={{ open }}>
       {children}
-      {shown ? <GetStartedDialog onClose={close} /> : null}
+      <AnimatePresence>
+        {shown ? <GetStartedDialog key="get-started" onClose={close} /> : null}
+      </AnimatePresence>
     </GetStartedContext.Provider>
   )
 }
@@ -66,8 +69,10 @@ export function GetStartedProvider({ children }: { children: ReactNode }) {
 function GetStartedDialog({ onClose }: { onClose: () => void }) {
   const navigate = useNavigate()
   const [audience, setAudience] = useState<Audience>("personal")
-  const [themeId, setThemeId] = useState(THEMES[2]?.id ?? THEMES[0].id)
+  const [themeId, setThemeId] = useState(THEMES[0].id)
   const theme = THEMES.find((t) => t.id === themeId) ?? THEMES[0]
+  const reduceMotion = useReducedMotion()
+  const ease = [0.22, 1, 0.36, 1] as const
 
   useEffect(() => {
     const prev = document.body.style.overflow
@@ -83,35 +88,48 @@ function GetStartedDialog({ onClose }: { onClose: () => void }) {
   }, [onClose])
 
   const continueOn = () => {
+    if (audience === "personal") {
+      saveState({ ...loadState(), themeId })
+    }
     onClose()
     navigate(audience === "team" ? "/companies" : "/start")
   }
 
   return (
-    <div className="fixed inset-0 z-[90] flex items-end justify-center p-0 sm:items-center sm:p-6">
+    <motion.div
+      className="fixed inset-0 z-[90] flex items-end justify-center p-0 sm:items-center sm:p-6"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: reduceMotion ? 0 : 0.4, ease }}
+    >
       <button
         type="button"
         className="absolute inset-0 bg-ink/45 backdrop-blur-md"
         aria-label="Close"
         onClick={onClose}
       />
-      <div
+      <motion.div
         role="dialog"
         aria-modal="true"
         aria-labelledby="get-started-title"
-        className="relative z-10 grid max-h-[min(92vh,880px)] w-full max-w-[920px] overflow-hidden rounded-t-[1.75rem] bg-canvas shadow-[0_24px_80px_rgb(42_49_79_/_0.22)] sm:rounded-[1.75rem] md:grid-cols-2"
+        className="relative z-10 grid max-h-[min(92vh,880px)] w-full max-w-[920px] overflow-y-auto rounded-t-[1.75rem] bg-canvas shadow-[0_24px_80px_rgb(42_49_79_/_0.22)] sm:overflow-hidden sm:rounded-[1.75rem] sm:grid-cols-2"
+        initial={reduceMotion ? false : { opacity: 0, y: 28, scale: 0.98 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 18, scale: 0.985 }}
+        transition={{ duration: reduceMotion ? 0 : 0.46, ease }}
       >
         <button
           type="button"
           onClick={onClose}
-          className="absolute top-4 right-4 z-10 flex size-8 items-center justify-center rounded-full text-ink-soft transition-colors hover:bg-ink/5 hover:text-ink md:top-5 md:right-5"
+          className="absolute top-4 right-4 z-10 flex size-8 items-center justify-center rounded-full text-ink-soft transition-colors hover:bg-ink/5 hover:text-ink"
           aria-label="Close"
         >
           <svg viewBox="0 0 24 24" className="size-4" fill="none" stroke="currentColor" strokeWidth="1.8">
             <path d="M6 6l12 12M18 6L6 18" />
           </svg>
         </button>
-        <div className="flex flex-col px-6 py-8 sm:px-10 sm:py-12">
+        <div className="flex flex-col px-6 pt-8 pb-6 sm:h-full sm:px-10 sm:pt-12 sm:pb-10">
           <h2
             id="get-started-title"
             className="font-display text-[clamp(1.85rem,4vw,2.7rem)] leading-[1.05] tracking-[-0.04em] text-ink"
@@ -135,41 +153,44 @@ function GetStartedDialog({ onClose }: { onClose: () => void }) {
             />
           </div>
 
+          <div className="min-h-10 flex-1" aria-hidden />
+
           <button
             type="button"
             onClick={continueOn}
-            className="mt-8 inline-flex min-h-12 w-full items-center justify-center rounded-full bg-slate text-sm font-medium text-white hover:opacity-90 sm:mt-auto"
+            className="mt-4 inline-flex min-h-12 w-full items-center justify-center rounded-full bg-chilli text-sm font-medium text-lemon hover:brightness-110"
           >
             Continue
           </button>
         </div>
 
-        <div className="relative hidden flex-col bg-canvas-dim px-8 py-8 md:flex">
-
-          <div className="mt-2 flex items-center gap-2">
-            {THEMES.slice(0, 6).map((t) => (
+        <div className="flex flex-col bg-[#f4f1ea] px-6 py-6 sm:h-full sm:px-6 sm:py-8">
+          <div className="flex flex-nowrap items-center justify-end gap-1 pr-12">
+            {THEMES.slice(0, 8).map((t) => (
               <button
                 key={t.id}
                 type="button"
                 aria-label={t.name}
                 onClick={() => setThemeId(t.id)}
-                className={`size-6 rounded-full transition-transform ${
-                  theme.id === t.id ? "scale-110 ring-2 ring-ink ring-offset-2 ring-offset-canvas-dim" : ""
+                className={`size-5 shrink-0 rounded-full transition-transform ${
+                  theme.id === t.id
+                    ? "scale-110 ring-2 ring-chilli ring-offset-2 ring-offset-[#f4f1ea]"
+                    : "hover:scale-105"
                 }`}
                 style={{ background: t.main }}
               />
             ))}
           </div>
 
-          <div className="flex flex-1 items-center justify-center py-8">
+          <div className="flex flex-1 items-center justify-center py-6 sm:py-8">
             <article className="w-full max-w-[17.5rem] overflow-hidden rounded-[1.35rem] bg-canvas shadow-[0_16px_40px_rgb(42_49_79_/_0.12)]">
               <div className="flex items-start justify-between px-5 pt-5 pb-4" style={{ background: theme.main }}>
                 <span className="flex size-14 items-center justify-center rounded-full bg-canvas font-display text-lg text-ink">
                   A
                 </span>
                 <span
-                  className="rounded-md px-2 py-1 text-[10px] font-medium tracking-wide text-white uppercase"
-                  style={{ background: "rgb(0 0 0 / 0.2)" }}
+                  className="rounded-md px-2 py-1 text-[10px] font-medium tracking-wide uppercase"
+                  style={{ background: theme.accent, color: theme.text === "#ffffff" ? "#165F47" : theme.main }}
                 >
                   Deets
                 </span>
@@ -188,8 +209,8 @@ function GetStartedDialog({ onClose }: { onClose: () => void }) {
             </article>
           </div>
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   )
 }
 
@@ -208,17 +229,17 @@ function AudienceOption({
       onClick={onSelect}
       aria-pressed={selected}
       className={`flex min-h-[3.5rem] items-center justify-between rounded-[1.15rem] border px-5 text-left text-[15px] font-medium transition-colors ${
-        selected ? "border-ink bg-canvas" : "border-line bg-canvas hover:border-ink/30"
+        selected ? "border-chilli bg-canvas" : "border-line bg-canvas hover:border-chilli/40"
       }`}
     >
       {title}
       <span
         className={`flex size-5 items-center justify-center rounded-full border ${
-          selected ? "border-ink" : "border-line"
+          selected ? "border-chilli" : "border-line"
         }`}
         aria-hidden
       >
-        {selected ? <span className="size-2.5 rounded-full bg-ink" /> : null}
+        {selected ? <span className="size-2.5 rounded-full bg-chilli" /> : null}
       </span>
     </button>
   )

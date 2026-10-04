@@ -7,6 +7,14 @@ export type StepId = 1 | 2 | 3 | 4 | 5 | 6 | 7
 export type ScreenId = StepId | "ready"
 
 export type ThemeId =
+  | "chilli"
+  | "lettuce"
+  | "farm"
+  | "lemon"
+  | "pumpkin"
+  | "beetroot"
+  | "lemon-green"
+  | "light-green"
   | "deets"
   | "classic"
   | "sunset"
@@ -64,6 +72,70 @@ export type OnboardingState = {
 }
 
 export const THEMES: ProfileTheme[] = [
+  {
+    id: "chilli",
+    name: "Chilli",
+    main: "#B91F3F",
+    accent: "#F6C017",
+    text: "#F6C017",
+    muted: "rgba(246,192,23,0.82)",
+  },
+  {
+    id: "lettuce",
+    name: "Lettuce",
+    main: "#2DA049",
+    accent: "#E3EA98",
+    text: "#ffffff",
+    muted: "rgba(255,255,255,0.8)",
+  },
+  {
+    id: "farm",
+    name: "Farm",
+    main: "#165F47",
+    accent: "#AED140",
+    text: "#ffffff",
+    muted: "rgba(255,255,255,0.78)",
+  },
+  {
+    id: "lemon",
+    name: "Lemon",
+    main: "#F6C017",
+    accent: "#165F47",
+    text: "#165F47",
+    muted: "rgba(22,95,71,0.72)",
+  },
+  {
+    id: "pumpkin",
+    name: "Pumpkin",
+    main: "#F2923B",
+    accent: "#165F47",
+    text: "#165F47",
+    muted: "rgba(22,95,71,0.72)",
+  },
+  {
+    id: "beetroot",
+    name: "Beetroot",
+    main: "#8C4074",
+    accent: "#F6C017",
+    text: "#ffffff",
+    muted: "rgba(255,255,255,0.8)",
+  },
+  {
+    id: "lemon-green",
+    name: "Lemon green",
+    main: "#AED140",
+    accent: "#165F47",
+    text: "#165F47",
+    muted: "rgba(22,95,71,0.7)",
+  },
+  {
+    id: "light-green",
+    name: "Light green",
+    main: "#E3EA98",
+    accent: "#165F47",
+    text: "#165F47",
+    muted: "rgba(22,95,71,0.68)",
+  },
   {
     id: "deets",
     name: "Deets",
@@ -185,9 +257,9 @@ export const defaultState = (): OnboardingState => ({
   displayTitle: "",
   bio: "",
   photo: null,
-  themeId: "deets",
-  customMain: "#2a314f",
-  customAccent: "#00d4ff",
+  themeId: "chilli",
+  customMain: "#B91F3F",
+  customAccent: "#F6C017",
   customizing: false,
   socials: emptySocials(),
   customLinks: [],

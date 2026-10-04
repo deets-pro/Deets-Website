@@ -5,7 +5,7 @@ import { TOTAL_STEPS } from "./model"
 
 export function StepBadge({ children }: { children: ReactNode }) {
   return (
-    <span className="inline-flex rounded-full bg-slate px-3 py-1 text-[11px] font-medium tracking-[0.16em] text-white uppercase">
+    <span className="inline-flex rounded-full bg-chilli px-3 py-1 text-[11px] font-medium tracking-[0.16em] text-lemon uppercase">
       {children}
     </span>
   )
@@ -20,10 +20,10 @@ export function StepHeading({
 }) {
   return (
     <div className="mx-auto max-w-xl text-center">
-      <h1 className="mt-5 font-display text-[clamp(2rem,5.4vw,3.35rem)] leading-[0.95] tracking-[-0.05em] lowercase">
+      <h1 className="mt-5 font-display text-[clamp(2rem,5.4vw,3.35rem)] leading-[0.95] tracking-[-0.05em] text-black lowercase">
         {title}
       </h1>
-      <p className="mx-auto mt-4 max-w-md text-[15px] leading-relaxed text-ink-soft">
+      <p className="mx-auto mt-4 max-w-md text-[15px] leading-relaxed text-black/55">
         {copy}
       </p>
     </div>
@@ -31,10 +31,10 @@ export function StepHeading({
 }
 
 export const fieldClass =
-  "w-full rounded-full border border-line bg-canvas px-5 py-3.5 text-[15px] text-ink outline-none transition-[border-color,box-shadow] placeholder:text-ink/30 focus:border-ink focus:shadow-[0_0_0_4px_rgb(42_49_79_/_0.08)]"
+  "w-full rounded-full border border-line bg-canvas px-5 py-3.5 text-[15px] text-black outline-none transition-[border-color,box-shadow] placeholder:text-black/30 focus:border-chilli focus:shadow-[0_0_0_4px_rgb(185_31_63_/_0.12)]"
 
 export const areaClass =
-  "w-full resize-none rounded-[1.4rem] border border-line bg-canvas px-5 py-3.5 text-[15px] text-ink outline-none transition-[border-color,box-shadow] placeholder:text-ink/30 focus:border-ink focus:shadow-[0_0_0_4px_rgb(42_49_79_/_0.08)]"
+  "w-full resize-none rounded-[1.4rem] border border-line bg-canvas px-5 py-3.5 text-[15px] text-black outline-none transition-[border-color,box-shadow] placeholder:text-black/30 focus:border-chilli focus:shadow-[0_0_0_4px_rgb(185_31_63_/_0.12)]"
 
 export function FieldLabel({
   children,
@@ -62,7 +62,7 @@ export function ProgressBar({ current }: { current: number }) {
             <span
               key={n}
               className={`h-1 rounded-full transition-all duration-500 ${
-                on ? "w-7 bg-slate sm:w-8" : "w-5 bg-ink/15 sm:w-6"
+                on ? "w-7 bg-chilli sm:w-8" : "w-5 bg-black/10 sm:w-6"
               }`}
             />
           )
@@ -131,10 +131,10 @@ export function OnboardingFooter({
             type="button"
             onClick={onContinue}
             disabled={continueDisabled}
-            className={`shine-hover inline-flex min-h-12 items-center justify-center rounded-full px-6 text-sm font-medium sm:px-8 ${
+            className={`shine-hover inline-flex min-h-12 items-center justify-center rounded-full px-6 text-sm font-medium text-lemon sm:px-8 ${
               continueDisabled
-                ? "cursor-not-allowed bg-ink/20 text-white"
-                : "bg-slate text-white"
+                ? "cursor-not-allowed bg-chilli/35"
+                : "bg-chilli hover:brightness-110"
             }`}
           >
             {continueLabel} →
@@ -162,7 +162,7 @@ export function Toggle({
       aria-label={label}
       onClick={onToggle}
       className={`relative h-7 w-12 shrink-0 rounded-full transition-colors ${
-        on ? "bg-slate" : "bg-ink/15"
+        on ? "bg-chilli" : "bg-ink/15"
       }`}
     >
       <span

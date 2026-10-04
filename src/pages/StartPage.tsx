@@ -21,6 +21,7 @@ import {
   StepProfile,
   StepTheme,
 } from "../onboarding/steps"
+import { AuthShell } from "../components/AuthShell"
 import { OnboardingFooter, OnboardingHeader } from "../onboarding/ui"
 
 const fade = {
@@ -79,11 +80,12 @@ export function StartPage() {
   const meta = state.step === "ready" ? null : STEP_META[state.step]
 
   return (
-    <div className="flex min-h-svh flex-col bg-canvas-dim">
+    <AuthShell>
       <div className="grain" aria-hidden />
+      <div className="relative z-10 flex min-h-full flex-1 flex-col">
       <OnboardingHeader current={current} />
-      <main className="relative z-10 flex flex-1 flex-col overflow-y-auto px-5 py-10 md:px-10 md:py-14">
-        <div className="flex flex-1 justify-center">
+      <main className="flex flex-1 flex-col overflow-y-auto px-5 py-8 md:px-10 md:py-10">
+        <div className="m-auto w-full">
           <AnimatePresence mode="wait">
             <motion.div
               key={String(state.step)}
@@ -116,6 +118,7 @@ export function StartPage() {
           skip={meta.skip}
         />
       ) : null}
-    </div>
+      </div>
+    </AuthShell>
   )
 }
