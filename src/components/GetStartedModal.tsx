@@ -8,6 +8,7 @@ import {
   type ReactNode,
 } from "react"
 import { useNavigate } from "react-router-dom"
+import { useLocale } from "../i18n/LocaleProvider"
 import { THEMES, loadState, saveState } from "../onboarding/model"
 
 type Audience = "personal" | "team"
@@ -73,6 +74,7 @@ function GetStartedDialog({ onClose }: { onClose: () => void }) {
   const theme = THEMES.find((t) => t.id === themeId) ?? THEMES[0]
   const reduceMotion = useReducedMotion()
   const ease = [0.22, 1, 0.36, 1] as const
+  const { m } = useLocale()
 
   useEffect(() => {
     const prev = document.body.style.overflow
@@ -106,7 +108,7 @@ function GetStartedDialog({ onClose }: { onClose: () => void }) {
       <button
         type="button"
         className="absolute inset-0 bg-ink/45 backdrop-blur-md"
-        aria-label="Close"
+        aria-label={m.startModal.close}
         onClick={onClose}
       />
       <motion.div
@@ -122,8 +124,8 @@ function GetStartedDialog({ onClose }: { onClose: () => void }) {
         <button
           type="button"
           onClick={onClose}
-          className="absolute top-4 right-4 z-10 flex size-8 items-center justify-center rounded-full text-ink-soft transition-colors hover:bg-ink/5 hover:text-ink"
-          aria-label="Close"
+          className="absolute top-4 end-4 z-10 flex size-8 items-center justify-center rounded-full text-ink-soft transition-colors hover:bg-ink/5 hover:text-ink"
+          aria-label={m.startModal.close}
         >
           <svg viewBox="0 0 24 24" className="size-4" fill="none" stroke="currentColor" strokeWidth="1.8">
             <path d="M6 6l12 12M18 6L6 18" />
@@ -134,21 +136,21 @@ function GetStartedDialog({ onClose }: { onClose: () => void }) {
             id="get-started-title"
             className="font-display text-[clamp(1.85rem,4vw,2.7rem)] leading-[1.05] tracking-[-0.04em] text-ink"
           >
-            How will you use Deets?
+            {m.startModal.title}
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-ink-soft">
-            This helps us tailor the best experience for you.
+            {m.startModal.copy}
           </p>
 
           <div className="mt-8 flex flex-col gap-3">
             <AudienceOption
               selected={audience === "personal"}
-              title="For me only"
+              title={m.startModal.personal}
               onSelect={() => setAudience("personal")}
             />
             <AudienceOption
               selected={audience === "team"}
-              title="For my team or company"
+              title={m.startModal.team}
               onSelect={() => setAudience("team")}
             />
           </div>
@@ -160,7 +162,7 @@ function GetStartedDialog({ onClose }: { onClose: () => void }) {
             onClick={continueOn}
             className="mt-4 inline-flex min-h-12 w-full items-center justify-center rounded-full bg-chilli text-sm font-medium text-lemon hover:brightness-110"
           >
-            Continue
+            {m.startModal.continue}
           </button>
         </div>
 
@@ -186,7 +188,7 @@ function GetStartedDialog({ onClose }: { onClose: () => void }) {
             <article className="w-full max-w-[17.5rem] overflow-hidden rounded-[1.35rem] bg-canvas shadow-[0_16px_40px_rgb(42_49_79_/_0.12)]">
               <div className="flex items-start justify-between px-5 pt-5 pb-4" style={{ background: theme.main }}>
                 <span className="flex size-14 items-center justify-center rounded-full bg-canvas font-display text-lg text-ink">
-                  A
+                  F
                 </span>
                 <span
                   className="rounded-md px-2 py-1 text-[10px] font-medium tracking-wide uppercase"
@@ -197,13 +199,13 @@ function GetStartedDialog({ onClose }: { onClose: () => void }) {
               </div>
               <div className="px-5 py-5">
                 <p className="font-sans text-lg font-semibold tracking-tight text-ink">
-                  Alex Chen
+                  Fahad Al-Qahtani
                 </p>
-                <p className="mt-1 text-sm text-ink-soft">Product designer</p>
+                <p className="mt-1 text-sm text-ink-soft">{m.startModal.role}</p>
                 <p className="text-sm text-ink-soft">Deets</p>
                 <ul className="mt-4 space-y-2 text-sm text-ink">
-                  <li>alex@deets.pro</li>
-                  <li>deets.pro/alex</li>
+                  <li>fahad@deets.pro</li>
+                  <li>deets.pro/fahad</li>
                 </ul>
               </div>
             </article>
@@ -228,7 +230,7 @@ function AudienceOption({
       type="button"
       onClick={onSelect}
       aria-pressed={selected}
-      className={`flex min-h-[3.5rem] items-center justify-between rounded-[1.15rem] border px-5 text-left text-[15px] font-medium transition-colors ${
+      className={`flex min-h-[3.5rem] items-center justify-between rounded-[1.15rem] border px-5 text-start text-[15px] font-medium transition-colors ${
         selected ? "border-chilli bg-canvas" : "border-line bg-canvas hover:border-chilli/40"
       }`}
     >

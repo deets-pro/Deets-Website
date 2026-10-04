@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from "react"
 import { Link } from "react-router-dom"
 import { AuthShell } from "../components/AuthShell"
+import { useLocale } from "../i18n/LocaleProvider"
 import { BrandLogo } from "../components/BrandLogo"
 import { GetStartedButton } from "../components/GetStartedModal"
 
@@ -9,10 +10,11 @@ const fieldClass =
 
 export function LoginPage() {
   const [error, setError] = useState("")
+  const { m } = useLocale()
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    setError("Use the live account at my/login on deets.pro to sign in.")
+    setError(m.login.error)
   }
 
   return (
@@ -24,33 +26,33 @@ export function LoginPage() {
 
         <div className="mx-auto mt-8 w-full max-w-[22rem] text-center">
           <h1 className="font-display text-[2.15rem] leading-none tracking-[-0.045em] lowercase">
-            log in
+            {m.login.title}
           </h1>
           <p className="mt-3 text-sm leading-relaxed text-ink-soft">
-            Enter your email and password to open your account.
+            {m.login.copy}
           </p>
         </div>
 
-        <form className="mx-auto mt-8 flex w-full max-w-[22rem] flex-col gap-5 text-left" onSubmit={onSubmit}>
+        <form className="mx-auto mt-8 flex w-full max-w-[22rem] flex-col gap-5 text-start" onSubmit={onSubmit}>
           <label>
-            <span className="text-sm text-ink">Email</span>
+            <span className="text-sm text-ink">{m.login.email}</span>
             <input
               name="email"
               type="email"
               required
               autoComplete="email"
-              placeholder="you@example.com"
+              placeholder={m.login.emailPlaceholder}
               className={fieldClass}
             />
           </label>
           <label>
-            <span className="text-sm text-ink">Password</span>
+            <span className="text-sm text-ink">{m.login.password}</span>
             <input
               name="password"
               type="password"
               required
               autoComplete="current-password"
-              placeholder="Your password"
+              placeholder={m.login.passwordPlaceholder}
               className={fieldClass}
             />
           </label>
@@ -59,20 +61,20 @@ export function LoginPage() {
             type="submit"
             className="mt-1 inline-flex min-h-12 items-center justify-center rounded-xl bg-chilli text-sm font-medium text-lemon transition-[filter] hover:brightness-110"
           >
-            Log in
+            {m.login.submit}
           </button>
         </form>
 
         <p className="mx-auto mt-8 text-center text-sm text-ink-soft">
-          New here?{" "}
+          {m.login.new}{" "}
           <GetStartedButton className="font-medium text-ink underline underline-offset-4">
-            Get started
+            {m.nav.start}
           </GetStartedButton>
         </p>
         <p className="mt-2 text-center text-sm text-ink-soft">
-          Need help?{" "}
+          {m.login.help}{" "}
           <Link to="/help" className="font-medium text-ink underline underline-offset-4">
-            Contact us
+            {m.login.contact}
           </Link>
         </p>
       </div>

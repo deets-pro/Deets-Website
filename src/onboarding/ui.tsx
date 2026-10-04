@@ -1,6 +1,8 @@
 import type { ReactNode } from "react"
 import { Link } from "react-router-dom"
 import { BrandLogo } from "../components/BrandLogo"
+import { LanguageToggle } from "../components/LanguageToggle"
+import { useLocale } from "../i18n/LocaleProvider"
 import { TOTAL_STEPS } from "./model"
 
 export function StepBadge({ children }: { children: ReactNode }) {
@@ -84,7 +86,10 @@ export function OnboardingHeader({ current }: { current: number }) {
             <Link to="/" className="shrink-0">
               <BrandLogo className="h-6 w-auto sm:h-7" />
             </Link>
-            <ProgressBar current={current} />
+            <div className="flex items-center gap-3">
+              <LanguageToggle />
+              <ProgressBar current={current} />
+            </div>
           </div>
         </div>
       </div>
@@ -107,6 +112,9 @@ export function OnboardingFooter({
   continueDisabled?: boolean
   skip?: boolean
 }) {
+  const { lang, m } = useLocale()
+  const backMark = lang === "ar" ? "→" : "←"
+  const nextMark = lang === "ar" ? "←" : "→"
   return (
     <footer className="sticky bottom-0 z-20 border-t border-line/70 bg-canvas/90 px-4 py-4 backdrop-blur-xl md:px-8">
       <div className="mx-auto flex max-w-5xl items-center justify-between gap-3">
@@ -115,7 +123,7 @@ export function OnboardingFooter({
           onClick={onBack}
           className="text-sm text-ink-soft transition-colors hover:text-ink"
         >
-          ← Back
+          {backMark} {m.onboard.back}
         </button>
         <div className="flex items-center gap-4 sm:gap-6">
           {skip && onSkip ? (
@@ -124,7 +132,7 @@ export function OnboardingFooter({
               onClick={onSkip}
               className="text-sm text-ink-soft transition-colors hover:text-ink"
             >
-              Skip for now
+              {m.onboard.skip}
             </button>
           ) : null}
           <button
@@ -137,7 +145,7 @@ export function OnboardingFooter({
                 : "bg-chilli hover:brightness-110"
             }`}
           >
-            {continueLabel} →
+            {continueLabel} {nextMark}
           </button>
         </div>
       </div>

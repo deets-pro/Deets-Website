@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom"
 import { motion } from "framer-motion"
+import { useLocale } from "../i18n/LocaleProvider"
 import { fadeUp } from "../motion/variants"
 
 export function TemplateCarousel() {
+  const { m } = useLocale()
   return (
     <section className="bg-canvas px-5 py-24 md:px-10 md:py-32">
       <motion.div
@@ -14,11 +16,10 @@ export function TemplateCarousel() {
       >
         <div className="max-w-xl">
           <h2 className="font-display text-[clamp(1.85rem,4.6vw,3.75rem)] leading-[1.02] tracking-[-0.04em] text-ink">
-            A Deets template to suit every brand and creator
+            {m.templates.heading}
           </h2>
           <p className="mt-5 max-w-md text-[15px] leading-relaxed text-ink-soft">
-            Different layouts, colors, and styles. Pick a starting point, then
-            make it yours with your links, photo, and brand.
+            {m.templates.copy}
           </p>
           <Link
             to="/designs"
@@ -37,9 +38,9 @@ export function TemplateCarousel() {
               <path d="M7 17 17 7M8 7h9v9" />
             </svg>
             <span>
-              Browse Templates or create your own
+              {m.templates.link1}
               <br />
-              with us.
+              {m.templates.link2}
             </span>
           </Link>
         </div>

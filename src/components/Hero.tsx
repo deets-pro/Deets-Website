@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react"
+import { useLocale } from "../i18n/LocaleProvider"
 import { withBase } from "../lib/base"
 import { mediaSlots } from "../media/higgsfield"
 import { LoopingVideo } from "./LoopingVideo"
@@ -7,6 +8,7 @@ const DOWNLOAD_URL = "https://www.deets.pro"
 const HERO_PHONE_VIDEO = withBase("/media/products/digital-business-card.mp4")
 
 export function Hero() {
+  const { m } = useLocale()
   return (
     <section className="relative grid h-svh min-h-[640px] w-full grid-rows-[1fr_minmax(240px,42%)] overflow-hidden bg-[#e3f4b0] md:grid-cols-2 md:grid-rows-none">
       <LoopingVideo
@@ -20,12 +22,12 @@ export function Hero() {
         <div className="flex flex-1 flex-col justify-center">
           <div className="max-w-xl">
             <h1 className="font-display text-[clamp(2.1rem,4.4vw,4.2rem)] leading-[0.95] tracking-[-0.045em] text-[#1e5731]">
-              A Profile that
+              {m.hero.line1}
               <br />
-              Speaks for you
+              {m.hero.line2}
             </h1>
             <p className="mt-5 max-w-sm text-[15px] leading-relaxed text-[#1e5731] lowercase">
-              get instant access to more information about your social media
+              {m.hero.copy}
             </p>
           </div>
         </div>

@@ -2,8 +2,10 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion"
 import { useEffect, useRef, useState } from "react"
 import { Link, NavLink, useLocation } from "react-router-dom"
 import { navLinks } from "../data/site"
+import { useLocale } from "../i18n/LocaleProvider"
 import { GetStartedButton } from "./GetStartedModal"
 import { BrandLogo } from "./BrandLogo"
+import { LanguageToggle } from "./LanguageToggle"
 
 export function SiteNav() {
   const location = useLocation()
@@ -80,6 +82,13 @@ export function SiteNav() {
 
   const reduceMotion = useReducedMotion()
   const ease = [0.22, 1, 0.36, 1] as const
+  const { m } = useLocale()
+  const labels: Record<(typeof navLinks)[number]["to"], string> = {
+    "/#products": m.nav.products,
+    "/designs": m.nav.designs,
+    "/directory": m.nav.directory,
+    "/#contact": m.nav.contact,
+  }
 
   return (
     <>
@@ -105,34 +114,36 @@ export function SiteNav() {
             >
               {navLinks.map((link) => (
                 <NavLink key={link.to} to={link.to} className={linkClass}>
-                  {link.label}
+                  {labels[link.to]}
                 </NavLink>
               ))}
             </nav>
 
-            <div className="hidden items-center gap-2 lg:flex">
-              <Link to="/my/login" className={boxCta}>
-                Log in
-              </Link>
-              <GetStartedButton className={boxCta}>
-                Get started
-              </GetStartedButton>
+            <div className="flex items-center gap-1 sm:gap-2">
+              <LanguageToggle />
+              <div className="hidden items-center gap-2 lg:flex">
+                <Link to="/my/login" className={boxCta}>
+                  {m.nav.login}
+                </Link>
+                <GetStartedButton className={boxCta}>
+                  {m.nav.start}
+                </GetStartedButton>
+              </div>
+              <button
+                type="button"
+                className="rounded-full p-2 text-black lg:hidden"
+                aria-expanded={open}
+                aria-controls="mobile-nav"
+                onClick={() => setOpen(true)}
+              >
+                <span className="sr-only">{m.nav.menu}</span>
+                <span className="flex h-3.5 w-[22px] flex-col justify-between">
+                  <span className="block h-[2px] w-full rounded-full bg-black" />
+                  <span className="block h-[2px] w-full rounded-full bg-black" />
+                  <span className="block h-[2px] w-full rounded-full bg-black" />
+                </span>
+              </button>
             </div>
-
-            <button
-              type="button"
-              className="rounded-full p-2 text-black lg:hidden"
-              aria-expanded={open}
-              aria-controls="mobile-nav"
-              onClick={() => setOpen(true)}
-            >
-              <span className="sr-only">Menu</span>
-              <span className="flex h-3.5 w-[22px] flex-col justify-between">
-                <span className="block h-[2px] w-full rounded-full bg-black" />
-                <span className="block h-[2px] w-full rounded-full bg-black" />
-                <span className="block h-[2px] w-full rounded-full bg-black" />
-              </span>
-            </button>
           </div>
         </div>
       </div>
@@ -151,7 +162,7 @@ export function SiteNav() {
         <button
           type="button"
           className="absolute inset-0 bg-black/45"
-          aria-label="Close menu"
+          aria-label={m.nav.closeMenu}
           onClick={() => setOpen(false)}
         />
         <motion.div
@@ -164,14 +175,17 @@ export function SiteNav() {
           transition={{ duration: reduceMotion ? 0 : 0.46, ease }}
         >
           <div className="flex items-center justify-between px-5 pt-5 pb-4">
-            <Link to="/" onClick={() => setOpen(false)} className="shrink-0">
-              <BrandLogo className="h-6 w-auto" />
-            </Link>
+            <div className="flex items-center gap-3">
+              <Link to="/" onClick={() => setOpen(false)} className="shrink-0">
+                <BrandLogo className="h-6 w-auto" />
+              </Link>
+              <LanguageToggle />
+            </div>
             <button
               type="button"
               onClick={() => setOpen(false)}
               className="flex size-10 items-center justify-center"
-              aria-label="Close"
+              aria-label={m.nav.close}
             >
               <svg viewBox="0 0 24 24" className="size-6" fill="none" stroke="currentColor" strokeWidth="2.2">
                 <path d="M5 5l14 14M19 5L5 19" />
@@ -191,8 +205,8 @@ export function SiteNav() {
                   to={link.to}
                   className="flex items-center justify-between border-t border-black/10 px-3 py-4 text-[17px]"
                 >
-                  {link.label}
-                  <svg viewBox="0 0 24 24" className="size-4 text-black/70" fill="none" stroke="currentColor" strokeWidth="1.6">
+                  {labels[link.to]}
+                  <svg viewBox="0 0 24 24" className="size-4 text-black/70 rtl:-scale-x-100" fill="none" stroke="currentColor" strokeWidth="1.6">
                     <path d="M9 6l6 6-6 6" />
                   </svg>
                 </NavLink>
@@ -203,19 +217,19 @@ export function SiteNav() {
 
           <div className="grid grid-cols-2 gap-x-8 gap-y-4 px-5 pt-8 pb-7 text-[15px]">
             <Link to="/my/login" onClick={() => setOpen(false)}>
-              Log in
+              {m.nav.login}
             </Link>
-            <GetStartedButton onClick={() => setOpen(false)} className="text-left">
-              Get started
+            <GetStartedButton onClick={() => setOpen(false)} className="text-start">
+              {m.nav.start}
             </GetStartedButton>
             <Link to="/#how-it-works" onClick={() => setOpen(false)}>
-              About
+              {m.nav.about}
             </Link>
             <Link to="/terms" onClick={() => setOpen(false)}>
-              Terms
+              {m.nav.terms}
             </Link>
             <Link to="/privacy" onClick={() => setOpen(false)}>
-              Privacy
+              {m.nav.privacy}
             </Link>
           </div>
         </motion.div>

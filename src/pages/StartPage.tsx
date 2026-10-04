@@ -22,6 +22,7 @@ import {
   StepTheme,
 } from "../onboarding/steps"
 import { AuthShell } from "../components/AuthShell"
+import { useLocale } from "../i18n/LocaleProvider"
 import { OnboardingFooter, OnboardingHeader } from "../onboarding/ui"
 
 const fade = {
@@ -36,6 +37,7 @@ const fade = {
 
 export function StartPage() {
   const navigate = useNavigate()
+  const { m } = useLocale()
   const [state, setState] = useState<OnboardingState>(loadState)
 
   useEffect(() => {
@@ -113,7 +115,7 @@ export function StartPage() {
           onBack={back}
           onSkip={next}
           onContinue={next}
-          continueLabel={state.step === 7 ? "Finish" : "Continue"}
+          continueLabel={state.step === 7 ? m.onboard.finish : m.onboard.continue}
           continueDisabled={!canContinue(state)}
           skip={meta.skip}
         />

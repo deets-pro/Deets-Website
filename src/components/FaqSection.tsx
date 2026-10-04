@@ -2,10 +2,12 @@ import { useState } from "react"
 import { Link } from "react-router-dom"
 import { motion } from "framer-motion"
 import { faqItems } from "../data/site"
+import { useLocale } from "../i18n/LocaleProvider"
 import { fadeUp, stagger } from "../motion/variants"
 
 export function FaqSection() {
   const [openId, setOpenId] = useState<string | null>(faqItems[0]?.id ?? null)
+  const { m } = useLocale()
 
   return (
     <section
@@ -24,16 +26,16 @@ export function FaqSection() {
             <span className="text-[13px] leading-none" aria-hidden>
               ∗
             </span>
-            Your questions, answered
+            {m.faq.kicker}
           </p>
           <h2 className="mt-6 font-display text-[clamp(2.2rem,5vw,4.4rem)] leading-[0.95] tracking-[-0.045em] text-white">
-            Frequently
+            {m.faq.line1}
             <br />
-            Asked <span className="text-[#d6ef6a]">Questions</span>
+            {m.faq.line2}{" "}
+            {m.faq.line3 ? <span className="text-[#d6ef6a]">{m.faq.line3}</span> : null}
           </h2>
           <p className="mt-5 max-w-md text-[15px] leading-relaxed text-[#e3f4b0]/75">
-            Everything you need to know about ordering, sharing, and updating
-            your Deets card.
+            {m.faq.copy}
           </p>
         </div>
 
@@ -53,10 +55,10 @@ export function FaqSection() {
                     type="button"
                     aria-expanded={open}
                     onClick={() => setOpenId(open ? null : item.id)}
-                    className="flex w-full items-start justify-between gap-4 px-5 py-4 text-left sm:px-6 sm:py-5"
+                    className="flex w-full items-start justify-between gap-4 px-5 py-4 text-start sm:px-6 sm:py-5"
                   >
                     <span className="font-display text-[1.05rem] leading-snug tracking-[-0.02em] text-white sm:text-[1.15rem]">
-                      {item.question}
+                      {m.faq.items[item.id].question}
                     </span>
                     <span
                       className="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-lg border border-[#d6ef6a]/30 text-[#d6ef6a]"
@@ -83,7 +85,7 @@ export function FaqSection() {
                     className="overflow-hidden"
                   >
                     <p className="px-5 pb-5 text-[14px] leading-relaxed text-[#e3f4b0]/70 sm:px-6 sm:pb-6">
-                      {item.answer}
+                      {m.faq.items[item.id].answer}
                     </p>
                   </motion.div>
                 </article>
@@ -94,21 +96,19 @@ export function FaqSection() {
 
         <div className="flex flex-col justify-end rounded-[1.5rem] border border-[#d6ef6a]/25 bg-[#0f4a32]/60 p-6 sm:p-8">
           <h3 className="font-display text-[1.65rem] leading-tight tracking-[-0.03em] text-white sm:text-[1.85rem]">
-            Still have questions?
+            {m.faq.still}
           </h3>
           <p className="mt-4 max-w-md text-[14px] leading-relaxed text-[#e3f4b0]/70">
-            Every team is different. If you want to talk through cards, pricing,
-            or a company rollout, we&apos;re here to help.
+            {m.faq.stillCopy}
           </p>
           <p className="mt-3 max-w-md text-[14px] leading-relaxed text-[#e3f4b0]/70">
-            Reach out — we&apos;ll walk you through the details so you get the
-            most out of Deets.
+            {m.faq.stillMore}
           </p>
           <Link
             to="/#contact"
             className="mt-8 inline-flex min-h-11 w-fit items-center rounded-full bg-[#aed141] px-6 text-[13px] font-medium text-[#0a3924] transition-opacity hover:opacity-90"
           >
-            Book a demo
+            {m.faq.demo}
           </Link>
         </div>
       </motion.div>

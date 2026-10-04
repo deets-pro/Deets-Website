@@ -1,12 +1,14 @@
 import { useEffect, useRef, useState } from "react"
 import { motion } from "framer-motion"
 import { products } from "../data/site"
+import { useLocale } from "../i18n/LocaleProvider"
 import { useLiquidScroll } from "../hooks/useLiquidScroll"
 import { fadeUp } from "../motion/variants"
 import { CarouselArrows } from "./CarouselArrows"
 
 export function ProductSection() {
   const scrollerRef = useRef<HTMLDivElement>(null)
+  const { m } = useLocale()
   useLiquidScroll(scrollerRef)
 
   const scrollByCard = (direction: "prev" | "next") => {
@@ -34,20 +36,18 @@ export function ProductSection() {
       >
         <div className="flex flex-col gap-6 sm:gap-8 lg:grid lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
           <h2 className="font-display text-[clamp(1.85rem,5vw,4.4rem)] leading-[0.95] tracking-[-0.045em] text-ink lowercase">
-            Deets card is made for those looking for modernity, convenience, and
-            elegance.
+            {m.products.heading}
           </h2>
           <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between lg:flex-col lg:items-end lg:gap-8">
-            <p className="max-w-md text-[15px] leading-relaxed text-ink-soft lg:text-right">
-              Get instant access to more information about your social media and
-              contact information directly from your Deets card.
+            <p className="max-w-md text-[15px] leading-relaxed text-ink-soft lg:text-end">
+              {m.products.copy}
             </p>
             <CarouselArrows
               tone="accent"
               onPrev={() => scrollByCard("prev")}
               onNext={() => scrollByCard("next")}
-              prevLabel="Previous product"
-              nextLabel="Next product"
+              prevLabel={m.products.prev}
+              nextLabel={m.products.next}
             />
           </div>
         </div>
@@ -73,6 +73,8 @@ function ProductCard({
   item: (typeof products)[number]
 }) {
   const [index, setIndex] = useState(0)
+  const { m } = useLocale()
+  const copy = m.products.items[item.id]
   const images = item.images
   const current = images[index] ?? images[0]
 
@@ -114,10 +116,10 @@ function ProductCard({
         ) : null}
       </div>
       <h3 className="mt-4 font-sans text-[1.05rem] font-semibold tracking-tight text-ink sm:mt-5">
-        {item.title}
+        {copy.title}
       </h3>
       <p className="mt-2 text-[0.95rem] leading-relaxed text-ink-soft">
-        {item.copy}
+        {copy.copy}
       </p>
     </article>
   )

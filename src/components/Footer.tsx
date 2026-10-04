@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom"
 import { CONTACT_EMAIL } from "../data/site"
+import { useLocale } from "../i18n/LocaleProvider"
 import { BrandLogo } from "./BrandLogo"
 import { withBase } from "../lib/base"
 
 export function Footer() {
+  const { m } = useLocale()
   return (
     <footer className="relative overflow-hidden text-ink">
       <img
@@ -16,9 +18,9 @@ export function Footer() {
 
         <div className="mt-16 grid gap-12 md:mt-24 md:grid-cols-3 md:gap-8 lg:grid-cols-[1fr_1.2fr_0.8fr]">
           <div>
-            <p className="text-[11px] tracking-[0.16em] uppercase">Offices</p>
+            <p className="text-[11px] tracking-[0.16em] uppercase">{m.footer.offices}</p>
             <div className="mt-5 flex flex-wrap items-baseline gap-x-3 text-[13px] tracking-[0.08em] uppercase">
-              <span>Saudi Arabia</span>
+              <span>{m.footer.country}</span>
             </div>
             <a
               href={`mailto:${CONTACT_EMAIL}`}
@@ -29,41 +31,40 @@ export function Footer() {
           </div>
 
           <div>
-            <p className="text-[11px] tracking-[0.16em] uppercase">How we work</p>
+            <p className="text-[11px] tracking-[0.16em] uppercase">{m.footer.how}</p>
             <p className="mt-5 max-w-sm text-[13px] leading-relaxed tracking-wide uppercase">
-              A smart NFC/QR card that shares your socials and contact info with
-              a tap. No app required.
+              {m.footer.howCopy}
             </p>
             <nav className="mt-10 flex flex-wrap gap-x-8 gap-y-3 text-[12px] tracking-[0.14em] uppercase">
               <Link className="hover:underline" to="/#how-it-works">
-                About us
+                {m.footer.about}
               </Link>
               <Link className="hover:underline" to="/#products">
-                Our services
+                {m.footer.services}
               </Link>
               <Link className="hover:underline" to="/designs">
-                Our projects
+                {m.footer.projects}
               </Link>
             </nav>
           </div>
 
           <div className="md:text-right">
             <p className="text-[11px] tracking-[0.16em] uppercase">
-              Connect with us
+              {m.footer.connect}
             </p>
             <Link
               to="/#contact"
               className="mt-5 inline-flex items-center gap-2 text-[13px] tracking-[0.12em] uppercase underline underline-offset-4"
             >
-              Get in touch
+              {m.footer.touch}
               <span aria-hidden>↗</span>
             </Link>
             <div className="mt-10 flex flex-wrap gap-x-6 gap-y-2 text-[11px] tracking-[0.12em] uppercase md:justify-end">
               <Link className="hover:underline" to="/terms">
-                Terms
+                {m.footer.terms}
               </Link>
               <Link className="hover:underline" to="/privacy">
-                Privacy
+                {m.footer.privacy}
               </Link>
             </div>
           </div>

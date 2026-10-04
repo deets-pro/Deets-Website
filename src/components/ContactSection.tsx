@@ -1,13 +1,16 @@
 import { useState, type FormEvent } from "react"
 import { motion } from "framer-motion"
+import { useLocale } from "../i18n/LocaleProvider"
 import { fadeUp } from "../motion/variants"
 
 type ContactSectionProps = {
   heading?: string
 }
 
-export function ContactSection({ heading = "Let's talk" }: ContactSectionProps) {
+export function ContactSection({ heading }: ContactSectionProps) {
   const [sent, setSent] = useState(false)
+  const { m } = useLocale()
+  const title = heading ?? m.contact.heading
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -25,29 +28,27 @@ export function ContactSection({ heading = "Let's talk" }: ContactSectionProps) 
       >
         <div>
           <h2 className="font-display text-[clamp(2.4rem,6vw,5rem)] leading-[0.92] tracking-[-0.05em] lowercase">
-            {heading}
+            {title}
           </h2>
           <p className="mt-6 max-w-md text-[15px] leading-relaxed text-ink-soft">
-            Whether you're ordering your first card, planning a bulk rollout for
-            your team, or need help with your account — we'd love to hear from
-            you.
+            {m.contact.copy}
           </p>
           <ul className="mt-8 space-y-2 text-sm text-ink-soft">
-            <li>Personal and business inquiries welcome</li>
-            <li>Corporate orders and custom branding</li>
-            <li>Account support and technical questions</li>
+            {m.contact.points.map((point) => (
+              <li key={point}>{point}</li>
+            ))}
           </ul>
         </div>
 
         {sent ? (
           <p className="self-center font-display text-3xl tracking-tight lowercase">
-            message sent — we'll be in touch.
+            {m.contact.sent}
           </p>
         ) : (
           <form className="flex flex-col gap-6" onSubmit={onSubmit}>
             <label className="block">
               <span className="text-xs tracking-[0.14em] text-ink-soft uppercase">
-                Full name
+                {m.contact.name}
               </span>
               <input
                 name="name"
@@ -58,7 +59,7 @@ export function ContactSection({ heading = "Let's talk" }: ContactSectionProps) 
             </label>
             <label className="block">
               <span className="text-xs tracking-[0.14em] text-ink-soft uppercase">
-                Phone
+                {m.contact.phone}
               </span>
               <input
                 name="phone"
@@ -70,7 +71,7 @@ export function ContactSection({ heading = "Let's talk" }: ContactSectionProps) 
             </label>
             <label className="block">
               <span className="text-xs tracking-[0.14em] text-ink-soft uppercase">
-                Email
+                {m.contact.email}
               </span>
               <input
                 name="email"
@@ -82,7 +83,7 @@ export function ContactSection({ heading = "Let's talk" }: ContactSectionProps) 
             </label>
             <label className="block">
               <span className="text-xs tracking-[0.14em] text-ink-soft uppercase">
-                Message
+                {m.contact.message}
               </span>
               <textarea
                 name="message"
@@ -95,7 +96,7 @@ export function ContactSection({ heading = "Let's talk" }: ContactSectionProps) 
               type="submit"
               className="mt-4 inline-flex min-h-12 w-fit items-center rounded-full bg-slate px-8 text-sm font-medium text-white transition-opacity hover:opacity-85"
             >
-              Send message
+              {m.contact.send}
             </button>
           </form>
         )}

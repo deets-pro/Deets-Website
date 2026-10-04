@@ -267,7 +267,7 @@ export function StepProfile({ state, patch, onContinue }: StepProps) {
         <input
           value={state.displayTitle}
           onChange={(e) => patch({ displayTitle: e.target.value })}
-          placeholder="e.g. Alex Rivera"
+          placeholder="e.g. Noura Al-Harbi"
           className={`${fieldClass} mt-2`}
         />
       </label>

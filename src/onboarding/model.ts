@@ -224,7 +224,7 @@ export const SOCIALS: {
   { id: "website", label: "Website", placeholder: "https://yoursite.com" },
 ]
 
-export const HANDLE_IDEAS = ["aria.studio", "the.maker", "good.vibes"]
+export const HANDLE_IDEAS = ["fahad", "noura.harbi", "omar.dosari"]
 
 const TAKEN_HANDLES = new Set([
   "admin",

@@ -1,7 +1,9 @@
+import { useLocale } from "../i18n/LocaleProvider"
 import { GetStartedButton } from "./GetStartedModal"
 import { withBase } from "../lib/base"
 
 export function CtaSection() {
+  const { m } = useLocale()
   return (
     <section className="relative overflow-hidden bg-[#f5d400]">
       <img
@@ -21,14 +23,13 @@ export function CtaSection() {
           />
           <div className="relative">
             <h2 className="mx-auto max-w-lg font-display text-[clamp(2rem,4.4vw,3.6rem)] leading-[0.95] tracking-[-0.045em] text-ink lowercase">
-              tap, scan, share — in seconds.
+              {m.cta.heading}
             </h2>
             <p className="mx-auto mt-5 max-w-sm text-[15px] leading-relaxed text-ink">
-              No app required. Your Deets card opens your profile the moment
-              someone taps or scans it.
+              {m.cta.copy}
             </p>
             <GetStartedButton className="mt-10 inline-flex min-h-12 items-center rounded-full bg-white px-14 text-sm font-medium text-ink transition-opacity hover:opacity-90">
-              Get started
+              {m.nav.start}
             </GetStartedButton>
           </div>
         </div>

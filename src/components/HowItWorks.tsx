@@ -1,9 +1,11 @@
 import { useEffect, useRef } from "react"
 import { motion } from "framer-motion"
 import { howItWorksSteps } from "../data/site"
+import { useLocale } from "../i18n/LocaleProvider"
 import { fadeUp, stagger } from "../motion/variants"
 
 export function HowItWorks() {
+  const { m } = useLocale()
   return (
     <section
       id="how-it-works"
@@ -17,11 +19,10 @@ export function HowItWorks() {
         className="mx-auto max-w-[1440px] text-center"
       >
         <h2 className="mx-auto max-w-2xl font-display text-[clamp(2.1rem,4.6vw,4.4rem)] leading-[0.95] tracking-[-0.045em] lowercase">
-          tap, scan, share — in seconds.
+          {m.how.heading}
         </h2>
         <p className="mx-auto mt-5 max-w-lg text-[15px] leading-relaxed text-ink-soft">
-          No app required. Your Deets card opens your profile the moment someone
-          taps or scans it.
+          {m.how.copy}
         </p>
       </motion.div>
 
@@ -49,10 +50,10 @@ export function HowItWorks() {
               {String(index + 1).padStart(2, "0")}
             </p>
             <h3 className="mt-4 font-sans text-[1.05rem] font-semibold tracking-tight text-ink">
-              {step.title}
+              {m.how.steps[step.id].title}
             </h3>
             <p className="mt-2 max-w-sm text-[0.95rem] leading-relaxed text-ink-soft">
-              {step.copy}
+              {m.how.steps[step.id].copy}
             </p>
           </motion.li>
         ))}

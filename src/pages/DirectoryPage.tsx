@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react"
 import { motion } from "framer-motion"
 import { directoryPeople } from "../data/site"
+import { useLocale } from "../i18n/LocaleProvider"
 import { fadeUp, stagger } from "../motion/variants"
 
 function initials(name: string) {
@@ -10,6 +11,7 @@ function initials(name: string) {
 
 export function DirectoryPage() {
   const [q, setQ] = useState("")
+  const { m } = useLocale()
   const people = useMemo(() => {
     const n = q.trim().toLowerCase()
     if (!n) return directoryPeople
@@ -30,24 +32,23 @@ export function DirectoryPage() {
         className="mx-auto max-w-[1440px]"
       >
         <p className="text-[13px] tracking-[0.18em] text-ink-soft uppercase">
-          Directory · people
+          {m.directory.kicker}
         </p>
         <h1 className="mt-4 max-w-3xl font-display text-[clamp(2.6rem,7vw,5.5rem)] leading-[0.92] tracking-[-0.05em] lowercase">
-          people
+          {m.directory.title}
         </h1>
         <p className="mt-5 max-w-lg text-[15px] leading-relaxed text-ink-soft">
-          Profiles that opted into the public directory. More directory types
-          (stores, events, …) coming later.
+          {m.directory.copy}
         </p>
 
         <label className="mt-10 block max-w-md">
           <span className="text-xs tracking-[0.14em] text-ink-soft uppercase">
-            Search
+            {m.directory.search}
           </span>
           <input
             value={q}
             onChange={(e) => setQ(e.target.value)}
-            placeholder="Name, handle, or bio"
+            placeholder={m.directory.placeholder}
             className="mt-2 w-full rounded-full border border-line bg-canvas px-5 py-3.5 text-[15px] text-ink outline-none transition-[border-color,box-shadow] placeholder:text-ink/30 focus:border-ink focus:shadow-[0_0_0_4px_rgb(42_49_79_/_0.08)]"
           />
         </label>
@@ -98,7 +99,7 @@ export function DirectoryPage() {
 
       {people.length === 0 ? (
         <p className="mx-auto mt-16 max-w-[1440px] text-sm text-ink-soft">
-          No profiles match that search.
+          {m.directory.empty}
         </p>
       ) : null}
     </section>

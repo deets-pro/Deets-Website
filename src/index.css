@@ -88,6 +88,15 @@
     overflow-x: hidden;
   }
 
+  html[lang="ar"] {
+    --font-sans: "IBM Plex Sans Arabic", sans-serif;
+    --font-display: "IBM Plex Sans Arabic", sans-serif;
+  }
+
+  html[lang="ar"] [class*="tracking-"] {
+    letter-spacing: 0;
+  }
+
   ::selection {
     background: rgb(0 212 255 / 0.28);
     color: var(--color-ink);

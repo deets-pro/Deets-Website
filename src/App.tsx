@@ -2,6 +2,7 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion"
 import { useEffect } from "react"
 import { Route, Routes, useLocation } from "react-router-dom"
 import { GetStartedProvider } from "./components/GetStartedModal"
+import { LocaleProvider } from "./i18n/LocaleProvider"
 import { LandingReveal, OpeningProvider } from "./components/OpeningScreen"
 import { PageShell } from "./components/PageShell"
 import { CompaniesPage } from "./pages/CompaniesPage"
@@ -68,6 +69,7 @@ function AnimatedRoutes() {
 
 export default function App() {
   return (
+    <LocaleProvider>
     <OpeningProvider>
       <GetStartedProvider>
         <HashScroll />
@@ -76,5 +78,6 @@ export default function App() {
         </LandingReveal>
       </GetStartedProvider>
     </OpeningProvider>
+    </LocaleProvider>
   )
 }
