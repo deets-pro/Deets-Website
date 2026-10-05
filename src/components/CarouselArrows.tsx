@@ -45,7 +45,7 @@ export function CarouselArrows({
   tone?: "ink" | "accent"
 }) {
   return (
-    <div className="flex gap-3">
+    <div className="flex gap-3" dir="ltr">
       <ArrowButton
         direction="prev"
         onClick={onPrev}
