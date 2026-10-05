@@ -25,7 +25,17 @@ const en = {
   companies: {
     title: "companies portal.",
     copy: "Issue branded cards, keep team profiles current, and send people to your company — not a stack of paper.",
+    points: [
+      "One branded design for every card on the team.",
+      "Update a profile once, and every card stays current.",
+      "Watch the taps, scans, and details people leave with you.",
+    ],
     open: "Open portal",
+    leadsValue: "2,500",
+    leads: "Leads",
+    leadsNote: "From team cards",
+    taps: "Taps",
+    scans: "Scans",
     kicker: "For teams",
     pageTitle: "companies portal",
     pageCopy:
@@ -96,7 +106,6 @@ const en = {
   pricing: {
     line1: "Free to start",
     line2: "and built to scale",
-    trusted: "Trusted by teams at",
     monthly: "Monthly",
     yearly: "Yearly",
     plans: {
@@ -373,7 +382,17 @@ const ar: typeof en = {
   companies: {
     title: "بوابة الشركات.",
     copy: "أصدر بطاقات بهوية شركتك، وحدّث ملفات الفريق، ووجّه الناس إلى شركتك بدل كومة من الورق.",
+    points: [
+      "تصميم واحد بهوية الشركة لكل بطاقات الفريق.",
+      "حدّث الملف مرة واحدة، وتبقى كل البطاقات محدّثة.",
+      "تابع النقرات والمسح والبيانات التي يتركها الناس معك.",
+    ],
     open: "افتح البوابة",
+    leadsValue: "2,500",
+    leads: "عملاء",
+    leadsNote: "من بطاقات الفريق",
+    taps: "نقرات",
+    scans: "مسح",
     kicker: "للفرق",
     pageTitle: "بوابة الشركات",
     pageCopy: "أصدر بطاقات ديتس بهوية شركتك، وأبقِ كل ملف محدّثاً، وامنح فريقك لمسة واحدة لمشاركة من هم.",
@@ -442,7 +461,6 @@ const ar: typeof en = {
   pricing: {
     line1: "ابدأ مجاناً",
     line2: "وتنمو معك",
-    trusted: "تثق بنا فرق في",
     monthly: "شهري",
     yearly: "سنوي",
     plans: {

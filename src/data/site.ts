@@ -485,14 +485,6 @@ export const pricingPlans = [
   },
 ] as const
 
-export const trustedTeams = [
-  "Shopify",
-  "Kraft Heinz",
-  "Marriott",
-  "S&P Global",
-  "Wharton",
-] as const
-
 export const faqItems = [
   {
     id: "app",

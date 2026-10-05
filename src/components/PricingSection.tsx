@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import { motion } from "framer-motion"
-import { pricingPlans, trustedTeams } from "../data/site"
+import { pricingPlans } from "../data/site"
 import { useLocale } from "../i18n/LocaleProvider"
 import { fadeUp, stagger } from "../motion/variants"
 import { GetStartedButton } from "./GetStartedModal"
@@ -25,16 +25,6 @@ export function PricingSection() {
           <br />
           {m.pricing.line2}
         </h2>
-
-        <div className="mx-auto mt-8 flex max-w-3xl flex-wrap items-center justify-center gap-x-5 gap-y-2 rounded-2xl bg-[#f4f1ea] px-5 py-3 text-[11px] tracking-wide text-ink/35">
-          <span>{m.pricing.trusted}</span>
-          {trustedTeams.map((name) => (
-            <span key={name} className="font-semibold text-ink/40">
-              {name}
-            </span>
-          ))}
-        </div>
-
       </motion.div>
 
       <motion.ul
