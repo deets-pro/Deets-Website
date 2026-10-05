@@ -148,6 +148,7 @@ const en = {
             heading: "",
             note: "",
             items: [
+              "Everything in Free",
               "Full design customization (colors, fonts, background)",
               "Watermark removed",
               "Public directory listing to boost discovery",
@@ -175,6 +176,7 @@ const en = {
             heading: "",
             note: "",
             items: [
+              "Everything in Free and Premium",
               "Unlimited profiles under one account (billed per seat, minimum seats apply)",
               "Centralized management with roles and permissions",
               "Organization-wide branded templates",
@@ -503,6 +505,7 @@ const ar: typeof en = {
             heading: "",
             note: "",
             items: [
+              "كل ما في المجاني",
               "تخصيص كامل للتصميم (الألوان والخطوط والخلفية)",
               "إزالة العلامة المائية",
               "ظهور في الدليل العام لزيادة الوصول",
@@ -527,6 +530,7 @@ const ar: typeof en = {
             heading: "",
             note: "",
             items: [
+              "كل ما في المجاني وبريميوم",
               "ملفات بلا حد تحت حساب واحد (تُحاسب لكل مقعد، ويُطبَّق حد أدنى)",
               "إدارة مركزية بالأدوار والصلاحيات",
               "قوالب بهوية المؤسسة لكل الفريق",

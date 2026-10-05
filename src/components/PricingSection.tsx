@@ -32,20 +32,24 @@ export function PricingSection() {
         whileInView="show"
         viewport={{ once: true, amount: 0.1 }}
         variants={stagger}
-        className="mx-auto mt-12 grid max-w-[1440px] grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4"
+        className="mx-auto mt-12 grid max-w-[1440px] grid-cols-1 gap-4 sm:grid-cols-2 sm:auto-rows-[auto_1fr] xl:grid-cols-4"
       >
         {pricingPlans.map((plan) => {
             const text = m.pricing.plans[plan.id]
             const price = text.prices.monthly
             const wordPrice = price !== "0"
           return (
-            <motion.li key={plan.id} variants={fadeUp} className="min-w-0">
+            <motion.li
+              key={plan.id}
+              variants={fadeUp}
+              className="min-w-0 sm:row-span-2 sm:grid sm:grid-rows-subgrid"
+            >
               <article
-                className="flex h-full flex-col overflow-hidden rounded-[1.75rem]"
+                className="flex h-full flex-col overflow-hidden rounded-[1.75rem] sm:grid sm:grid-rows-subgrid sm:row-span-2"
                 style={{ background: plan.body }}
               >
                 <div
-                  className="rounded-[1.75rem] px-6 pt-7 pb-8"
+                  className="flex h-full flex-col rounded-[1.75rem] px-6 pt-7 pb-8"
                   style={{ background: plan.header, color: plan.ink }}
                 >
                   <div className="flex items-start justify-between gap-3">
@@ -71,12 +75,12 @@ export function PricingSection() {
                   {text.notes.monthly ? (
                     <p className="mt-3 text-[13px] font-medium">{text.notes.monthly}</p>
                   ) : null}
-                  <p className="mt-6 max-w-[18rem] text-[13px] leading-relaxed">
+                  <p className="mt-6 max-w-[18rem] flex-1 text-[13px] leading-relaxed">
                     {text.copy}
                   </p>
                   <PlanCta plan={plan} label={text.cta} />
                 </div>
-                <div className="flex flex-1 flex-col px-6 pt-6 pb-8 text-ink">
+                <div className="flex h-full flex-col px-6 pt-6 pb-8 text-ink sm:-mt-4">
                   {text.includes ? (
                     <p className="mb-4 text-[13px] font-medium">{text.includes}</p>
                   ) : null}
@@ -119,7 +123,7 @@ export function PricingSection() {
 
 function PlanCta({ plan, label }: { plan: (typeof pricingPlans)[number]; label: string }) {
   const className =
-    "mt-8 inline-flex min-h-10 items-center rounded-full px-5 text-[13px] font-medium transition-opacity hover:opacity-90"
+    "mt-8 inline-flex min-h-10 w-fit items-center self-start rounded-full px-5 text-[13px] font-medium transition-opacity hover:opacity-90"
   const style = { background: plan.button, color: plan.buttonInk }
 
   if (plan.href === "start") {
