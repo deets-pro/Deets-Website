@@ -176,7 +176,7 @@ const en = {
             heading: "",
             note: "",
             items: [
-              "Everything in Free and Premium",
+              "Everything in Premium",
               "Unlimited profiles under one account (billed per seat, minimum seats apply)",
               "Centralized management with roles and permissions",
               "Organization-wide branded templates",
@@ -530,7 +530,7 @@ const ar: typeof en = {
             heading: "",
             note: "",
             items: [
-              "كل ما في المجاني وبريميوم",
+              "كل ما في بريميوم",
               "ملفات بلا حد تحت حساب واحد (تُحاسب لكل مقعد، ويُطبَّق حد أدنى)",
               "إدارة مركزية بالأدوار والصلاحيات",
               "قوالب بهوية المؤسسة لكل الفريق",
